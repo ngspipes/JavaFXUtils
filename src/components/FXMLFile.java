@@ -13,33 +13,33 @@ public class FXMLFile<A/*initializable argument*/> implements IComponent {
 	
     private final String fXMLFilePath;
     private final boolean isInitializable;
-    private A arg;
+    private A initializableArgument;
     
     // Constructors
     
-    public FXMLFile(String fXMLComponentPath, Class<?> controllerClass, A arg){
-    	this.fXMLFilePath = fXMLComponentPath;
+    public FXMLFile(String fXMLFilePath, Class<?> controllerClass, A initializableArgument){
+    	this.fXMLFilePath = fXMLFilePath;
         this.isInitializable = controllerClass == null || IInitializable.class.isAssignableFrom(controllerClass);
-        this.arg = arg;
+        this.initializableArgument = initializableArgument;
     }
     
-    public FXMLFile(String fXMLComponentPath, Class<?> controllerClass){
-        this(fXMLComponentPath, controllerClass, null);
+    public FXMLFile(String fXMLFilePath, Class<?> controllerClass){
+        this(fXMLFilePath, controllerClass, null);
     }
     
-    public FXMLFile(String fXMLComponentPath){
-        this(fXMLComponentPath, null, null);
+    public FXMLFile(String fXMLFilePath){
+        this(fXMLFilePath, null, null);
     }
     
     
     // Implementation
     
-    public A getArg(){
-        return arg;
+    public A getInitializableArgument(){
+        return initializableArgument;
     }
     
-    public void setArg(A arg){
-        this.arg = arg;
+    public void setInitializableArgument(A initializableArgument){
+        this.initializableArgument = initializableArgument;
     }
     
     @Override
@@ -63,7 +63,7 @@ public class FXMLFile<A/*initializable argument*/> implements IComponent {
         
         if(isInitializable){
             IInitializable<A> controller = loader.getController();
-            controller.init(arg);   
+            controller.init(initializableArgument);   
         }
     }
     
