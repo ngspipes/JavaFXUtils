@@ -5,7 +5,6 @@ import java.util.function.Consumer;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
-import utils.ComponentException;
 
 public class DoubleClickable extends Component{
 	
@@ -52,7 +51,7 @@ public class DoubleClickable extends Component{
 	// Implementation
 	
 	@Override
-	public void mount() throws ComponentException {
+	public void mount() {
 		EventHandler<? super MouseEvent> oldHandler = this.node.getOnMouseClicked();
 		EventHandler<? super MouseEvent> newHandler = null;
 		
