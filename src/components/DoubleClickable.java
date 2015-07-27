@@ -13,14 +13,14 @@ public class DoubleClickable extends Component{
 	
 	// Constructors
 	
-	public DoubleClickable(Node elem, Consumer<MouseEvent> action, boolean keepOldHandler) {
-		super(elem);
+	public DoubleClickable(Node node, Consumer<MouseEvent> action, boolean keepOldHandler) {
+		super(node);
 		this.action = action;
 		this.keepOldHendler = keepOldHandler;
 	}
 	
-	public DoubleClickable(Node elem, Runnable action, boolean keepOldHandler) {
-		this(elem, (event)->action.run(), keepOldHandler);
+	public DoubleClickable(Node node, Runnable action, boolean keepOldHandler) {
+		this(node, (event)->action.run(), keepOldHandler);
 	}
 	
 	public DoubleClickable(IComponent component, Consumer<MouseEvent> action, boolean keepOldHandler) {
@@ -31,16 +31,16 @@ public class DoubleClickable extends Component{
 		this(component.getNode(), (event)->action.run(), keepOldHandler);
 	}
 	
-	public DoubleClickable(Node elem, Consumer<MouseEvent> action) {
-		this(elem, action, false);
+	public DoubleClickable(Node node, Consumer<MouseEvent> action) {
+		this(node, action, false);
 	}
 	
 	public DoubleClickable(IComponent component, Consumer<MouseEvent> action) {
 		this(component.getNode(), action);
 	}
 	
-	public DoubleClickable(Node elem, Runnable action) {
-		this(elem, (event)->action.run());
+	public DoubleClickable(Node node, Runnable action) {
+		this(node, (event)->action.run());
 	}
 	
 	public DoubleClickable(IComponent component, Runnable action) {
