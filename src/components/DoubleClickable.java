@@ -5,18 +5,19 @@ import java.util.function.Consumer;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import utils.Utils;
 
 public class DoubleClickable extends Component{
 	
 	private final Consumer<MouseEvent> action;
-	private final boolean keepOldHendler;
+	private final boolean keepOldHandler;
 	
 	// Constructors
 	
 	public DoubleClickable(Node node, Consumer<MouseEvent> action, boolean keepOldHandler) {
 		super(node);
 		this.action = action;
-		this.keepOldHendler = keepOldHandler;
+		this.keepOldHandler = keepOldHandler;
 	}
 	
 	public DoubleClickable(Node node, Runnable action, boolean keepOldHandler) {
@@ -53,23 +54,12 @@ public class DoubleClickable extends Component{
 	@Override
 	public void mount() {
 		EventHandler<? super MouseEvent> oldHandler = this.node.getOnMouseClicked();
-		EventHandler<? super MouseEvent> newHandler = null;
+		EventHandler<? super MouseEvent> newHandler = (event)->{	
+															if(event.getClickCount() == 2)
+																action.accept(event);
+														};
 		
-		if(!keepOldHendler || oldHandler == null){	
-			newHandler = (event)->{	
-							if(event.getClickCount() == 2)
-								action.accept(event);
-							};
-		}else{
-			newHandler = (event)->{
-							oldHandler.handle(event);
-							
-							if(event.getClickCount() == 2)
-								action.accept(event);
-							};
-		}
-		
-		this.getNode().setOnMouseClicked(newHandler);
+		Utils.setMouseHandler(oldHandler, newHandler, this.getNode()::setOnMouseClicked, keepOldHandler);
 	}
 	
 }
