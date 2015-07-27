@@ -12,23 +12,6 @@ import utils.Utils;
 
 import components.mounter.ComponentMounter;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 public class Movable extends Component{
 
 	private static class Delta { double x, y; }
