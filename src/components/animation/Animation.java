@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import utils.Utils;
 
 import components.Component;
+import components.IComponent;
 
 public class Animation extends Component{
 	
@@ -19,6 +20,7 @@ public class Animation extends Component{
 	private final Consumer<EventHandler<? super MouseEvent>> enterSetter;
 	private final Consumer<EventHandler<? super MouseEvent>> exitSetter;
 	
+	// Constructors
 	
 	public Animation(	Node node, 
 						EventHandler<? super MouseEvent> oldEnterHandler, EventHandler<? super MouseEvent> newEnterHandler,
@@ -41,6 +43,24 @@ public class Animation extends Component{
 						Consumer<EventHandler<? super MouseEvent>> enterSetter, Consumer<EventHandler<? super MouseEvent>> exitSetter	){
 		this(node, oldEnterHandler, newEnterHandler, oldExitHandler, newExitHandler, enterSetter, exitSetter, false);
 	}
+	
+	public Animation(	IComponent component, 
+						EventHandler<? super MouseEvent> oldEnterHandler, EventHandler<? super MouseEvent> newEnterHandler,
+						EventHandler<? super MouseEvent> oldExitHandler, EventHandler<? super MouseEvent> newExitHandler,
+						Consumer<EventHandler<? super MouseEvent>> enterSetter, Consumer<EventHandler<? super MouseEvent>> exitSetter,
+						boolean keepOldHandlers){
+		this(component.getNode(), oldEnterHandler, newEnterHandler, oldExitHandler, newExitHandler, enterSetter, exitSetter, keepOldHandlers);
+	}
+
+	public Animation(	IComponent component, 
+						EventHandler<? super MouseEvent> oldEnterHandler, EventHandler<? super MouseEvent> newEnterHandler,
+						EventHandler<? super MouseEvent> oldExitHandler, EventHandler<? super MouseEvent> newExitHandler,
+						Consumer<EventHandler<? super MouseEvent>> enterSetter, Consumer<EventHandler<? super MouseEvent>> exitSetter	){
+		this(component.getNode(), oldEnterHandler, newEnterHandler, oldExitHandler, newExitHandler, enterSetter, exitSetter);
+	}
+
+	
+	// Implementation
 	
 	@Override
 	public void mount(){

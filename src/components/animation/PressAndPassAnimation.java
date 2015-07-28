@@ -5,11 +5,14 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 
 import components.Component;
+import components.IComponent;
 
 public class PressAndPassAnimation extends Component{
 	
 	private final PressAnimation pressAnimation;
 	private final PassAnimation passAnimation;
+	
+	// Constructors
 	
 	public PressAndPassAnimation(	Node node, 
 									EventHandler<? super MouseEvent> onPress, EventHandler<? super MouseEvent> onRelease,
@@ -26,6 +29,22 @@ public class PressAndPassAnimation extends Component{
 		this(node, onPress, onRelease, onEnter, onExit, false);
 	}
 
+	public PressAndPassAnimation(	IComponent component, 
+									EventHandler<? super MouseEvent> onPress, EventHandler<? super MouseEvent> onRelease,
+									EventHandler<? super MouseEvent> onEnter, EventHandler<? super MouseEvent> onExit,
+			boolean keepOldHandlers){
+		this(component.getNode(), onPress, onRelease, onEnter, onExit, keepOldHandlers);	
+	}
+
+	public PressAndPassAnimation(	IComponent component, 
+									EventHandler<? super MouseEvent> onPress, EventHandler<? super MouseEvent> onRelease,
+									EventHandler<? super MouseEvent> onEnter, EventHandler<? super MouseEvent> onExit){
+		this(component.getNode(), onPress, onRelease, onEnter, onExit);
+	}
+
+	
+	// Implementation
+	
 	@Override
 	public void mount() {
 		pressAnimation.mount();
