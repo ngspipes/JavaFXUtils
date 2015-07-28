@@ -59,7 +59,9 @@ public class DoubleClickable extends Component{
 																action.accept(event);
 														};
 		
-		Utils.setMouseHandler(oldHandler, newHandler, this.getNode()::setOnMouseClicked, keepOldHandler);
+		newHandler = Utils.chain(oldHandler, newHandler, keepOldHandler);
+														
+		this.getNode().setOnMouseClicked(newHandler);
 	}
 	
 }

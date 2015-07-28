@@ -92,8 +92,10 @@ public class Movable extends Component{
 															dragDelta.x = node.getLayoutX() - event.getSceneX();
 															dragDelta.y = node.getLayoutY() - event.getSceneY();
 														};
-														
-		Utils.setMouseHandler(oldHandler, newHandler, this.getNode()::setOnMousePressed, keepOldHandlers);
+						
+		newHandler = Utils.chain(oldHandler, newHandler, keepOldHandlers);
+		
+		this.getNode().setOnMousePressed(newHandler);
 	}
 
 	private void setOnDragged(){
@@ -103,8 +105,10 @@ public class Movable extends Component{
 															node.setLayoutY(event.getSceneY() + dragDelta.y);
 															onMove.accept(event);
 														};
-										
-		Utils.setMouseHandler(oldHandler, newHandler, this.getNode()::setOnMouseDragged, keepOldHandlers);
+
+		newHandler = Utils.chain(oldHandler, newHandler, keepOldHandlers);
+		
+		this.getNode().setOnMouseDragged(newHandler);
 	}
 
 }
