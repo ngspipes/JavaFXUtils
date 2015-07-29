@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import components.IComponent;
 import components.animation.PassAnimation;
 
 
@@ -38,4 +39,29 @@ public class ChangeButtonOnPass<T extends Button> extends PassAnimation<T>{
 		this(button, onEnterPath , onExitPath, true);
 	}
 
+	public ChangeButtonOnPass(IComponent<T> component, ImageView onEnter, ImageView onExit, boolean keepOldHandlers) {
+		this(component.getNode(), onEnter, onExit, keepOldHandlers);
+	}
+	
+	public ChangeButtonOnPass(IComponent<T> component, ImageView onEnter, ImageView onExit) {
+		this(component.getNode(), onEnter, onExit);
+	}
+	
+	public ChangeButtonOnPass(IComponent<T> component, Image onEnter, Image onExit, boolean keepOldHandlers) {
+		this(component.getNode(), onEnter, onExit, keepOldHandlers);
+	}
+	
+	public ChangeButtonOnPass(IComponent<T> component, Image onEnter, Image onExit) {
+		this(component.getNode(), onEnter, onExit);
+	}
+	
+	public ChangeButtonOnPass(IComponent<T> component, String onEnterPath, String onExitPath, boolean keepOldHandlers) {
+		this(component.getNode(), onEnterPath, onExitPath, keepOldHandlers);
+	}
+	
+	public ChangeButtonOnPass(IComponent<T> component, String onEnterPath, String onExitPath) {
+		this(component.getNode(), onEnterPath, onExitPath);
+	}
+
+	
 }
