@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.util.Pair;
 
 import components.Component;
+import components.IComponent;
 import components.multiOption.Operations.Operation;
 
 public class MultiOption<T extends Control> extends Component<T>{
@@ -25,6 +26,14 @@ public class MultiOption<T extends Control> extends Component<T>{
 	
 	public MultiOption(T control, Collection<Pair<String, Runnable>> actions) {
 		this(control, new Operations(actions));
+	}
+	
+	public MultiOption(IComponent<T> component, Operations operations) {
+		this(component.getNode(), operations);
+	}
+	
+	public MultiOption(IComponent<T> component, Collection<Pair<String, Runnable>> actions) {
+		this(component.getNode(), actions);
 	}
 	
 	
