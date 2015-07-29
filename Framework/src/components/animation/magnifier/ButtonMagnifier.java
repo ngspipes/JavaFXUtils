@@ -2,6 +2,7 @@ package components.animation.magnifier;
 
 import javafx.scene.control.Button;
 
+import components.IComponent;
 import components.animation.PassAnimation;
 
 
@@ -31,5 +32,22 @@ public class ButtonMagnifier<T extends Button> extends PassAnimation<T>{
 	public ButtonMagnifier(T button){
 		this(button, true);
 	}
+	
+	public ButtonMagnifier(IComponent<T> component, double magnifyAmp, boolean keepOldHandlers){
+		this(component.getNode(), magnifyAmp, keepOldHandlers);
+	}
+	
+	public ButtonMagnifier(IComponent<T> component, double magnifyAmp){
+		this(component.getNode(), magnifyAmp);
+	}
+	
+	public ButtonMagnifier(IComponent<T> component, boolean keepOldHandlers){
+		this(component.getNode(), keepOldHandlers);
+	}
+	
+	public ButtonMagnifier(IComponent<T> component){
+		this(component.getNode());
+	}
+	
 	
 }
