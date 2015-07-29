@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import components.IComponent;
 import components.animation.PressAnimation;
 
 
@@ -37,5 +38,30 @@ public class ChangeButtonOnPress<T extends Button> extends PressAnimation<T>{
 	public ChangeButtonOnPress(T button, String onPressPath, String onReleasePath) {
 		this(button, onPressPath, onReleasePath, true);
 	}
+
+	public ChangeButtonOnPress(IComponent<T> component, ImageView onPress, ImageView onRelease, boolean keepOldHandlers) {
+		this(component.getNode(), onPress, onRelease, keepOldHandlers);
+	}
+	
+	public ChangeButtonOnPress(IComponent<T> component, ImageView onPress, ImageView onRelease) {
+		this(component.getNode(), onPress, onRelease);
+	}
+	
+	public ChangeButtonOnPress(IComponent<T> component, Image onPress, Image onRelease, boolean keepOldHandlers) {
+		this(component.getNode(), onPress, onRelease, keepOldHandlers);
+	}
+	
+	public ChangeButtonOnPress(IComponent<T> component, Image onPress, Image onRelease) {
+		this(component.getNode(), onPress, onRelease);
+	}
+	
+	public ChangeButtonOnPress(IComponent<T> component, String onPressPath, String onReleasePath, boolean keepOldHandlers) {
+		this(component.getNode(), onPressPath, onReleasePath, keepOldHandlers);
+	}
+	
+	public ChangeButtonOnPress(IComponent<T> component, String onPressPath, String onReleasePath) {
+		this(component.getNode(), onPressPath, onReleasePath);
+	}
+	
 	
 }
