@@ -10,7 +10,7 @@ import utils.Utils;
 import components.Component;
 import components.IComponent;
 
-public class Animation extends Component{
+public class Animation<T extends Node> extends Component<T>{
 	
 	protected final boolean keepOldHandlers;
 	private final EventHandler<? super MouseEvent> oldEnterHandler;
@@ -22,7 +22,7 @@ public class Animation extends Component{
 	
 	// Constructors
 	
-	public Animation(	Node node, 
+	public Animation(	T node, 
 						EventHandler<? super MouseEvent> oldEnterHandler, EventHandler<? super MouseEvent> newEnterHandler,
 						EventHandler<? super MouseEvent> oldExitHandler, EventHandler<? super MouseEvent> newExitHandler,
 						Consumer<EventHandler<? super MouseEvent>> enterSetter, Consumer<EventHandler<? super MouseEvent>> exitSetter,
@@ -37,14 +37,14 @@ public class Animation extends Component{
 		this.keepOldHandlers = keepOldHandlers;
 	}
 	
-	public Animation(	Node node, 
+	public Animation(	T node, 
 						EventHandler<? super MouseEvent> oldEnterHandler, EventHandler<? super MouseEvent> newEnterHandler,
 						EventHandler<? super MouseEvent> oldExitHandler, EventHandler<? super MouseEvent> newExitHandler,
 						Consumer<EventHandler<? super MouseEvent>> enterSetter, Consumer<EventHandler<? super MouseEvent>> exitSetter	){
 		this(node, oldEnterHandler, newEnterHandler, oldExitHandler, newExitHandler, enterSetter, exitSetter, true);
 	}
 	
-	public Animation(	IComponent component, 
+	public Animation(	IComponent<T> component, 
 						EventHandler<? super MouseEvent> oldEnterHandler, EventHandler<? super MouseEvent> newEnterHandler,
 						EventHandler<? super MouseEvent> oldExitHandler, EventHandler<? super MouseEvent> newExitHandler,
 						Consumer<EventHandler<? super MouseEvent>> enterSetter, Consumer<EventHandler<? super MouseEvent>> exitSetter,
@@ -52,7 +52,7 @@ public class Animation extends Component{
 		this(component.getNode(), oldEnterHandler, newEnterHandler, oldExitHandler, newExitHandler, enterSetter, exitSetter, keepOldHandlers);
 	}
 
-	public Animation(	IComponent component, 
+	public Animation(	IComponent<T> component, 
 						EventHandler<? super MouseEvent> oldEnterHandler, EventHandler<? super MouseEvent> newEnterHandler,
 						EventHandler<? super MouseEvent> oldExitHandler, EventHandler<? super MouseEvent> newExitHandler,
 						Consumer<EventHandler<? super MouseEvent>> enterSetter, Consumer<EventHandler<? super MouseEvent>> exitSetter	){
