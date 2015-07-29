@@ -5,13 +5,13 @@ import javafx.scene.image.ImageView;
 import components.animation.PassAnimation;
 
 
-public class ImageMagnifier extends PassAnimation{
+public class ImageMagnifier<T extends ImageView> extends PassAnimation<T>{
 	
 	private static final double DEFAULT_MAGNIFY_AMP = 1.5;
 	
 	// Constructors
 	
-	public ImageMagnifier(ImageView image, double magnifyAmp, boolean keepOldHandlers){
+	public ImageMagnifier(T image, double magnifyAmp, boolean keepOldHandlers){
 		super(	image,
 				(event)->{	image.fitWidthProperty().set(image.fitWidthProperty().get()*magnifyAmp);
 							image.fitHeightProperty().set(image.fitHeightProperty().get()*magnifyAmp);	},
@@ -20,15 +20,15 @@ public class ImageMagnifier extends PassAnimation{
 				keepOldHandlers	);
 	}
 	
-	public ImageMagnifier(ImageView image, double magnifyAmp){
+	public ImageMagnifier(T image, double magnifyAmp){
 		this(image, magnifyAmp, true);
 	}
 	
-	public ImageMagnifier(ImageView image, boolean keepOldHandlers){
+	public ImageMagnifier(T image, boolean keepOldHandlers){
 		this(image, DEFAULT_MAGNIFY_AMP, keepOldHandlers);
 	}
 	
-	public ImageMagnifier(ImageView image){
+	public ImageMagnifier(T image){
 		this(image, true);
 	}
 
