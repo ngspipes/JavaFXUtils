@@ -80,7 +80,7 @@ public class Movable<T extends Node> extends Component<T>{
 		setOnPressed();
 		setOnDragged();
 
-		new ComponentMounter(this.node)
+		new ComponentMounter<>(this.node)
 				.changeMouseOnPress(Cursor.CLOSED_HAND, Cursor.OPEN_HAND)
 				.changeMouseOnPass(Cursor.OPEN_HAND, Cursor.DEFAULT)
 				.mount();
