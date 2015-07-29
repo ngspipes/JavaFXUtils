@@ -23,6 +23,14 @@ public class Window<T extends Parent, A> implements IComponent<T>{
     	this(root, "");
     }
     
+    public Window(IComponent<T> component, String windowTitle){
+    	this(component.getNode(), windowTitle);
+    }
+    
+    public Window(IComponent<T> component){
+    	this(component.getNode());
+    }
+    
     public Window(String fXMLFilePath, Class<?> controllerClass, A initializableArgument, String windowTitle){
     	fXMLFile = new FXMLFile<>(fXMLFilePath, controllerClass, initializableArgument);
     	this.windowTitle = windowTitle;
