@@ -1,31 +1,30 @@
 package components;
 
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import utils.ComponentException;
 
-public class Window<A> implements IComponent{
+public class Window<T extends Parent, A> implements IComponent<T>{
     
     private final String windowTitle;
-    private Parent root;
-    private FXMLFile<A> fXMLFile;
+    private T root;
+    private FXMLFile<T,A> fXMLFile;
     private Stage stage;
     
     // Constructors
     
-    public Window(Parent root, String windowTitle){
+    public Window(T root, String windowTitle){
     	this.root = root;
         this.windowTitle = windowTitle;
     }
     
-    public Window(Parent root){
+    public Window(T root){
     	this(root, "");
     }
     
     public Window(String fXMLFilePath, Class<?> controllerClass, A initializableArgument, String windowTitle){
-    	fXMLFile = new FXMLFile<A>(fXMLFilePath, controllerClass, initializableArgument);
+    	fXMLFile = new FXMLFile<>(fXMLFilePath, controllerClass, initializableArgument);
     	this.windowTitle = windowTitle;
     }
     
@@ -52,7 +51,7 @@ public class Window<A> implements IComponent{
     
     // Implementation
     
-    public Node getNode(){
+    public T getNode(){
     	return root;
     }
     
@@ -64,7 +63,7 @@ public class Window<A> implements IComponent{
     public void open() throws ComponentException{
     	if(fXMLFile != null){
     		fXMLFile.mount();
-    		root = (Parent)fXMLFile.getNode();
+    		root = fXMLFile.getNode();
     	}
     	
 		stage = new Stage();
