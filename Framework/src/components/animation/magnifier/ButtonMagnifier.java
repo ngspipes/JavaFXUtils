@@ -5,13 +5,13 @@ import javafx.scene.control.Button;
 import components.animation.PassAnimation;
 
 
-public class ButtonMagnifier extends PassAnimation{
+public class ButtonMagnifier<T extends Button> extends PassAnimation<T>{
 	
 	private static final double DEFAULT_MAGNIFY_AMP = 1.5;
 	
 	//Constructors
 	
-	public ButtonMagnifier(Button button, double magnifyAmp, boolean keepOldHandlers){
+	public ButtonMagnifier(T button, double magnifyAmp, boolean keepOldHandlers){
 		super(	button,
 				(event)->{	button.setMinHeight(button.getHeight()*magnifyAmp);
 		        			button.setMinWidth(button.getWidth()*magnifyAmp);	},
@@ -20,15 +20,15 @@ public class ButtonMagnifier extends PassAnimation{
 				keepOldHandlers	);
 	}
 	
-	public ButtonMagnifier(Button button, double magnifyAmp){
+	public ButtonMagnifier(T button, double magnifyAmp){
 		this(button, magnifyAmp, true);
 	}
 	
-	public ButtonMagnifier(Button button, boolean keepOldHandlers){
+	public ButtonMagnifier(T button, boolean keepOldHandlers){
 		this(button, DEFAULT_MAGNIFY_AMP, keepOldHandlers);
 	}
 	
-	public ButtonMagnifier(Button button){
+	public ButtonMagnifier(T button){
 		this(button, true);
 	}
 	
