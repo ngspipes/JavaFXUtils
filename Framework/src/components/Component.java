@@ -3,16 +3,16 @@ package components;
 import javafx.scene.Node;
 
 
-public abstract class Component implements IComponent{
+public abstract class Component<T extends Node> implements IComponent<T>{
 
-	protected Node node;
+	protected T node;
 	
-	public Component(Node node){
+	public Component(T node){
 		this.node = node;
 	}
 
 	@Override
-	public Node getNode() {
+	public T getNode() {
 		return node;
 	}
 
