@@ -9,7 +9,7 @@ import javafx.scene.control.Tooltip;
 import javafx.util.Duration;
 import utils.ComponentException;
 
-public class Tip extends Component{
+public class Tip<T extends Control> extends Component<T>{
 
 	private static final int DEFAULT_DELAY = 50;
 	
@@ -19,7 +19,7 @@ public class Tip extends Component{
 	
 	// Constructors
 	
-	public Tip(Control control, Tooltip tooltip, int delay){
+	public Tip(T control, Tooltip tooltip, int delay){
 		super(control);
 		
 		this.control = control;
@@ -27,15 +27,15 @@ public class Tip extends Component{
 		this.delay = delay;
 	}
 	
-	public Tip(Control control, Tooltip tooltip){
+	public Tip(T control, Tooltip tooltip){
 		this(control,  tooltip, DEFAULT_DELAY);
 	}
 	
-	public Tip(Control control, String description, int delay){
+	public Tip(T control, String description, int delay){
 		this(control, new Tooltip(description), delay);
 	}
 	
-	public Tip(Control control, String description){
+	public Tip(T control, String description){
 		this(control, description, DEFAULT_DELAY);
 	}
 	
