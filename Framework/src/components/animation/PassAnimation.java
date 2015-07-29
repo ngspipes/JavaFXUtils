@@ -6,9 +6,9 @@ import javafx.scene.input.MouseEvent;
 
 import components.IComponent;
 
-public class PassAnimation extends Animation{
+public class PassAnimation<T extends Node> extends Animation<T>{
 	
-	public PassAnimation(Node node, EventHandler<? super MouseEvent> onEnter, EventHandler<? super MouseEvent> onExit, boolean keepOldHandlers){
+	public PassAnimation(T node, EventHandler<? super MouseEvent> onEnter, EventHandler<? super MouseEvent> onExit, boolean keepOldHandlers){
 		super(	node, 
 				node.getOnMouseEntered(), onEnter,
 				node.getOnMouseExited(), onExit,
@@ -16,15 +16,15 @@ public class PassAnimation extends Animation{
 				keepOldHandlers	);
 	}
 	
-	public PassAnimation(Node node, EventHandler<? super MouseEvent> onEnter, EventHandler<? super MouseEvent> onExit){
+	public PassAnimation(T node, EventHandler<? super MouseEvent> onEnter, EventHandler<? super MouseEvent> onExit){
 		this(node, onEnter, onExit, true);
 	}
 	
-	public PassAnimation(IComponent component, EventHandler<? super MouseEvent> onEnter, EventHandler<? super MouseEvent> onExit, boolean keepOldHandlers){
+	public PassAnimation(IComponent<T> component, EventHandler<? super MouseEvent> onEnter, EventHandler<? super MouseEvent> onExit, boolean keepOldHandlers){
 		this(component.getNode(), onEnter, onEnter, keepOldHandlers);
 	}
 	
-	public PassAnimation(IComponent component, EventHandler<? super MouseEvent> onEnter, EventHandler<? super MouseEvent> onExit){
+	public PassAnimation(IComponent<T> component, EventHandler<? super MouseEvent> onEnter, EventHandler<? super MouseEvent> onExit){
 		this(component.getNode(), onEnter, onExit);
 	}
 
