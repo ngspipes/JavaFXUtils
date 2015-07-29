@@ -39,6 +39,22 @@ public class Tip<T extends Control> extends Component<T>{
 		this(control, description, DEFAULT_DELAY);
 	}
 	
+	public Tip(IComponent<T> component, Tooltip tooltip, int delay){
+		this(component.getNode(), tooltip, delay);
+	}
+	
+	public Tip(IComponent<T> component, Tooltip tooltip){
+		this(component.getNode(), tooltip);
+	}
+	
+	public Tip(IComponent<T> component, String description, int delay){
+		this(component.getNode(), description, delay);
+	}
+	
+	public Tip(IComponent<T> component, String description){
+		this(component.getNode(), description);
+	}
+	
 	
 	// Implementation
 	
