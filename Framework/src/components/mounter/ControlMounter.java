@@ -6,6 +6,7 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Tooltip;
 import javafx.util.Pair;
 
+import components.IComponent;
 import components.Tip;
 import components.multiOption.MultiOption;
 import components.multiOption.Operations;
@@ -17,6 +18,10 @@ public class ControlMounter<T extends Control> extends ComponentMounter<T>{
 	public ControlMounter(T control) {
 		super(control);
 		this.control = control;
+	}
+	
+	public ControlMounter(IComponent<T> component) {
+		this(component.getNode());
 	}
 	
 	public ControlMounter<T> tip(Tooltip tooltip, int delay){
