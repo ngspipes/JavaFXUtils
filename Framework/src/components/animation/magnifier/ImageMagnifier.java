@@ -13,11 +13,11 @@ public class ImageMagnifier<T extends ImageView> extends PassAnimation<T>{
 	// Constructors
 	
 	public ImageMagnifier(T image, double magnifyAmp, boolean keepOldHandlers){
-		super(	image,
-				(event)->{	image.setFitWidth(image.getFitWidth()*magnifyAmp);
-							image.setFitHeight(image.getFitHeight()*magnifyAmp);	},
-				(event)->{	image.setFitWidth(image.getFitWidth()/magnifyAmp);
-							image.setFitHeight(image.getFitHeight()/magnifyAmp);	},
+		super(	image, 
+				(event)->{	image.setFitWidth(image.getImage().getWidth()*magnifyAmp);
+							image.setFitHeight(image.getImage().getHeight()*magnifyAmp);	},
+				(event)->{	image.setFitWidth(image.getImage().getWidth()/magnifyAmp);
+							image.setFitHeight(image.getImage().getHeight()/magnifyAmp);	},
 				keepOldHandlers	);
 	}
 	
