@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import components.IComponent;
 import components.animation.changeComponent.ChangeButtonOnPass;
 import components.animation.changeComponent.ChangeButtonOnPress;
 import components.animation.magnifier.ButtonMagnifier;
@@ -15,6 +16,10 @@ public class ButtonMounter<T extends Button> extends ControlMounter<T>{
 	public ButtonMounter(T button){
 		super(button);
 		this.button = button;
+	}
+	
+	public ButtonMounter(IComponent<T> component){
+		this(component.getNode());
 	}
 
 	
