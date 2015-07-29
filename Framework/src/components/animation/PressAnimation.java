@@ -17,7 +17,7 @@ public class PressAnimation extends Animation {
 	}
 	
 	public PressAnimation(Node node, EventHandler<? super MouseEvent> onPress, EventHandler<? super MouseEvent> onRelease){
-		this(node, onPress, onRelease, false);
+		this(node, onPress, onRelease, true);
 	}
 	
 	public PressAnimation(IComponent component, EventHandler<? super MouseEvent> onPress, EventHandler<? super MouseEvent> onRelease, boolean keepOldHandlers){

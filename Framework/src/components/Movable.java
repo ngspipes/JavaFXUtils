@@ -49,27 +49,27 @@ public class Movable extends Component{
 	}
 
 	public Movable(Node node, Consumer<MouseEvent> onMove){
-		this(node, onMove, false);
+		this(node, onMove, true);
 	}
 
 	public Movable(Node node, BiConsumer<Double, Double> onMove){
-		this(node, onMove, false);	
+		this(node, onMove, true);	
 	}
 
 	public Movable(Node node) {
-		this(node, false);
+		this(node, true);
 	}
 
 	public Movable(IComponent component, Consumer<MouseEvent> onMove){
-		this(component, onMove, false);
+		this(component.getNode(), onMove);
 	}
 
 	public Movable(IComponent component, BiConsumer<Double, Double> onMove){
-		this(component, onMove, false);
+		this(component.getNode(), onMove);
 	}
 
 	public Movable(IComponent component) {
-		this(component, false);
+		this(component.getNode());
 	}
 
 

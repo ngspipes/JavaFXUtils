@@ -33,7 +33,7 @@ public class DoubleClickable extends Component{
 	}
 	
 	public DoubleClickable(Node node, Consumer<MouseEvent> action) {
-		this(node, action, false);
+		this(node, action, true);
 	}
 	
 	public DoubleClickable(IComponent component, Consumer<MouseEvent> action) {

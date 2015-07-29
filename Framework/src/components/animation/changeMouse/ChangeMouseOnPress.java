@@ -20,7 +20,7 @@ public class ChangeMouseOnPress extends PressAnimation{
 	}
 	
 	public ChangeMouseOnPress(Node node, Cursor onPress, Cursor onRelease) {
-		this(node, onPress, onRelease, false);
+		this(node, onPress, onRelease, true);
 	}
 	
 	public ChangeMouseOnPress(Node node, Image onPress, Image onRelease, boolean keepOldHandlers) {
@@ -28,7 +28,7 @@ public class ChangeMouseOnPress extends PressAnimation{
 	}
 	
 	public ChangeMouseOnPress(Node node, Image onPress, Image onRelease) {
-		this(node, onPress, onRelease, false);
+		this(node, onPress, onRelease, true);
 	}
 	
 	public ChangeMouseOnPress(Node node, String onPressPath, String onReleasePath, boolean keepOldHandlers) {
@@ -36,7 +36,7 @@ public class ChangeMouseOnPress extends PressAnimation{
 	}
 	
 	public ChangeMouseOnPress(Node node, String onPressPath, String onReleasePath) {
-		this(node, onPressPath, onReleasePath, false);
+		this(node, onPressPath, onReleasePath, true);
 	}
 	
 	public ChangeMouseOnPress(IComponent component, Cursor onPress, Cursor onRelease, boolean keepOldHandlers) {

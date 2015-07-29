@@ -12,16 +12,16 @@ public class ImageMagnifier extends PassAnimation{
 	// Constructors
 	
 	public ImageMagnifier(ImageView image, double magnifyAmp, boolean keepOldHandlers){
-		super(image,
+		super(	image,
 				(event)->{	image.fitWidthProperty().set(image.fitWidthProperty().get()*magnifyAmp);
 							image.fitHeightProperty().set(image.fitHeightProperty().get()*magnifyAmp);	},
 				(event)->{	image.fitWidthProperty().set(image.fitWidthProperty().get()/magnifyAmp);
 							image.fitHeightProperty().set(image.fitHeightProperty().get()/magnifyAmp);	},
-				keepOldHandlers);
+				keepOldHandlers	);
 	}
 	
 	public ImageMagnifier(ImageView image, double magnifyAmp){
-		this(image, magnifyAmp, false);
+		this(image, magnifyAmp, true);
 	}
 	
 	public ImageMagnifier(ImageView image, boolean keepOldHandlers){
@@ -29,7 +29,7 @@ public class ImageMagnifier extends PassAnimation{
 	}
 	
 	public ImageMagnifier(ImageView image){
-		this(image, false);
+		this(image, true);
 	}
 
 }

@@ -17,7 +17,7 @@ public class PassAnimation extends Animation{
 	}
 	
 	public PassAnimation(Node node, EventHandler<? super MouseEvent> onEnter, EventHandler<? super MouseEvent> onExit){
-		this(node, onEnter, onExit, false);
+		this(node, onEnter, onExit, true);
 	}
 	
 	public PassAnimation(IComponent component, EventHandler<? super MouseEvent> onEnter, EventHandler<? super MouseEvent> onExit, boolean keepOldHandlers){

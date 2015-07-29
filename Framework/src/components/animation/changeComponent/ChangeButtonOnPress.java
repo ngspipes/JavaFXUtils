@@ -19,7 +19,7 @@ public class ChangeButtonOnPress extends PressAnimation{
 	}
 	
 	public ChangeButtonOnPress(Button button, ImageView onPress, ImageView onRelease) {
-		this(button, onPress, onRelease, false);
+		this(button, onPress, onRelease, true);
 	}
 	
 	public ChangeButtonOnPress(Button button, Image onPress, Image onRelease, boolean keepOldHandlers) {
@@ -27,7 +27,7 @@ public class ChangeButtonOnPress extends PressAnimation{
 	}
 	
 	public ChangeButtonOnPress(Button button, Image onPress, Image onRelease) {
-		this(button, onPress, onRelease, false);
+		this(button, onPress, onRelease, true);
 	}
 	
 	public ChangeButtonOnPress(Button button, String onPressPath, String onReleasePath, boolean keepOldHandlers) {
@@ -35,7 +35,7 @@ public class ChangeButtonOnPress extends PressAnimation{
 	}
 	
 	public ChangeButtonOnPress(Button button, String onPressPath, String onReleasePath) {
-		this(button, onPressPath, onReleasePath, false);
+		this(button, onPressPath, onReleasePath, true);
 	}
 	
 }

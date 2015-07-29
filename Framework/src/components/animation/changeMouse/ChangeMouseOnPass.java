@@ -20,7 +20,7 @@ public class ChangeMouseOnPass extends PassAnimation{
 	}
 	
 	public ChangeMouseOnPass(Node node, Cursor onEnter, Cursor onExit) {
-		this(node, onEnter, onExit, false);
+		this(node, onEnter, onExit, true);
 	}
 	
 	public ChangeMouseOnPass(Node node, Image onEnter, Image onExit, boolean keepOldHandlers) {
@@ -28,7 +28,7 @@ public class ChangeMouseOnPass extends PassAnimation{
 	}
 	
 	public ChangeMouseOnPass(Node node, Image onEnter, Image onExit) {
-		this(node, onEnter, onExit, false);
+		this(node, onEnter, onExit, true);
 	}
 	
 	public ChangeMouseOnPass(Node node, String onEnterPath, String onExitPath, boolean keepOldHandlers) {
@@ -36,7 +36,7 @@ public class ChangeMouseOnPass extends PassAnimation{
 	}
 	
 	public ChangeMouseOnPass(Node node, String onEnterPath, String onExitPath) {
-		this(node, onEnterPath, onExitPath, false);
+		this(node, onEnterPath, onExitPath, true);
 	}
 	
 	public ChangeMouseOnPass(IComponent component, Cursor onEnter, Cursor onExit, boolean keepOldHandlers) {

@@ -26,7 +26,7 @@ public class PressAndPassAnimation extends Component{
 	public PressAndPassAnimation(	Node node, 
 									EventHandler<? super MouseEvent> onPress, EventHandler<? super MouseEvent> onRelease,
 									EventHandler<? super MouseEvent> onEnter, EventHandler<? super MouseEvent> onExit){
-		this(node, onPress, onRelease, onEnter, onExit, false);
+		this(node, onPress, onRelease, onEnter, onExit, true);
 	}
 
 	public PressAndPassAnimation(	IComponent component, 

@@ -17,11 +17,11 @@ public class ButtonMagnifier extends PassAnimation{
 		        			button.setMinWidth(button.getWidth()*magnifyAmp);	},
 				(event)->{	button.setMinHeight(button.getHeight()/magnifyAmp);
 		        			button.setMinWidth(button.getWidth()/magnifyAmp);	},
-				keepOldHandlers);
+				keepOldHandlers	);
 	}
 	
 	public ButtonMagnifier(Button button, double magnifyAmp){
-		this(button, magnifyAmp, false);
+		this(button, magnifyAmp, true);
 	}
 	
 	public ButtonMagnifier(Button button, boolean keepOldHandlers){
@@ -29,7 +29,7 @@ public class ButtonMagnifier extends PassAnimation{
 	}
 	
 	public ButtonMagnifier(Button button){
-		this(button, false);
+		this(button, true);
 	}
 	
 }

@@ -19,7 +19,7 @@ public class ChangeButtonOnPass extends PassAnimation{
 	}
 	
 	public ChangeButtonOnPass(Button button, ImageView onEnter, ImageView onExit) {
-		this(button, onEnter, onExit, false);
+		this(button, onEnter, onExit, true);
 	}
 	
 	public ChangeButtonOnPass(Button button, Image onEnter, Image onExit, boolean keepOldHandlers) {
@@ -27,7 +27,7 @@ public class ChangeButtonOnPass extends PassAnimation{
 	}
 	
 	public ChangeButtonOnPass(Button button, Image onEnter, Image onExit) {
-		this(button, onEnter, onExit, false);
+		this(button, onEnter, onExit, true);
 	}
 	
 	public ChangeButtonOnPass(Button button, String onEnterPath, String onExitPath, boolean keepOldHandlers) {
@@ -35,7 +35,7 @@ public class ChangeButtonOnPass extends PassAnimation{
 	}
 	
 	public ChangeButtonOnPass(Button button, String onEnterPath, String onExitPath) {
-		this(button, onEnterPath , onExitPath, false);
+		this(button, onEnterPath , onExitPath, true);
 	}
 
 }
