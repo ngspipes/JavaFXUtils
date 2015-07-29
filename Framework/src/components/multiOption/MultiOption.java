@@ -10,20 +10,20 @@ import javafx.util.Pair;
 import components.Component;
 import components.multiOption.Operations.Operation;
 
-public class MultiOption extends Component{
+public class MultiOption<T extends Control> extends Component<T>{
 	
 	private final Operations operations;
 	private final Control control;
 	
 	// Constructors
 	
-	public MultiOption(Control control, Operations operations) {
+	public MultiOption(T control, Operations operations) {
 		super(control);
 		this.operations = operations;
 		this.control = control;
 	}
 	
-	public MultiOption(Control control, Collection<Pair<String, Runnable>> actions) {
+	public MultiOption(T control, Collection<Pair<String, Runnable>> actions) {
 		this(control, new Operations(actions));
 	}
 	
