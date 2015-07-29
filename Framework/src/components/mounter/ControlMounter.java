@@ -10,42 +10,42 @@ import components.Tip;
 import components.multiOption.MultiOption;
 import components.multiOption.Operations;
 
-public class ControlMounter extends ComponentMounter{
+public class ControlMounter<T extends Control> extends ComponentMounter<T>{
 
-	private final Control control;
+	private final T control;
 	
-	public ControlMounter(Control control) {
+	public ControlMounter(T control) {
 		super(control);
 		this.control = control;
 	}
 	
-	public ControlMounter tip(Tooltip tooltip, int delay){
-		this.components.add(new Tip(control, tooltip, delay));
+	public ControlMounter<T> tip(Tooltip tooltip, int delay){
+		this.components.add(new Tip<>(control, tooltip, delay));
 		return this;
 	}
 	
-	public ControlMounter tip(Tooltip tooltip){
-		this.components.add(new Tip(control, tooltip));
+	public ControlMounter<T> tip(Tooltip tooltip){
+		this.components.add(new Tip<>(control, tooltip));
 		return this;
 	}
 	
-	public ControlMounter tip(String description, int delay){
-		this.components.add(new Tip(control, description, delay));
+	public ControlMounter<T> tip(String description, int delay){
+		this.components.add(new Tip<>(control, description, delay));
 		return this;
 	}
 	
-	public ControlMounter tip(String description){
-		this.components.add(new Tip(control, description));
+	public ControlMounter<T> tip(String description){
+		this.components.add(new Tip<>(control, description));
 		return this;
 	}
 	
-	public ControlMounter multiOption(Operations operations) {
-		this.components.add(new MultiOption(control, operations));
+	public ControlMounter<T> multiOption(Operations operations) {
+		this.components.add(new MultiOption<>(control, operations));
 		return this;
 	}
 	
-	public ControlMounter multiOption(Collection<Pair<String, Runnable>> actions) {
-		this.components.add(new MultiOption(control, actions));
+	public ControlMounter<T> multiOption(Collection<Pair<String, Runnable>> actions) {
+		this.components.add(new MultiOption<>(control, actions));
 		return this;
 	}
 		
