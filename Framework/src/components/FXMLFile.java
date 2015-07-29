@@ -7,9 +7,9 @@ import javafx.scene.Node;
 import utils.ComponentException;
 import utils.IInitializable;
 
-public class FXMLFile<A/*initializable argument*/> implements IComponent {
+public class FXMLFile<T extends Node, A/*initializable argument*/> implements IComponent<T> {
     
-	private Node root;
+	private T root;
 	
     private final String fXMLFilePath;
     private final boolean isInitializable;
@@ -43,7 +43,7 @@ public class FXMLFile<A/*initializable argument*/> implements IComponent {
     }
     
     @Override
-    public Node getNode(){
+    public T getNode(){
         return root;
     }
     
