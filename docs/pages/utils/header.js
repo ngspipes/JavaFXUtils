@@ -5,8 +5,8 @@ document.write('\
 		<a class="nav-home" href="http://brunomndantas.github.io/JavaFXUtils/index.html">JavaFXUtils</a>\
 \
 		<ul class="nav-site nav-site-internal">\
-			<li><a href="docs/pages/docs.html">Docs</a></li>\
-			<li><a href="docs/pages/downloads.html">Download</a></li>\
+			<li><a href="JavaFXUtils/docs/pages/docs.html">Docs</a></li>\
+			<li><a href="JavaFXUtils/docs/pages/downloads.html">Download</a></li>\
 		</ul>\
 \
 		<ul class="nav-site nav-site-external">\
