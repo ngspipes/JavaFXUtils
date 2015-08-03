@@ -4,15 +4,18 @@
 	<meta content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
 	<title>JavaFX Utils</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://facebook.github.io/react/css/syntax.css">
 	<link rel="stylesheet" href="http://facebook.github.io/react/css/react.css">
+	<link rel="stylesheet" type="text/css" href="./css/prettyPrintBorder.css">
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 </head>
 
 <body>
 
-	<div class="container">
+	<script src="utils/header.js"></script>
 
-		<script src="utils/header.js"></script>
+	<div class="container">
 
 		<section class="content wrap documentationContent">
 
@@ -22,25 +25,69 @@
 
 				<h1>JavaFX Utils</h1>
 
-				<h2>Component name</h2>
+				<h2>Components</h2>
 
-				<p>Component description <a href="http://facebook.github.io/react/docs/more-about-refs.html">refs</a>.</p>
+				<p>JavaFX Utils library is built based on components.</p>
+				<p>Component is a class that implements IComponent which mounts some utilities on <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> object.</p>
+				<p>Imagine that we want to trigger some code on double click of a <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Button.html">Button</a>. With <a href="https://docs.oracle.com/javafx/2/overview/jfxpub-overview.htm">JavaFX</a> you can do something like:</p>
 
-				<h3>Constructors</h3>
+				<div class="highlight">
+					<pre class="prettyprint">
+	Button button = new Button();
 
-				<p>Explaning text <code>code(arg1, arg2)</code>.</p>
-				<div class="highlight"><pre>
-					<code class="language-javascript" data-lang="javascript"><span class="nx">xpto</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span><span class="p">{</span><span class="s1">'string'</span><span class="k">return</span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="nx">obj</span><span class="p">.</span><span class="mi">1</span><span class="p">};</span><span class="p">});</span>
-					</code></pre>
+	button.setOnMouseClicked((event)->{
+		if(event.getClickCount() == 2)
+	   	this.onDoubleClick();
+	});
+					</pre>
 				</div>
 
-				<p>Explaning text.</p>
-				<blockquote>
-					<p>This is a warning:</p>
-					<p><em>ENFASIS</em> text <code>code</code></p>
-				</blockquote>
+				<p>On JavaFX Utils there is <a href="/JavaFXUtils/docs/pages/components/doubleClickable.html">DoubleClickable</a> which deal with click count for you, so you can write the equivalent to the above code like:</p>
 
-				<h3>Links</h3>
+				<div class="highlight">
+					<pre class="prettyprint">
+	Button button = new Button();
+
+	new DoubleClickable<>(button, this::onDoubleClick).mount();
+					</pre>
+				</div>
+
+				<h2>Mounters</h2>
+
+				<p>It is usual to mount different components over the same node for example</p>
+				<ul>
+					<li>mount tooltip</li>
+					<li>mount magnifier</li>
+					<li>mount double click</li>
+				</ul>
+
+				<p>which will result in code like:</p>
+
+				<div class="highlight">
+					<pre class="prettyprint">
+	Button button;
+
+	new ButtonMagnifier<>(button).mount();
+	new Tip<>(button, "Button with Tip").mount();
+	new DoubleClickable<>(button, this::OnDoubleClick).mount();
+					</pre>
+				</div>
+
+				<p>
+					To avoid pass always the same node and invoke mount for all components there is <a href="/JavaFXUtils/docs/pages/components/mounters/componentMounter.html">ComponentMounter</a> and some extensions like <a href="/JavaFXUtils/docs/pages/components/mounters/ButtonMounter.html">ButtonMounter</a>. This components permit to chain various components and mount them over the same node. This classes permits to write the equivalent to the above code like:
+				</p>
+
+				<div class="highlight">
+					<pre class="prettyprint">
+	Button button;
+
+	new ButtonMounter<>(button)
+		.buttonMagnifier()
+		.tip("Button with Tip")
+		.doubleClickable(this::onDoubleClick)
+		.mount();
+					</pre>
+				</div>
 
 			</div>
 
