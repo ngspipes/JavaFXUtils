@@ -1,124 +1,24 @@
 <!DOCTYPE html>
-<!-- saved from url=(0042)http://facebook.github.io/react/index.html -->
-<html class="wf-proximanova-i3-active wf-proximanova-i4-active wf-proximanova-i7-active wf-proximanova-n3-active wf-proximanova-n4-active wf-proximanova-n7-active wf-sourcecodepro-n4-active wf-sourcecodepro-n7-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>A JavaScript library for building user interfaces | React</title>
-  <meta name="viewport" content="width=device-width">
-  <meta property="og:title" content="A JavaScript library for building user interfaces | React">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://facebook.github.io/react/index.html">
-  <meta property="og:image" content="https://facebook.github.io/react/img/logo_og.png">
-  <meta property="og:description" content="A JavaScript library for building user interfaces">
-  <meta property="fb:app_id" content="623268441017527">
-
-  <link rel="shortcut icon" href="http://facebook.github.io/react/favicon.ico">
-  <link rel="alternate" type="application/rss+xml" title="React" href="https://facebook.github.io/react/feed.xml">
-
+  <title>JavaFX Utils</title>
   <link rel="stylesheet" href="http://facebook.github.io/react/css/syntax.css">
-  <link rel="stylesheet" href="http://facebook.github.io/react/css/codemirror.css">
   <link rel="stylesheet" href="http://facebook.github.io/react/css/react.css">
+</head>
 
-  <script id="facebook-jssdk" src="./react_files/all.js"></script><script id="twitter-wjs" src="./react_files/widgets.js"></script><script async="" src="./react_files/analytics.js"></script><script type="text/javascript" src="./react_files/vqa1hcx.js"></script><style type="text/css"></style>
-  <style type="text/css">.tk-proxima-nova{font-family:"proxima-nova",sans-serif;}.tk-source-code-pro{font-family:"source-code-pro",sans-serif;}</style><link rel="stylesheet" href="http://use.typekit.net/c/7ca479/1w;proxima-nova,2,b5v:R:i3,b5x:R:i4,b61:R:i7,b5t:R:n3,b5w:R:n4,bBh:R:n7;source-code-pro,2,Y1M:R:n4,Y1P:R:n7/d?3bb2a6e53c9684ffdc9a99f61d5b2a62d862a545ba27340c777c33e490306f6a3d03760008c210490ab5bc19aec9467514fa83a07c942f5f838fc92dcf0cbd0e58e05382dc0ee097a2e6aec8738c92a5d47756e29900953100f719c75b9f3b21cdc630be2b678fc0fd4b5c7c3bf14194525db4e8a536a4492fa5341c830ccf377e15395acdf3e677fa272e405c9d840a6c5e95406398b914e26ac4c62c908bb1331b31ab532a249d69450bf842c76ce7845ec6fe7076f67b42d1b86581e107b8b2914b080e94d4d18f14effb1f839b47f4c3ccd30e883b5442226cee707e84d8d2268f0b787d6d4c92ffb124d7c48c4692288c71e9666a2523436661c923377a94e0257269538f31ec2ed32bb8f35199748156f60a2104346cb738efa5eb2e718148030c631da41e2edecd1590b1c5e19face1" media="all"><script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-
-  <!--[if lte IE 8]>
-  <script type="text/javascript" src="/react/js/html5shiv.min.js"></script>
-  <script type="text/javascript" src="/react/js/es5-shim.min.js"></script>
-  <script type="text/javascript" src="/react/js/es5-sham.min.js"></script>
-  <![endif]-->
-  <script type="text/javascript" src="./react_files/codemirror.js"></script>
-  <script type="text/javascript" src="./react_files/javascript.js"></script>
-  <script type="text/javascript" src="./react_files/react.js"></script>
-  <script type="text/javascript" src="./react_files/JSXTransformer.js"></script>
-  <script type="text/javascript" src="./react_files/live_editor.js"></script>
-<style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
-.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f8;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3a5795;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #2f477a;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f8;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
-.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style></head>
 <body>
 
   <div class="container">
 
-    <div class="nav-main">
-      <div class="wrap">
-        <a class="nav-home" href="./react_files/react.html">JavaFX Utils</a>
-        <ul class="nav-site nav-site-internal">
-          <li><a href="http://facebook.github.io/react/docs/getting-started.html">Docs</a></li>
-          <li><a href="http://facebook.github.io/react/support.html">Support</a></li>
-          <li><a href="http://facebook.github.io/react/downloads.html">Download</a></li>
-          <li><a href="http://facebook.github.io/react/blog/">Blog</a></li>
-        </ul>
+    <script src="utils/header.js"></script>
 
-        <ul class="nav-site nav-site-external">
-          <li><a href="https://github.com/facebook/react">GitHub</a>
-          </li><li><a href="https://facebook.github.io/react-native/">React Native</a>
-        </li></ul>
-      </div>
-    </div>
+    <section class="content wrap documentationContent">
 
-    
-    <div class="hero">
-      <div class="wrap">
-        <div class="text"><strong>React</strong></div>
-        <div class="minitext">
-          A JavaScript library for building user interfaces
-        </div>
+    </section>
 
-        <div class="buttons-unit">
-          <a href="http://facebook.github.io/react/docs/getting-started.html" class="button">Get Started</a>
-          <a href="http://facebook.github.io/react/downloads.html" class="button">Download React v0.13.3</a>
-        </div>
-      </div>
-    </div>
-    
-
-    <section class="content wrap">
-  <p></p><section class="light home-section">
-  <div class="marketing-row">
-    <div class="marketing-col">
-      <h3>Just the UI</h3>
-      <p>
-        Lots of people use React as the V in MVC.
-        Since React makes no assumptions about the rest of your technology stack,
-        it's easy to try it out on a small feature in an existing project.
-      </p>
-    </div>
-    <div class="marketing-col">
-      <h3>Virtual DOM</h3>
-      <p>
-        React abstracts away the DOM from you, giving a simpler programming model and better performance. React can also render on the server using Node, and it can power native apps using <a href="https://facebook.github.io/react-native/">React Native</a>.
-      </p>
-    </div>
-    <div class="marketing-col">
-      <h3>Data flow</h3>
-      <p>
-        React implements one-way reactive data flow which reduces boilerplate and is
-        easier to reason about than traditional data binding.
-      </p>
-    </div>
   </div>
-</section>
-<hr class="home-divider">
-<section class="home-section">
-  <div id="examples">
-    <div class="example">
-      <h3>A Simple Component</h3>
-      <p>
-        React components implement a <code>render()</code> method that takes input data and
-        returns what to display. This example uses an XML-like syntax called
-        JSX. Input data that is passed into the component can be accessed by
-        <code>render()</code> via <code>this.props</code>.
-      </p>
 
-<hr class="home-divider">
-
-<section class="home-bottom-section">
-  <div class="buttons-unit">
-    <a href="http://facebook.github.io/react/docs/getting-started.html" class="button">Get Started</a>
-    <a href="http://facebook.github.io/react/downloads.html" class="button">Download React v0.13.3</a>
-  </div>
-</section><p></p>
-
-</section>
-
-</body></html>
+</body>
+</html>
