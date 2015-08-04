@@ -30,27 +30,84 @@
 
 				<h1>JavaFX Utils</h1>
 
-				<h2>Component name</h2>
+				<h2>Tip</h2>
 
-				<p>Component description <a href="http://facebook.github.io/react/docs/more-about-refs.html">refs</a>.</p>
+				<p>Component to control delay of <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Tooltip.html">Tooltip</a>.</p>
+				<p><a href="/JavaFXUtils/docs/pages/components/tip.html">Tip</a> class is generic in <code>T extends Control</code>.</p>
+				<p>
+					This component uses reflection to control delay of <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Tooltip.html">Tooltip</a>. During the mounting process (<code>void mount() throws ComponentException</code>) it can occurs reflection Exceptions, if this happens a ComponentException will be thrown.
+				</p>
 
 				<h3>Constructors</h3>
 
-				<h3>Usage</h3>
-
-				<p>Explaning text <code>code(arg1, arg2)</code>.</p>
-				<div class="highlight"><pre>
-					<code class="language-javascript" data-lang="javascript"><span class="nx">xpto</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span><span class="p">{</span><span class="s1">'string'</span><span class="k">return</span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="nx">obj</span><span class="p">.</span><span class="mi">1</span><span class="p">};</span><span class="p">});</span>
-					</code></pre>
+				<div class="highlight">
+					<pre class="prettyprint">public Tip(T control, Tooltip tooltip, int delay)</pre>
 				</div>
 
-				<p>Explaning text.</p>
-				<blockquote>
-					<p>This is a warning:</p>
-					<p><em>ENFASIS</em> text <code>code</code></p>
-				</blockquote>
+				<p>
+					<ul>
+						<li>
+							<strong>control</strong> : <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/control/Control.html">Control</a> in which will be mounted the tooltip with specified delay.
+						</li>
+						<li>
+							<strong>tooltip</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Tooltip.html">Tooltip</a> in which will be mounted the specified delay.
+						</li>
+						<li>
+							<strong>delay</strong> : delay that tooltip will take to appear. This time is in milliseconds.
+						</li>
+					</ul>
+				</p>
+
+				<p>There are more constructors with different parameters, but all will internally call this first one.</p>
+				<p>Variations :</p>
+				<ul>
+					<li>Constructors that don't receive <code>int delay</code> this value is assumed as 50.</li>
+					<li>Constructors that receive <code>String description</code> and instantiate <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Tooltip.html">Tooltip</a> with it.</li>
+					<li>Constructors that receive <code>IComponent&ltT&gt component</code> and obtain <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/control/Control.html">Control</a> object from <code>component.getNode()</code>.</li>
+				</ul>
+
+				<div class="highlight">
+					<pre class="prettyprint">public Tip(T control, Tooltip tooltip)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Tip(T control, String description, int delay)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Tip(T control, String description)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Tip(IComponent&ltT&gt component, Tooltip tooltip, int delay)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Tip(IComponent&ltT&gt component, Tooltip tooltip)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Tip(IComponent&ltT&gt component, String description, int delay)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Tip(IComponent&ltT&gt component, String description)</pre>
+				</div>
+
+				<h3>Usage</h3>
+
+				<div class="highlight">
+					<pre class="prettyprint">
+	Button button;
+
+	try{
+		new Tip<>(button, "Tip", 1000).mount();
+	} catch (ComponentException e) {
+		//Treat Exception
+	}
+					</pre>
+				</div>
 
 				<h3>Links</h3>
+				<ul>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/blob/master/framework/src/components/Tip.java">Tip src</a></li>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/tree/master/demos/tip/project/src">Tip demo src</a></li>
+					<li><a href="http://www.mediafire.com/download/s8z36fbi94t6b5p/Demo.jar">Tip demo download</a></li>
+				</ul>
 
 			</div>
 
