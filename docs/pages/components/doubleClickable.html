@@ -30,27 +30,78 @@
 
 				<h1>JavaFX Utils</h1>
 
-				<h2>Component name</h2>
+				<h2>DoubleClickable</h2>
 
-				<p>Component description <a href="http://facebook.github.io/react/docs/more-about-refs.html">refs</a>.</p>
+				<p>Component that sets code to be triggered on double click of a <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a>.</p>
+				<p>
+					This component sets an <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/event/EventHandler.html">EventHandler</a> through <code>button.setOnMouseClicked(handler)</code> which checks click count and runs code in case of 2 clicks.
+				</p>
 
 				<h3>Constructors</h3>
 
-				<h3>Usage</h3>
+				<div class="highlight">
+					<pre class="prettyprint">public DoubleClickable(T node, Consumer &ltMouseEvent&gt action, boolean keepOldHandler)</pre>
+				</div>
+				<p>
+					<ul>
+						<li>
+							<strong>node</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> in which <a href="/JavaFXUtils/docs/pages/components/doubleClickable.html">DoubleClickable</a> will be mounted.
+						</li>
+						<li>
+							<strong>action</strong> : action to be triggered on double click, this action receives the MouseEvent originated.
+						</li>
+						<li>
+							<strong>keepOldHandler</strong> : indicates if the <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/event/EventHandler.html">EventHandler</a> from <code>node.getOnMouseClicked()</code> is to keep or to be discarded.
+						</li>
+					</ul>
+				</p>
 
-				<p>Explaning text <code>code(arg1, arg2)</code>.</p>
-				<div class="highlight"><pre>
-					<code class="language-javascript" data-lang="javascript"><span class="nx">xpto</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span><span class="p">{</span><span class="s1">'string'</span><span class="k">return</span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="nx">obj</span><span class="p">.</span><span class="mi">1</span><span class="p">};</span><span class="p">});</span>
-					</code></pre>
+				<p>There are more constructors with different parameters, but all will internally call this first one.</p>
+				<p>Variations :</p>
+				<ul>
+					<li>Constructors that don't receive <code>boolean keepOldHandler</code> this value is assumed as <code>true</code>.</li>
+					<li>Constructors that receives <code>Runnable action</code> instead of <code>Consumer&ltMouseEvent&gt action</code>.</li>
+					<li>Constructors that receives <code>IComponent&ltT&gt component</code> and obtain <code>Node</code> object from <code>component.getNode()</code>.</li>
+				</ul>
+
+				<div class="highlight">
+					<pre class="prettyprint">public DoubleClickable(T node, Runnable action, boolean keepOldHandler)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public DoubleClickable(IComponent&ltT&gt component, Consumer&ltMouseEvent&gt action, boolean keepOldHandler)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public DoubleClickable(IComponent&ltT&gt component, Runnable action, boolean keepOldHandler)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public DoubleClickable(T node, Consumer&ltMouseEvent&gt action)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public DoubleClickable(IComponent&ltT&gt component, Consumer&ltMouseEvent&gt action)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public DoubleClickable(T node, Runnable action)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public DoubleClickable(IComponent&ltT&gt component, Runnable action)</pre>
 				</div>
 
-				<p>Explaning text.</p>
-				<blockquote>
-					<p>This is a warning:</p>
-					<p><em>ENFASIS</em> text <code>code</code></p>
-				</blockquote>
+				<h3>Usage</h3>
+
+				<div class="highlight">
+					<pre class="prettyprint">
+	Node node;
+
+	new DoubleClickable<>(node, this::onDoubleClick).mount();
+					</pre>
+				</div>
 
 				<h3>Links</h3>
+				<ul>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/blob/master/framework/src/components/DoubleClickable.java">DoubleClickable src</a></li>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/tree/master/demos/doubleClickable/project/src">DoubleClickable demo src</a></li>
+					<li><a href="http://www.mediafire.com/download/i5cabz60ae8d86a/Demo.jar">DoubleClickable demo download</a></li>
+				</ul>
 
 			</div>
 
