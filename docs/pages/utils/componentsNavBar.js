@@ -4,6 +4,7 @@ document.write('\
 	<div class="nav-docs-section">\
 		<h3>Components</h3>\
 		<ul>\
+			<li><a href="/JavaFXUtils/docs/pages/components/iComponent.html">IComponent</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/animation.html">Animation</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/buttonMagnifier.html">ButtonMagnifier</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/changeButtonOnPass.html">ChangeButtonOnPass</a></li>\
