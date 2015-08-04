@@ -30,27 +30,117 @@
 
 				<h1>JavaFX Utils</h1>
 
-				<h2>Component name</h2>
+				<h2>ChangeButtonOnPass</h2>
 
-				<p>Component description <a href="http://facebook.github.io/react/docs/more-about-refs.html">refs</a>.</p>
+				<p>Component to change <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Button.html">Button</a> background on onMouseEntered and onMouseExited events.</p>
+				<p><a href="/JavaFXUtils/docs/pages/components/changeButtonOnPass.html">ChangeButtonOnPass</a> class is generic in <code>T extends Button</code>.</p>
 
 				<h3>Constructors</h3>
-
-				<h3>Usage</h3>
-
-				<p>Explaning text <code>code(arg1, arg2)</code>.</p>
-				<div class="highlight"><pre>
-					<code class="language-javascript" data-lang="javascript"><span class="nx">xpto</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span><span class="p">{</span><span class="s1">'string'</span><span class="k">return</span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="nx">obj</span><span class="p">.</span><span class="mi">1</span><span class="p">};</span><span class="p">});</span>
-					</code></pre>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ChangeButtonOnPass(T button, ImageView onEnter, ImageView onExit, boolean keepOldHandlers)
+					</pre>
 				</div>
 
-				<p>Explaning text.</p>
-				<blockquote>
-					<p>This is a warning:</p>
-					<p><em>ENFASIS</em> text <code>code</code></p>
-				</blockquote>
+				<p>
+					<ul>
+						<li>
+							<strong>button</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Button.html">Button</a> in which will be mounted animation.
+						</li>
+						<li>
+							<strong>onEnter</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/image/ImageView.html">ImageView</a> to be set as background on onMouseEnter event.
+						</li>
+						<li>
+							<strong>onExit</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/image/ImageView.html">ImageView</a> to be set as background on onMouseExit event.
+						</li>
+						<li>
+							<strong>keepOldHandlers</strong> : indicates if old <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/event/EventHandler.html">EventHandler</a>s are to keep or discard.
+						</li>
+					</ul>
+				</p>
+
+				<p>There are more constructors with different parameters, but all will internally call this first one.</p>
+				<p>Variations :</p>
+				<ul>
+					<li>Constructors that don't receive <code>keepOldHandlers</code> this value is assumed as <code>true</code>.</li>
+					<li>Constructors that receive <code>IComponent<T> component</code> obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Button.html">Button</a> from <code>component.getNode()
+					</code>.</li>
+					<li>Constructors that receive <code>Image onEnter</code> and <code>Image onExit</code> will be used to instantiate <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/image/ImageView.html">ImageView</a>.</li>
+					<li>Constructors that receive <code>String onEnterPath</code> and <code>String onExitPath</code> will be used to instantiate <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/image/Image.html">Image</a>.</li>
+				</ul>
+
+
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ChangeButtonOnPass(T button, ImageView onEnter, ImageView onExit)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ChangeButtonOnPass(T button, Image onEnter, Image onExit, boolean keepOldHandlers)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ChangeButtonOnPass(T button, Image onEnter, Image onExit)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ChangeButtonOnPass(T button, String onEnterPath, String onExitPath, boolean keepOldHandlers)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ChangeButtonOnPass(T button, String onEnterPath, String onExitPath)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ChangeButtonOnPass(IComponent&ltT&gt component, ImageView onEnter, ImageView onExit, boolean keepOldHandlers)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ChangeButtonOnPass(IComponent&ltT&gt component, ImageView onEnter, ImageView onExit)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ChangeButtonOnPass(IComponent&ltT&gt component, Image onEnter, Image onExit, boolean keepOldHandlers)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ChangeButtonOnPass(IComponent&ltT&gt component, Image onEnter, Image onExit)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ChangeButtonOnPass(IComponent&ltT&gt component, String onEnterPath, String onExitPath, boolean keepOldHandlers)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ChangeButtonOnPass(IComponent&ltT&gt component, String onEnterPath, String onExitPath)
+					</pre>
+				</div>
+
+				<h3>Usage</h3>
+				<div class="highlight">
+					<pre class="prettyprint">
+	Button button;
+
+	new ChangeButtonOnPass<>(button, IN_IMAGE, OUT_IMAGE).mount();
+					</pre>
+				</div>
 
 				<h3>Links</h3>
+				<ul>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/blob/master/framework/src/components/animation/changeComponent/ChangeButtonOnPass.java">ChangeButtonOnPass src</a></li>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/tree/master/demos/changeButtonOnPass/project/src">ChangeButtonOnPass demo src</a></li>
+					<li><a href="http://www.mediafire.com/download/odyej957n70a0j1/Demo.jar">ChangeButtonOnPass demo download</a></li>
+				</ul>
 
 			</div>
 
