@@ -30,27 +30,83 @@
 
 				<h1>JavaFX Utils</h1>
 
-				<h2>Component name</h2>
+				<h2>Window</h2>
 
-				<p>Component description <a href="http://facebook.github.io/react/docs/more-about-refs.html">refs</a>.</p>
+				<p>Component to help deal with windows.</p>
+				<p><a href="/JavaFXUtils/docs/pages/components/window.html">Window</a> class is generic in <code>&ltT extends Parent, A&gt</code> where  A is the generic type of <code>IInitializable&ltA&gt</code>. If Controller class doesn't implement IInitializable this type should be <code>Void</code>.</p>
+				<p>During the mounting process if is used FXMLFile and this throws ComponentException this Exception will be spread.</p>
 
 				<h3>Constructors</h3>
 
-				<h3>Usage</h3>
-
-				<p>Explaning text <code>code(arg1, arg2)</code>.</p>
-				<div class="highlight"><pre>
-					<code class="language-javascript" data-lang="javascript"><span class="nx">xpto</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span><span class="p">{</span><span class="s1">'string'</span><span class="k">return</span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="nx">obj</span><span class="p">.</span><span class="mi">1</span><span class="p">};</span><span class="p">});</span>
-					</code></pre>
+				<div class="highlight">
+					<pre class="prettyprint">public Window(T root, String windowTitle)</pre>
 				</div>
 
-				<p>Explaning text.</p>
-				<blockquote>
-					<p>This is a warning:</p>
-					<p><em>ENFASIS</em> text <code>code</code></p>
-				</blockquote>
+				<p>
+					<ul>
+						<li>
+							<strong>root</strong> : root Node of window.
+						</li>
+						<li>
+							<strong>windowTitle</strong> : title of Window.
+						</li>
+					</ul>
+				</p>
+
+				<p>There are more constructors with different parameters, but all will internally call this first one.</p>
+				<p>Variations :</p>
+				<ul>
+					<li>Constructors that receive <code>IComponent<T></code> will obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Parent.html">Parent</a> from <code>component.getNode()</code>.</li>
+					<li>Constructors that don't receive <code>String windowTitle</code> this value is assumed as empty String.</li>
+					<li>Constructors that don't receive arguments as <code> Class&lt?&gt controllerClass</code> and <code>A initializableArgument</code> will use them to instantitate <a href=""/JavaFXUtils/docs/pages/components/fXMLFile.html"">FXMLFile</a></li>
+				</ul>
+
+				<div class="highlight">
+					<pre class="prettyprint">public Window(T root)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Window(IComponent&ltT&gt component, String windowTitle)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Window(IComponent&ltT&gt component)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Window(String fXMLFilePath, Class&lt?&gt controllerClass, A initializableArgument, String windowTitle)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Window(String fXMLFilePath, Class&lt?&gt controllerClass, A initializableArgument)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Window(String fXMLFilePath, Class&lt?&gt controllerClass, String windowTitle)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Window(String fXMLFilePath, Class&lt?&gt controllerClass)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Window(String fXMLFilePath, String windowTitle)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Window(String fXMLFilePath)</pre>
+				</div>
+
+				<h3>Usage</h3>
+
+				<div class="highlight">
+					<pre class="prettyprint">
+	try {
+		new Window&ltAnchorPane, Void&gt("path").open();
+	} catch (ComponentException e) {
+		//Treat Exception
+	}
+					</pre>
+				</div>
 
 				<h3>Links</h3>
+				<ul>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/blob/master/framework/src/components/Window.java">Window src</a></li>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/tree/master/demos/window/project/src">Window demo src</a></li>
+					<li><a href="http://www.mediafire.com/download/m66fv8ywwdjmdbq/Demo.jar">Window demo download</a></li>
+				</ul>
 
 			</div>
 
