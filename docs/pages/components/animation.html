@@ -30,27 +30,105 @@
 
 				<h1>JavaFX Utils</h1>
 
-				<h2>Component name</h2>
+				<h2>Animation</h2>
 
-				<p>Component description <a href="http://facebook.github.io/react/docs/more-about-refs.html">refs</a>.</p>
+				<p>Component to help implement animation triggered by mouse events, this animation has an entry and an exit point <code>newEnterHandler</code> e <code>newExitHandler</code> respectivamente.</p>
+				<p>This component helps implementation of components as:</p>
+				<ul>
+					<li><a href="/JavaFXUtils/docs/pages/components/passAnimation.html">PassAnimation</a></li>
+					<li><a href="/JavaFXUtils/docs/pages/components/pressAnimation.html">PressAnimation</a></li>
+					<li><a href="/JavaFXUtils/docs/pages/components/pressAndPassAnimation.html">PressAndPassAnimation</a></li>
+				</ul>
 
 				<h3>Constructors</h3>
-
-				<h3>Usage</h3>
-
-				<p>Explaning text <code>code(arg1, arg2)</code>.</p>
-				<div class="highlight"><pre>
-					<code class="language-javascript" data-lang="javascript"><span class="nx">xpto</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span><span class="p">{</span><span class="s1">'string'</span><span class="k">return</span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="nx">obj</span><span class="p">.</span><span class="mi">1</span><span class="p">};</span><span class="p">});</span>
-					</code></pre>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Animation(	T node,
+		EventHandler&lt? super MouseEvent&gt oldEnterHandler,
+		EventHandler&lt? super MouseEvent&gt newEnterHandler,
+		EventHandler&lt? super MouseEvent&gt oldExitHandler,
+		EventHandler&lt? super MouseEvent&gt newExitHandler,
+		Consumer&ltEventHandler&lt? super MouseEvent&gt&gt enterSetter,
+		Consumer&ltEventHandler&lt? super MouseEvent&gt&gt exitSetter,
+		boolean keepOldHandlers)
+					</pre>
 				</div>
 
-				<p>Explaning text.</p>
-				<blockquote>
-					<p>This is a warning:</p>
-					<p><em>ENFASIS</em> text <code>code</code></p>
-				</blockquote>
+				<p>
+					<ul>
+						<li>
+							<strong>node</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> in which will be mounted animation.
+						</li>
+						<li>
+							<strong>oldEnterHandler</strong> : old entry point to chain with new one.
+						</li>
+						<li>
+							<strong>newEnterHandler</strong> : entry point of animation.
+						</li>
+						<li>
+							<strong>oldExitHandler</strong> : old exit point to chain with new one.
+						</li>
+						<li>
+							<strong>newExitHandler</strong> : exit point of animation.
+						</li>
+						<li>
+							<strong>enterSetter</strong> : setter for new entry point.
+						</li>
+						<li>
+							<strong>exitSetter</strong> : setter for new exit point.
+						</li>
+						<li>
+							<strong>keepOldHandlers</strong> : indicates if oldHandlers are to keep or discard.
+						</li>
+					</ul>
+				</p>
+
+				<p>There are more constructors with different parameters, but all will internally call this first one.</p>
+				<p>Variations :</p>
+				<ul>
+					<li>Constructors that don't receive <code>keepOldHandlers</code> this value is assumed as <code>true</code>.</li>
+					<li>Constructors that receive <code>IComponent<T> component</code> obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> from <code>component.getNode()</code>.</li>
+				</ul>
+
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Animation(	T node,
+		EventHandler&lt? super MouseEvent&gt oldEnterHandler,
+		EventHandler&lt? super MouseEvent&gt newEnterHandler,
+		EventHandler&lt? super MouseEvent&gt oldExitHandler,
+		EventHandler&lt? super MouseEvent&gt newExitHandler,
+		Consumer&ltEventHandler&lt? super MouseEvent&gt&gt enterSetter,
+		Consumer&ltEventHandler&lt? super MouseEvent&gt&gt exitSetter	)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Animation(	IComponent&ltT&gt component,
+		EventHandler&lt? super MouseEvent&gt oldEnterHandler,
+		EventHandler&lt? super MouseEvent&gt newEnterHandler,
+		EventHandler&lt? super MouseEvent&gt oldExitHandler,
+		EventHandler&lt? super MouseEvent&gt newExitHandler,
+		Consumer&ltEventHandler&lt? super MouseEvent&gt&gt enterSetter,
+		Consumer&ltEventHandler&lt? super MouseEvent&gt&gt exitSetter,
+		boolean keepOldHandlers)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Animation(	IComponent&ltT&gt component
+		EventHandler&lt? super MouseEvent&gt oldEnterHandler,
+		EventHandler&lt? super MouseEvent&gt newEnterHandler,
+		EventHandler&lt? super MouseEvent&gt oldExitHandler,
+		EventHandler&lt? super MouseEvent&gt newExitHandler,
+		Consumer&ltEventHandler&lt? super MouseEvent&gt&gt enterSetter,
+		Consumer&ltEventHandler&lt? super MouseEvent&gt&gt exitSetter	)
+					</pre>
+				</div>
 
 				<h3>Links</h3>
+				<ul>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/blob/master/framework/src/components/animation/Animation.java">Animation src</a></li>
+				</ul>
 
 			</div>
 
