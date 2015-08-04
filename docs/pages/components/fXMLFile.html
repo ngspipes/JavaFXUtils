@@ -81,7 +81,7 @@
 	// Without initialization of Controllers
 
 	try {
-		FXMLFile<AnchorPane, Void> fxmlFile = new FXMLFile<>("path/of/fxml/file");
+		FXMLFile&ltAnchorPane, Void&gt fxmlFile = new FXMLFile<>("path");
 		fxmlFile.mount();
 		AnchorPane pane = fxmlFile.getNode();
 	} catch (ComponentException e) {
@@ -91,7 +91,7 @@
 	// For Controllers that implements IInitializable&ltA&gt
 
 	try {
-		FXMLFile&ltAnchorPane, A&gt fxmlFile = new FXMLFile<>("path/of/fxml/file", MyController.class, argument);
+		FXMLFile&ltAnchorPane, A&gt fxmlFile = new FXMLFile<>("path", MyController.class, argument);
 		fxmlFile.mount();
 		AnchorPane pane = fxmlFile.getNode();
 	} catch (ComponentException e) {
