@@ -30,27 +30,94 @@
 
 				<h1>JavaFX Utils</h1>
 
-				<h2>Component name</h2>
+				<h2>Movable</h2>
 
-				<p>Component description <a href="http://facebook.github.io/react/docs/more-about-refs.html">refs</a>.</p>
+				<p>Component to help implement movable <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> which can be dragger around.</p>
+				<p>This component sets <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/event/EventHandler.html">EventHandler</a>s on onMousePressed and onMouseDragged events and change the position of <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a>.</p>
+				<p>If during the mounting process any Exception occurs, ComponentException will be thrown.</p>
 
 				<h3>Constructors</h3>
 
-				<h3>Usage</h3>
-
-				<p>Explaning text <code>code(arg1, arg2)</code>.</p>
-				<div class="highlight"><pre>
-					<code class="language-javascript" data-lang="javascript"><span class="nx">xpto</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span><span class="p">{</span><span class="s1">'string'</span><span class="k">return</span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="nx">obj</span><span class="p">.</span><span class="mi">1</span><span class="p">};</span><span class="p">});</span>
-					</code></pre>
+				<div class="highlight">
+					<pre class="prettyprint">public Movable(T node, Consumer&ltMouseEvent&gt onMove, boolean keepOldHandlers)</pre>
 				</div>
 
-				<p>Explaning text.</p>
-				<blockquote>
-					<p>This is a warning:</p>
-					<p><em>ENFASIS</em> text <code>code</code></p>
-				</blockquote>
+				<p>
+					<ul>
+						<li>
+							<strong>node</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> in which will be mounted the movable functionality.
+						</li>
+						<li>
+							<strong>onMove</strong> : action to be triggered on mode.
+						</li>
+						<li>
+							<strong>keepOldHandlers</strong> : indicates if the <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/event/EventHandler.html">EventHandler</a>s are to keep or to be discarded.
+						</li>
+					</ul>
+				</p>
+
+				<p>There are more constructors with different parameters, but all will internally call this first one.</p>
+				<p>Variations :</p>
+				<ul>
+					<li>Constructors that don't receive <code>boolean keepOldHandlers</code> this value is assumed as <code>true</code>.</li>
+					<li>Constructors that receive <code>BiConsumer<Doueble, Double> onMove</code> action called on move that receives x and y coordinates.</li>
+					<li>Constructors that receive <code>IComponent&ltT&gt component</code> and obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> object from <code>component.getNode()</code>.</li>
+				</ul>
+
+				<div class="highlight">
+					<pre class="prettyprint">public Movable(T node, Consumer&ltMouseEvent&gt onMove)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Movable(T node, BiConsumer&ltDouble, Double&gt onMove, boolean keepOldHandlers)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Movable(T node, BiConsumer&ltDouble, Double&gt onMove)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Movable(T node, boolean keepOldHandlers)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Movable(T node)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Movable(IComponent&ltT&gt component, Consumer&ltMouseEvent&gt onMove, boolean keepOldHandlers)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Movable(IComponent&ltT&gt component, Consumer&ltMouseEvent&gt onMove)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Movable(IComponent&ltT&gt component, BiConsumer&ltDouble, Double&gt onMove, boolean keepOldHandlers)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Movable(IComponent&ltT&gt component, BiConsumer&ltDouble, Double&gt onMove)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Movable(IComponent&ltT&gt component, boolean keepOldHandlers)</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">public Movable(IComponent&ltT&gt component)</pre>
+				</div>
+
+				<h3>Usage</h3>
+
+				<div class="highlight">
+					<pre class="prettyprint">
+	Button button;
+
+	try {
+		new Movable<>(button).mount();
+	} catch (ComponentException e) {
+		//Treat Exception
+	}
+					</pre>
+				</div>
 
 				<h3>Links</h3>
+				<ul>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/blob/master/framework/src/components/Movable.java">Movable src</a></li>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/tree/master/demos/movable/project/src">Movable demo src</a></li>
+					<li><a href="http://www.mediafire.com/download/bcpg9c8u38nh98h/Demo.jar">Movable demo download</a></li>
+				</ul>
 
 			</div>
 
