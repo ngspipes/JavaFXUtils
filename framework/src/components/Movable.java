@@ -28,46 +28,46 @@ public class Movable<T extends Node> extends Component<T>{
 		this.keepOldHandlers = keepOldHandlers;
 	}
 
+	public Movable(T node, Consumer<MouseEvent> onMove){
+		this(node, onMove, true);
+	}
+
 	public Movable(T node, BiConsumer<Double, Double> onMove, boolean keepOldHandlers){
 		this(node, (event)->onMove.accept(event.getSceneX(), event.getSceneY()), keepOldHandlers);	
+	}
+	
+	public Movable(T node, BiConsumer<Double, Double> onMove){
+		this(node, onMove, true);	
 	}
 
 	public Movable(T node, boolean keepOldHandlers) {
 		this(node, (event)->{}, keepOldHandlers);
 	}
-
-	public Movable(IComponent<T> component, Consumer<MouseEvent> onMove, boolean keepOldHandlers){
-		this(component.getNode(), onMove, keepOldHandlers);
-	}
-
-	public Movable(IComponent<T> component, BiConsumer<Double, Double> onMove, boolean keepOldHandlers){
-		this(component.getNode(), onMove, keepOldHandlers);
-	}
-
-	public Movable(IComponent<T> component, boolean keepOldHandlers) {
-		this(component.getNode(), keepOldHandlers);
-	}
-
-	public Movable(T node, Consumer<MouseEvent> onMove){
-		this(node, onMove, true);
-	}
-
-	public Movable(T node, BiConsumer<Double, Double> onMove){
-		this(node, onMove, true);	
-	}
-
+	
 	public Movable(T node) {
 		this(node, true);
+	}
+	
+	public Movable(IComponent<T> component, Consumer<MouseEvent> onMove, boolean keepOldHandlers){
+		this(component.getNode(), onMove, keepOldHandlers);
 	}
 
 	public Movable(IComponent<T> component, Consumer<MouseEvent> onMove){
 		this(component.getNode(), onMove);
 	}
 
+	public Movable(IComponent<T> component, BiConsumer<Double, Double> onMove, boolean keepOldHandlers){
+		this(component.getNode(), onMove, keepOldHandlers);
+	}
+	
 	public Movable(IComponent<T> component, BiConsumer<Double, Double> onMove){
 		this(component.getNode(), onMove);
 	}
 
+	public Movable(IComponent<T> component, boolean keepOldHandlers) {
+		this(component.getNode(), keepOldHandlers);
+	}
+	
 	public Movable(IComponent<T> component) {
 		this(component.getNode());
 	}
