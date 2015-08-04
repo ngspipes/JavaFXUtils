@@ -30,27 +30,76 @@
 
 				<h1>JavaFX Utils</h1>
 
-				<h2>Component name</h2>
+				<h2>MultiOption</h2>
 
-				<p>Component description <a href="http://facebook.github.io/react/docs/more-about-refs.html">refs</a>.</p>
+				<p>Component to help create option menus over <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/control/Control.html">Control</a> objects.</p>
+				<p><a href="/JavaFXUtils/docs/pages/components/multiOption.html">MultiOption</a> class is generic in <code>T extends Control</code>.</p>
+				<p>To help <a href="/JavaFXUtils/docs/pages/components/multiOption.html">MultiOption</a> implementation and increase legibility it was created Operations class which is class that permits to collect Operation objects. An Operation object has 2 fields :</p>
+				<ul>
+					<li><code>private final String name</code> : name ton de displayed on menu</li>
+					<li><code>private final Runnable action</code> : action to be executed</li>
+				</ul>
+				This 2 fields are setted on constructor and can be obtained via getter methods.
 
 				<h3>Constructors</h3>
 
-				<h3>Usage</h3>
-
-				<p>Explaning text <code>code(arg1, arg2)</code>.</p>
-				<div class="highlight"><pre>
-					<code class="language-javascript" data-lang="javascript"><span class="nx">xpto</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span><span class="p">{</span><span class="s1">'string'</span><span class="k">return</span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="nx">obj</span><span class="p">.</span><span class="mi">1</span><span class="p">};</span><span class="p">});</span>
-					</code></pre>
+				<div class="highlight">
+					<pre class="prettyprint">public MultiOption(T control, Operations operations)</pre>
 				</div>
 
-				<p>Explaning text.</p>
-				<blockquote>
-					<p>This is a warning:</p>
-					<p><em>ENFASIS</em> text <code>code</code></p>
-				</blockquote>
+				<p>
+					<ul>
+						<li>
+							<strong>control</strong> : <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/control/Control.html">Control</a> in which will be mounted option menu.
+						</li>
+						<li>
+							<strong>operations</strong> : operations to set on menu.
+						</li>
+					</ul>
+				</p>
+
+				<p>There are more constructors with different parameters, but all will internally call this first one.</p>
+				<p>Variations :</p>
+				<ul>
+					<li>Constructors that receive <code>Collection&ltPair&ltString, Runnable&gt&gt actions</code> will instantitate Operations object with it.</li>
+					<li>Constructors that receive <code>IComponent&ltT&gt component</code> and obtain <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/control/Control.html">Control</a> object from <code>component.getNode()</code>.</li>
+				</ul>
+
+				<div class="highlight">
+					<pre class="prettyprint">public MultiOption(T control, Collection&ltPair&ltString, Runnable&gt&gt actions)</pre>
+				</div>
+
+				<div class="highlight">
+					<pre class="prettyprint">public MultiOption(IComponent&ltT&gt component, Operations operations)</pre>
+				</div>
+
+				<div class="highlight">
+					<pre class="prettyprint">public MultiOption(IComponent&ltT&gt component, Collection&ltPair&ltString, Runnable&gt&gt actions)</pre>
+				</div>
+
+				<h3>Usage</h3>
+
+				<div class="highlight">
+					<pre class="prettyprint">
+	Button button;
+
+	Operations ops = new Operations();
+	ops.add("A", ()->button.setGraphic(A_IMAGE));
+	ops.add("B", ()->button.setGraphic(B_IMAGE));
+	ops.add("C", ()->button.setGraphic(C_IMAGE));
+	ops.add("D", ()->button.setGraphic(D_IMAGE));
+
+	new MultiOption<>(button, ops).mount();
+					</pre>
+				</div>
+
 
 				<h3>Links</h3>
+				<ul>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/blob/master/framework/src/components/multiOption/MultiOption.java">MultiOption src</a></li>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/tree/master/demos/multiOption/project/src">MultiOption demo src</a></li>
+					<li><a href="http://www.mediafire.com/download/fel1d4vx4a2pzku/Demo.jar">MultiOption demo download</a></li>
+				</ul>
 
 			</div>
 
