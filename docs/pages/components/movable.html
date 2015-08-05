@@ -48,7 +48,7 @@
 							<strong>node</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> in which will be mounted the movable functionality.
 						</li>
 						<li>
-							<strong>onMove</strong> : action to be triggered on mode.
+							<strong>onMove</strong> : action to be triggered on move.
 						</li>
 						<li>
 							<strong>keepOldHandlers</strong> : indicates if the <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/event/EventHandler.html">EventHandler</a>s are to keep or to be discarded.
@@ -60,7 +60,7 @@
 				<p>Variations :</p>
 				<ul>
 					<li>Constructors that don't receive <code>boolean keepOldHandlers</code> this value is assumed as <code>true</code>.</li>
-					<li>Constructors that receive <code>BiConsumer<Doueble, Double> onMove</code> action called on move that receives x and y coordinates.</li>
+					<li>Constructors that receive <code>BiConsumer&ltDoueble, Double&gt onMove</code> action called on move that receives x and y coordinates.</li>
 					<li>Constructors that receive <code>IComponent&ltT&gt component</code> and obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> object from <code>component.getNode()</code>.</li>
 				</ul>
 
