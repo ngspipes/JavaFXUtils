@@ -32,7 +32,7 @@
 
 				<h2>DoubleClickable</h2>
 
-				<p>Component that sets code to be triggered on double click of a <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a>.</p>
+				<p>Component that sets code to be triggered on double click of <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a>.</p>
 				<p>
 					This component sets an <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/event/EventHandler.html">EventHandler</a> through <code>button.setOnMouseClicked(handler)</code> which checks click count and runs code in case of 2 clicks.
 				</p>
@@ -48,7 +48,7 @@
 							<strong>node</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> in which <a href="/JavaFXUtils/docs/pages/components/doubleClickable.html">DoubleClickable</a> will be mounted.
 						</li>
 						<li>
-							<strong>action</strong> : action to be triggered on double click, this action receives the MouseEvent originated.
+							<strong>action</strong> : action to be triggered on double click, this action receives the <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/input/MouseEvent.html">MouseEvent</a> originated.
 						</li>
 						<li>
 							<strong>keepOldHandler</strong> : indicates if the <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/event/EventHandler.html">EventHandler</a> from <code>node.getOnMouseClicked()</code> is to keep or to be discarded.
@@ -61,7 +61,7 @@
 				<ul>
 					<li>Constructors that don't receive <code>boolean keepOldHandler</code> this value is assumed as <code>true</code>.</li>
 					<li>Constructors that receive <code>Runnable action</code> instead of <code>Consumer&ltMouseEvent&gt action</code>.</li>
-					<li>Constructors that receive <code>IComponent&ltT&gt component</code> and obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> object from <code>component.getNode()</code>.</li>
+					<li>Constructors that receive <code>IComponent&ltT&gt component</code> obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> object from <code>component.getNode()</code>.</li>
 				</ul>
 
 				<div class="highlight">
