@@ -36,7 +36,7 @@
 				<p><a href="/JavaFXUtils/docs/pages/components/multiOption.html">MultiOption</a> class is generic in <code>T extends Control</code>.</p>
 				<p>To help <a href="/JavaFXUtils/docs/pages/components/multiOption.html">MultiOption</a> implementation and increase legibility it was created Operations class which is class that permits to collect Operation objects. An Operation object has 2 fields :</p>
 				<ul>
-					<li><code>private final String name</code> : name ton de displayed on menu</li>
+					<li><code>private final String name</code> : name to be displayed on menu</li>
 					<li><code>private final Runnable action</code> : action to be executed</li>
 				</ul>
 				This 2 fields are setted on constructor and can be obtained via getter methods.
@@ -62,7 +62,7 @@
 				<p>Variations :</p>
 				<ul>
 					<li>Constructors that receive <code>Collection&ltPair&ltString, Runnable&gt&gt actions</code> will instantitate Operations object with it.</li>
-					<li>Constructors that receive <code>IComponent&ltT&gt component</code> and obtain <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/control/Control.html">Control</a> object from <code>component.getNode()</code>.</li>
+					<li>Constructors that receive <code>IComponent&ltT&gt component</code> obtain <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/control/Control.html">Control</a> object from <code>component.getNode()</code>.</li>
 				</ul>
 
 				<div class="highlight">
