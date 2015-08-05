@@ -48,10 +48,10 @@
 							<strong>button</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Button.html">Button</a> in which will be mounted animation.
 						</li>
 						<li>
-							<strong>onEnter</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/image/ImageView.html">ImageView</a> to be set as background on onMouseEnter event.
+							<strong>onEnter</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/image/ImageView.html">ImageView</a> to be set as background on onMouseEntered event.
 						</li>
 						<li>
-							<strong>onExit</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/image/ImageView.html">ImageView</a> to be set as background on onMouseExit event.
+							<strong>onExit</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/image/ImageView.html">ImageView</a> to be set as background on onMouseExited event.
 						</li>
 						<li>
 							<strong>keepOldHandlers</strong> : indicates if old <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/event/EventHandler.html">EventHandler</a>s are to keep or discard.
@@ -63,7 +63,7 @@
 				<p>Variations :</p>
 				<ul>
 					<li>Constructors that don't receive <code>keepOldHandlers</code> this value is assumed as <code>true</code>.</li>
-					<li>Constructors that receive <code>IComponent<T> component</code> obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Button.html">Button</a> from <code>component.getNode()
+					<li>Constructors that receive <code>IComponent&ltT&gt component</code> obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Button.html">Button</a> from <code>component.getNode()
 					</code>.</li>
 					<li>Constructors that receive <code>Image onEnter</code> and <code>Image onExit</code> will be used to instantiate <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/image/ImageView.html">ImageView</a>.</li>
 					<li>Constructors that receive <code>String onEnterPath</code> and <code>String onExitPath</code> will be used to instantiate <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/image/Image.html">Image</a>.</li>
