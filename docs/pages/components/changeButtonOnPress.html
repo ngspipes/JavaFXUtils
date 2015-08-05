@@ -32,7 +32,7 @@
 
 				<h2>ChangeButtonOnPress</h2>
 
-				<p>Component to change <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Button.html">Button</a> background on onMousePress and onMouseReleased events.</p>
+				<p>Component to change <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Button.html">Button</a> background on onMousePressed and onMouseReleased events.</p>
 				<p><a href="/JavaFXUtils/docs/pages/components/changeButtonOnPress.html">ChangeButtonOnPress</a> class is generic in <code>T extends Button</code>.</p>
 
 				<h3>Constructors</h3>
@@ -63,7 +63,7 @@
 				<p>Variations :</p>
 				<ul>
 					<li>Constructors that don't receive <code>keepOldHandlers</code> this value is assumed as <code>true</code>.</li>
-					<li>Constructors that receive <code>IComponent<T> component</code> obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Button.html">Button</a> from <code>component.getNode()
+					<li>Constructors that receive <code>IComponent&ltT&gt component</code> obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/Button.html">Button</a> from <code>component.getNode()
 					</code>.</li>
 					<li>Constructors that receive <code>Image onPress</code> and <code>Image onRelease</code> will be used to instantiate <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/image/ImageView.html">ImageView</a>.</li>
 					<li>Constructors that receive <code>String onPressPath</code> and <code>String onReleasePath</code> will be used to instantiate <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/image/Image.html">Image</a>.</li>
