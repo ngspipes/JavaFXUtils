@@ -32,7 +32,7 @@
 
 				<h2>ChangeMouseOnPass</h2>
 
-				<p>Component to change mouse image on onMouseEnter and onMouseExit events of a <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a>.</p>
+				<p>Component to change mouse image on onMouseEntered and onMouseExited events of <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a>.</p>
 
 				<h3>Constructors</h3>
 				<div class="highlight">
@@ -62,7 +62,7 @@
 				<p>Variations :</p>
 				<ul>
 					<li>Constructors that don't receive <code>keepOldHandlers</code> this value is assumed as <code>true</code>.</li>
-					<li>Constructors that receive <code>IComponent<T> component</code> obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> from <code>component.getNode()
+					<li>Constructors that receive <code>IComponent&ltT&gt component</code> obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> from <code>component.getNode()
 					</code>.</li>
 					<li>Constructors that receive <code>Image onEnter</code> and <code>Image onExit</code> will be used to instantiate <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/Cursor.html">Cursor</a>.</li>
 					<li>Constructors that receive <code>String onEnterPath</code> and <code>String onExitPath</code> will be used to instantiate <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/image/Image.html">Image</a>.</li>
