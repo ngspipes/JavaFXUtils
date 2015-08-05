@@ -30,27 +30,46 @@
 
 				<h1>JavaFX Utils</h1>
 
-				<h2>Component name</h2>
+				<h2>ImageMounter</h2>
 
-				<p>Component description <a href="http://facebook.github.io/react/docs/more-about-refs.html">refs</a>.</p>
+				<p>Component to help mount different components over <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/image/ImageView.html">ImageView</a>.</p>
+				<p><a href="/JavaFXUtils/docs/pages/components/mounters/imageMounter.html">ImageMounter</a> class is generic in <code>T extends ImageView</code>.</p>
+				<p>This mounter permits to mount the following components : </p>
+				<ul>
+					<li><a href="/JavaFXUtils/docs/pages/components/imageMagnifier.html">ImageMagnifier</a></li>
+				</ul>
 
 				<h3>Constructors</h3>
-
-				<h3>Usage</h3>
-
-				<p>Explaning text <code>code(arg1, arg2)</code>.</p>
-				<div class="highlight"><pre>
-					<code class="language-javascript" data-lang="javascript"><span class="nx">xpto</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span><span class="p">{</span><span class="s1">'string'</span><span class="k">return</span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="nx">obj</span><span class="p">.</span><span class="mi">1</span><span class="p">};</span><span class="p">});</span>
-					</code></pre>
+				<div class="highlight">
+					<pre class="prettyprint">public ImageMounter(T image)</pre>
 				</div>
 
-				<p>Explaning text.</p>
-				<blockquote>
-					<p>This is a warning:</p>
-					<p><em>ENFASIS</em> text <code>code</code></p>
-				</blockquote>
+				<div class="highlight">
+					<pre class="prettyprint">public ImageMounter(IComponent&ltT&gt component)</pre>
+				</div>
+
+				<h3>Usage</h3>
+				<div class="highlight">
+					<pre class="prettyprint">
+	ImageView image;
+
+	try {
+		new ImageMounter<>(image)
+			.imageMagnifier(1.15)
+			.movable()
+			.mount();
+	} catch (ComponentException e) {
+		//Treat Exception
+	}
+					</pre>
+				</div>
 
 				<h3>Links</h3>
+				<ul>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/blob/master/framework/src/components/mounter/ImageMounter.java">ImageMounter src</a></li>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/tree/master/demos/imageMounter/project/src">ImageMounter demo src</a></li>
+					<li><a href="http://www.mediafire.com/download/oc65gjt4vd4jt3l/Demo.jar">ImageMounter demo download</a></li>
+				</ul>
 
 			</div>
 
