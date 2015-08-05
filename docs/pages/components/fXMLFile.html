@@ -37,7 +37,7 @@
 				<p>
 					To help deal with Controller Initializations it was created <code>IInitializable&ltA&gt</code>. This interface has 1 method <code>init(A arg)</code>, and Controllers that need arguments to initialization should implement this interface and pass the argument of <code>init(arg)</code> on constructor of <a href="/JavaFXUtils/docs/pages/components/fXMLFile.html">FXMLFile</a>.
 				</p>
-				<p>During the mounting precess <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/fxml/FXMLLoader.html">FXMLLoader</a> can throw Execption, if that happens a ComponentException will be thrown.</p>
+				<p>During the mounting precess <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/fxml/FXMLLoader.html">FXMLLoader</a> can throw Exception, if that happens a ComponentException will be thrown.</p>
 
 				<h3>Constructors</h3>
 
@@ -54,7 +54,7 @@
 							<strong>controllerClass</strong> : Class object of Controller responsible for initialization.
 						</li>
 						<li>
-							<strong>initializableArgument</strong> : argument of <code>init(argument)</code> method for controllers which implements IInitializable.
+							<strong>initializableArgument</strong> : argument of <code>init(argument)</code> method for controllers that implement IInitializable.
 						</li>
 					</ul>
 				</p>
