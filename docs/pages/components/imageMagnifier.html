@@ -30,27 +30,91 @@
 
 				<h1>JavaFX Utils</h1>
 
-				<h2>Component name</h2>
+				<h2>ImageMagnifier</h2>
 
-				<p>Component description <a href="http://facebook.github.io/react/docs/more-about-refs.html">refs</a>.</p>
+				<p>Component to create a magnify effect on <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/image/ImageView.html">ImageView</a> on onMouseEnter event.</p>
+				<p><a href="/JavaFXUtils/docs/pages/components/imageMagnifier.html">ImageMagnifier</a> class is generic in <code>T extends ImageView</code>.</p>
 
 				<h3>Constructors</h3>
-
-				<h3>Usage</h3>
-
-				<p>Explaning text <code>code(arg1, arg2)</code>.</p>
-				<div class="highlight"><pre>
-					<code class="language-javascript" data-lang="javascript"><span class="nx">xpto</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span><span class="p">{</span><span class="s1">'string'</span><span class="k">return</span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="nx">obj</span><span class="p">.</span><span class="mi">1</span><span class="p">};</span><span class="p">});</span>
-					</code></pre>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ImageMagnifier(T image, double magnifyAmp, boolean keepOldHandlers)
+					</pre>
 				</div>
 
-				<p>Explaning text.</p>
-				<blockquote>
-					<p>This is a warning:</p>
-					<p><em>ENFASIS</em> text <code>code</code></p>
-				</blockquote>
+				<p>
+					<ul>
+						<li>
+							<strong>image</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/image/ImageView.html">ImageView</a> in which magnify effect will be mounted.
+						</li>
+						<li>
+							<strong>magnifyAmp</strong> : amplitude of magnify effect.
+						</li>
+						<li>
+							<strong>keepOldHandlers</strong> : indicates if old <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/event/EventHandler.html">EventHandler</a>s are to keep or discard.
+						</li>
+					</ul>
+				</p>
+
+				<p>There are more constructors with different parameters, but all will internally call this first one.</p>
+				<p>Variations :</p>
+				<ul>
+					<li>Constructors that don't receive <code>keepOldHandlers</code> this value is assumed as <code>true</code>.</li>
+					<li>Constructors that don't receive <code>magnifyAmp</code> this value is assumed as 1.5.</li>
+					<li>Constructors that receive <code>IComponent<T> component</code> obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/image/ImageView.html">ImageView</a> from <code>component.getNode()</code>.</li>
+				</ul>
+
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ImageMagnifier(T image, double magnifyAmp)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ImageMagnifier(T image, boolean keepOldHandlers)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ImageMagnifier(T image)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ImageMagnifier(IComponent&ltT&gt component, double magnifyAmp, boolean keepOldHandlers)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ImageMagnifier(IComponent&ltT&gt component, double magnifyAmp)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ImageMagnifier(IComponent&ltT&gt component, boolean keepOldHandlers)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public ImageMagnifier(IComponent&ltT&gt component)
+					</pre>
+				</div>
+
+				<h3>Usage</h3>
+				<div class="highlight">
+					<pre class="prettyprint">
+	ImageView image;
+
+	new ImageMagnifier<>(image).mount();
+					</pre>
+				</div>
 
 				<h3>Links</h3>
+				<ul>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/blob/master/framework/src/components/animation/magnifier/ImageMagnifier.java">ImageMagnifier src</a></li>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/tree/master/demos/imageMagnifier/project/src">ImageMagnifier demo src</a></li>
+					<li><a href="http://www.mediafire.com/download/4ap6sy1w2j9uwkp/Demo.jar">ImageMagnifier demo download</a></li>
+				</ul>
 
 			</div>
 
