@@ -11,7 +11,7 @@ document.write('\
 			<li><a href="/JavaFXUtils/docs/pages/components/changeButtonOnPress.html">ChangeButtonOnPress</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/changeMouseOnPass.html">ChangeMouseOnPass</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/changeMouseOnPress.html">ChangeMouseOnPress</a></li>\
-			<li><a href="/JavaFXUtils/docs/pages/components/connector.html">Connector</a></li>\
+			<li><a href="/JavaFXUtils/docs/pages/components/connectable.html">Connectable</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/doubleClickable.html">DoubleClickable</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/fXMLFile.html">FXMLFile</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/imageMagnifier.html">ImageMagnifier</a></li>\
