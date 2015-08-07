@@ -33,8 +33,24 @@
 				<h2>Connectable</h2>
 
 				<p>Component to connect 2 <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> objects.</p>
+				<p>For this component it was created some other classes to permits some extensibility.</p>
+					<ul>
+						<li>
+							<strong>Coordinates</strong> : class which contains X and Y fields that can be accessed via getters.
+						</li>
+						<li>
+							<strong>Connector</strong> : component to create connector between 2 <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> objects.
+						</li>
+						<li>
+							<strong>ConnectorTips</strong> : class which contains 2 <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> objects. This objects will be the tips of connector.
+						</li>
+						<li>
+							<strong>IConnection</strong> : responsible for supplying the coordinates of existent connections points. There are 4 implementations.<br>
+							<img src="/JavaFXUtils/docs/pages/images/Connection.html">
+						</li>
+					</ul>
 				<div class="alert alert-danger">
-				  	<strong>Note:</strong>
+
 				  	<p><a href="https://docs.oracle.com/javafx/2/api/javafx/scene/shape/Line.html">Line</a> used with Connector should be child of <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/layout/Pane.html">Pane</a> object before the mount(<code>connector.mount()</code>) process. This happens because it is added to <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Parent.html">Parent</a> the init and end tips of line.</p>
 				</div>
 
@@ -127,9 +143,11 @@
 				</div>
 
 				<h3>Links</h3>
+				<ul>
 					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/blob/master/framework/src/components/connect/Connectable.java">Connectable src</a></li>
 					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/tree/master/demos/connectable/project/src">Connectable demo src</a></li>
 					<li><a href="http://www.mediafire.com/download/ek0a5ai29br5ucs/Demo.jar">Connectable demo download</a></li>
+				</ul>
 
 			</div>
 
