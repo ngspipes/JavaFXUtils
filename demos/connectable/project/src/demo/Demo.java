@@ -12,15 +12,16 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import utils.ComponentException;
 
 import components.Movable;
-import components.connect.Connector;
+import components.connect.Connectable;
 
 public class Demo extends Application {
 	
 	private static final String FXML_DOCUMENT_PATH = "resources/FXMLDocument.fxml";
-	private static final String TITLE = "Connector";
-	private static final String DESCRIPTION = "Demo to show usage of Connector component.\nDrag buttons below around and watch connectors following them.";
+	private static final String TITLE = "Connectable";
+	private static final String DESCRIPTION = "Demo to show usage of Connectable component.\nDrag buttons below around and watch connectors following them.";
 	
 	private static final ImageView A_IMAGE = new ImageView(new Image("resources/A.png"));
 	private static final ImageView B_IMAGE = new ImageView(new Image("resources/B.png"));
@@ -70,24 +71,27 @@ public class Demo extends Application {
 		Button buttonB = new Button("", B_IMAGE);
 		
 		try {
-			new Movable<>(buttonA).mount();
-			new Movable<>(buttonB).mount();
+			setup(demoPane, buttonA, buttonB);
 		} catch (Exception e) {
-			Label error = new Label();
-			error.setText(e.getMessage());
-			demoPane.getChildren().add(error);
+			demoPane.getChildren().add(new Label(e.getMessage()));
 			return;
 		}
+
+		Connectable connectable = new Connectable(buttonA, buttonB);
+
+		demoPane.getChildren().add(connectable.getNode());
 		
-		demoPane.getChildren().add(buttonA);
-		demoPane.getChildren().add(buttonB);
+		connectable.mount();
+	}
+	
+	public static void setup(AnchorPane demoPane, Button bA, Button bB) throws ComponentException{
+		new Movable<>(bA).mount();
+		new Movable<>(bB).mount();
 		
-		buttonB.setLayoutX(500);
+		demoPane.getChildren().add(bA);
+		demoPane.getChildren().add(bB);
 		
-		Connector connector = new Connector(buttonA, buttonB);
-		connector.mount();
-		
-		demoPane.getChildren().add(connector.getNode());
+		bB.setLayoutX(500);
 	}
 	
     public static void main(String[] args) {
