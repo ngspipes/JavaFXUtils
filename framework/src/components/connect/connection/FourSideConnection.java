@@ -10,13 +10,10 @@ import components.connect.Coordinates;
 
 public class FourSideConnection<T extends Node> extends Connection<T>{
 	
-	private final MiddleConnection<T> middlePointCalculator;
-	
 	// Constructors
 	
 	public FourSideConnection(T node) {
 		super(node);
-		this.middlePointCalculator = new MiddleConnection<>(node);
 	}
 
 	public FourSideConnection(IComponent<T> component) {
@@ -30,7 +27,7 @@ public class FourSideConnection<T extends Node> extends Connection<T>{
 	public Collection<Coordinates> getConnectionPoints() {
 		Collection<Coordinates> connectionPoints = new LinkedList<>();
 		
-		Coordinates middlePoint = middlePointCalculator.getConnectionPoints().iterator().next();
+		Coordinates middlePoint = MiddleConnection.getMiddlePoint(this.node);
 		
 		connectionPoints.add(getTopPoint(middlePoint));
 		connectionPoints.add(getBottomPoint(middlePoint));
