@@ -30,27 +30,106 @@
 
 				<h1>JavaFX Utils</h1>
 
-				<h2>Component name</h2>
+				<h2>Connectable</h2>
 
-				<p>Component description <a href="http://facebook.github.io/react/docs/more-about-refs.html">refs</a>.</p>
-
-				<h3>Constructors</h3>
-
-				<h3>Usage</h3>
-
-				<p>Explaning text <code>code(arg1, arg2)</code>.</p>
-				<div class="highlight"><pre>
-					<code class="language-javascript" data-lang="javascript"><span class="nx">xpto</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span><span class="p">{</span><span class="s1">'string'</span><span class="k">return</span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="nx">obj</span><span class="p">.</span><span class="mi">1</span><span class="p">};</span><span class="p">});</span>
-					</code></pre>
+				<p>Component to connect 2 <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> objects.</p>
+				<div class="alert alert-warning">
+				  	<strong>Note:</strong>
+				  	<p><a href="https://docs.oracle.com/javafx/2/api/javafx/scene/shape/Line.html">Line</a> used with Connector should be child of <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/layout/Pane.html">Pane</a> object so it can be added to <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Parent.html">Parent</a> the init and end tips of line.</p>
 				</div>
 
-				<p>Explaning text.</p>
-				<blockquote>
-					<p>This is a warning:</p>
-					<p><em>ENFASIS</em> text <code>code</code></p>
-				</blockquote>
+				<h3>Constructors</h3>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Connectable(Connector connector, IConnection<?> initPoint, IConnection<?> endPoint)
+					</pre>
+				</div>
+
+				<p>There are more constructors with different parameters, but all will internally call this first one.</p>
+				<p>Variations :</p>
+				<ul>
+					<li>Constructors that receive <code>Line line</code> will use it to instantiate Connector.</li>
+					<li>Constructors that receive <code>IComponent&ltLine&gt component</code> will obtain <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/shape/Line.html">Line</a> from <code>component.getNode()</code>.</li>
+					<li>Constructors that don't receive any of the above options will instantiate <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/shape/Line.html">Line</a> via empty constructor.</li>
+					<li>Constructors that receive <code>Node initNode</code> and <code>Node endNode</code> will use them to instantiate <code>Connection</code>.</li>
+					<li>Constructors that receive <code>IComponent&lt?&gt initComponent</code> and <code>IComponent&lt?&gt endComponent</code> will obtain initNode and endNode from <code>initComponent.getNode()</code> and <code>endComponent.getNode()</code> respectively.</li>
+				</ul>
+
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Connectable(Connector connector, Node initNode, Node endNode)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Connectable(Connector connector, IComponent<?> initComponent, IComponent<?> endComponent)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Connectable(Line line, IConnection<?> initPoint, IConnection<?> endPoint)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Connectable(Line line, Node initNode, Node endNode)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Connectable(Line line, IComponent<?> initComponent, IComponent<?> endComponent)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Connectable(IComponent<Line> component, IConnection<?> initPoint, IConnection<?> endPoint)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Connectable(IComponent<Line> component, Node initNode, Node endNode)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Connectable(IComponent<Line> component, IComponent<?> initComponent, IComponent<?> endComponent)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Connectable(IConnection<?> initPoint, IConnection<?> endPoint)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Connectable(Node initNode, Node endNode)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Connectable(IComponent<?> initComponent, IComponent<?> endComponent)
+					</pre>
+				</div>
+
+				<h3>Usage</h3>
+				<div class="highlight">
+					<pre class="prettyprint">
+	Pane pane;
+	Button buttonA;
+	Button buttonB;
+
+	Connectable connectable = new Connectable(buttonA, buttonB);
+
+	demoPane.getChildren().add(connectable.getNode());
+
+	connectable.mount();
+					</pre>
+				</div>
 
 				<h3>Links</h3>
+					<td><a href="https://github.com/BrunoMNDantas/JavaFXUtils/blob/master/framework/src/components/connect/Connectable.java">Connectable src</a></td>
+					<td><a href="https://github.com/BrunoMNDantas/JavaFXUtils/tree/master/demos/connectable/project/src">Connectable demo src</a></td>
+					<td><a href="http://www.mediafire.com/download/ek0a5ai29br5ucs/Demo.jar">Connectable demo download</a></td>
 
 			</div>
 
