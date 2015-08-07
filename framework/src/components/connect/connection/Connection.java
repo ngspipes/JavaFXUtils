@@ -1,4 +1,4 @@
-package components.connect.connectionPoint;
+package components.connect.connection;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -9,17 +9,17 @@ import javafx.scene.Node;
 import components.IComponent;
 import components.connect.Coordinates;
 
-public class ConnectionPoint<T extends Node> implements IConnectionPoint<T>{
+public class Connection<T extends Node> implements IConnection<T>{
 
 	protected final T node;
 	
 	// Constructors
 	
-	public ConnectionPoint(T node) {
+	public Connection(T node) {
 		this.node = node;
 	}
 	
-	public ConnectionPoint(IComponent<T> component){
+	public Connection(IComponent<T> component){
 		this(component.getNode());
 	}
 	

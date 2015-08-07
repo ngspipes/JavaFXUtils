@@ -1,4 +1,4 @@
-package components.connect.connectionPoint;
+package components.connect.connection;
 
 import java.util.Collection;
 
@@ -7,15 +7,15 @@ import javafx.scene.Node;
 import components.IComponent;
 import components.connect.Coordinates;
 
-public class EightSideConnectionPoint<T extends Node> extends FourSideConnectionPoint<T>{
+public class EightSideConnection<T extends Node> extends FourSideConnection<T>{
 
 	// Constructors
 	
-	public EightSideConnectionPoint(T node) {
+	public EightSideConnection(T node) {
 		super(node);
 	}
 	
-	public EightSideConnectionPoint(IComponent<T> component) {
+	public EightSideConnection(IComponent<T> component) {
 		super(component);
 	}
 

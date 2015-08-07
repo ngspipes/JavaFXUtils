@@ -4,11 +4,10 @@ import java.util.Collection;
 
 import javafx.scene.Node;
 import javafx.scene.shape.Line;
-
 import components.Component;
 import components.IComponent;
-import components.connect.connectionPoint.ConnectionPoint;
-import components.connect.connectionPoint.IConnectionPoint;
+import components.connect.connection.Connection;
+import components.connect.connection.IConnection;
 
 public class Connector extends Component<Line>{
 	
@@ -40,12 +39,12 @@ public class Connector extends Component<Line>{
 	
 	private final Line line;
 	
-	private final IConnectionPoint<?> endPoint;
-	private final IConnectionPoint<?> initPoint;
+	private final IConnection<?> endPoint;
+	private final IConnection<?> initPoint;
 	
 	// Constructors
 	
-	public Connector(Line line, IConnectionPoint<?> initPoint, IConnectionPoint<?> endPoint){
+	public Connector(Line line, IConnection<?> initPoint, IConnection<?> endPoint){
 		super(line);
 		this.line = this.node;
 		this.initPoint = initPoint;
@@ -53,14 +52,14 @@ public class Connector extends Component<Line>{
 	}
 	
 	public Connector(Line line, Node initNode, Node endNode) {
-		this(line, new ConnectionPoint<>(initNode), new ConnectionPoint<>(endNode));
+		this(line, new Connection<>(initNode), new Connection<>(endNode));
 	}
 	
 	public Connector(Line line, IComponent<?> initComponent, IComponent<?> endComponent){
 		this(line, initComponent.getNode(), endComponent.getNode());
 	}
 	
-	public Connector(IComponent<Line> component, IConnectionPoint<?> initPoint, IConnectionPoint<?> endPoint){
+	public Connector(IComponent<Line> component, IConnection<?> initPoint, IConnection<?> endPoint){
 		this(component.getNode(), initPoint, endPoint);
 	}
 	
@@ -72,7 +71,7 @@ public class Connector extends Component<Line>{
 		this(component.getNode(), initComponent, endComponent);
 	}
 	
-	public Connector(IConnectionPoint<?> initPoint, IConnectionPoint<?> endPoint){
+	public Connector(IConnection<?> initPoint, IConnection<?> endPoint){
 		this(new Line(), initPoint, endPoint);
 	}
 	

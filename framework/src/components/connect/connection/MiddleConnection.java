@@ -1,4 +1,4 @@
-package components.connect.connectionPoint;
+package components.connect.connection;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -8,15 +8,15 @@ import javafx.scene.Node;
 import components.IComponent;
 import components.connect.Coordinates;
 
-public class MiddleConnectionPoint<T extends Node> extends ConnectionPoint<T> {
+public class MiddleConnection<T extends Node> extends Connection<T> {
 	
 	// Constructors
 	
-	public MiddleConnectionPoint(T node) {
+	public MiddleConnection(T node) {
 		super(node);
 	}
 	
-	public MiddleConnectionPoint(IComponent<T> component) {
+	public MiddleConnection(IComponent<T> component) {
 		this(component.getNode());
 	}
 	

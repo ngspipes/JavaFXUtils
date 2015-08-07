@@ -1,4 +1,4 @@
-package components.connect.connectionPoint;
+package components.connect.connection;
 
 import java.util.Collection;
 import java.util.LinkedList;
@@ -8,18 +8,18 @@ import javafx.scene.Node;
 import components.IComponent;
 import components.connect.Coordinates;
 
-public class FourSideConnectionPoint<T extends Node> extends ConnectionPoint<T>{
+public class FourSideConnection<T extends Node> extends Connection<T>{
 	
-	private final MiddleConnectionPoint<T> middlePointCalculator;
+	private final MiddleConnection<T> middlePointCalculator;
 	
 	// Constructors
 	
-	public FourSideConnectionPoint(T node) {
+	public FourSideConnection(T node) {
 		super(node);
-		this.middlePointCalculator = new MiddleConnectionPoint<>(node);
+		this.middlePointCalculator = new MiddleConnection<>(node);
 	}
 
-	public FourSideConnectionPoint(IComponent<T> component) {
+	public FourSideConnection(IComponent<T> component) {
 		this(component.getNode());
 	}
 	

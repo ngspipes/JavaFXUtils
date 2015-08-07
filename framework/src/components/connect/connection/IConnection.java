@@ -1,4 +1,4 @@
-package components.connect.connectionPoint;
+package components.connect.connection;
 
 import java.util.Collection;
 import java.util.function.Consumer;
@@ -7,7 +7,7 @@ import javafx.scene.Node;
 
 import components.connect.Coordinates;
 
-public interface IConnectionPoint<T extends Node>{
+public interface IConnection<T extends Node>{
 	
 	public T getNode();
 	
