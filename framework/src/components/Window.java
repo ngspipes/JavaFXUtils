@@ -7,9 +7,18 @@ import utils.ComponentException;
 
 public class Window<T extends Parent, A> implements IComponent<T>{
     
-    private final String windowTitle;
+    private String windowTitle;
+    public String getWindowTitle(){ return windowTitle; }
+    public void setWindowTitle(String windowTitle){ this.windowTitle = windowTitle; }
+    
     private T root;
+    public T getRoot(){ return getNode(); }
+    public void setRoot(T root){ this.root=root; }
+    
     private FXMLFile<T,A> fXMLFile;
+    public FXMLFile<T,A> getFXMLFile(){ return fXMLFile; }
+    public void setFXMLFile(FXMLFile<T,A> fXMLFile){ this.fXMLFile = fXMLFile; }
+    
     private Stage stage;
     
     // Constructors
@@ -61,10 +70,6 @@ public class Window<T extends Parent, A> implements IComponent<T>{
     
     public T getNode(){
     	return root;
-    }
-    
-    public T getRoot(){
-    	return getNode();
     }
     
     @Override
