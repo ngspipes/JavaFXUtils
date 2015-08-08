@@ -63,6 +63,10 @@ public class Window<T extends Parent, A> implements IComponent<T>{
     	return root;
     }
     
+    public T getRoot(){
+    	return getNode();
+    }
+    
     @Override
 	public void mount() throws ComponentException{
 		open();

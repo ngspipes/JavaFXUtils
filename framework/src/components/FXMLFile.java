@@ -47,6 +47,10 @@ public class FXMLFile<T extends Node, A/*initializable argument*/> implements IC
         return root;
     }
     
+    public T getRoot(){
+    	return getNode();
+    } 
+    
     public void build() throws ComponentException{
     	mount();
     }
