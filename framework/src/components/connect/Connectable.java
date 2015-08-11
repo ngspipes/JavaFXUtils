@@ -104,6 +104,14 @@ public class Connectable extends Component<Line>{
 		setBounds();
 		registerCoordinateListeners();
 	}
+	
+	public void connect() {
+		mount();
+	}
+	
+	public void disconnect() {
+		connector.dismount();
+	}
 
 	private void setBounds() {
 		setInitBounds(); 

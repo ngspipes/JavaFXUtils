@@ -56,6 +56,16 @@ public class Connector extends Component<Line>{
 		setCoordenateListners();
 	}
 	
+	public void dismount(){
+		Pane parent = (Pane)line.getParent();	
+		
+		if(tips.getInit() != NO_TIP)
+			parent.getChildren().remove(tips.getInit());
+		
+		if(tips.getEnd() != NO_TIP)
+			parent.getChildren().remove(tips.getEnd());
+	}
+	
 	private void setTipsOnLineParent(){
 		Pane parent = (Pane)line.getParent();
 		
