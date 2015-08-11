@@ -81,7 +81,7 @@ public class Demo extends Application {
 
 		demoPane.getChildren().add(connectable.getNode());
 		
-		connectable.mount();
+		connectable.connect();
 	}
 	
 	public static void setup(AnchorPane demoPane, Button bA, Button bB) throws ComponentException{
