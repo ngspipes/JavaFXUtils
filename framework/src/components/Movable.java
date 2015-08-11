@@ -7,10 +7,10 @@ import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
-import utils.ComponentException;
 import utils.Utils;
 
-import components.mounter.ComponentMounter;
+import components.animation.changeMouse.ChangeMouseOnPass;
+import components.animation.changeMouse.ChangeMouseOnPress;
 
 public class Movable<T extends Node> extends Component<T>{
 
@@ -76,14 +76,12 @@ public class Movable<T extends Node> extends Component<T>{
 	// Implementation
 
 	@Override
-	public void mount() throws ComponentException {
+	public void mount() {
 		setOnPressed();
 		setOnDragged();
-
-		new ComponentMounter<>(this.node)
-				.changeMouseOnPress(Cursor.CLOSED_HAND, Cursor.OPEN_HAND)
-				.changeMouseOnPass(Cursor.OPEN_HAND, Cursor.DEFAULT)
-				.mount();
+		
+		new ChangeMouseOnPress<>(this.node, Cursor.CLOSED_HAND, Cursor.OPEN_HAND).mount();
+		new ChangeMouseOnPass<>(this.node, Cursor.OPEN_HAND, Cursor.DEFAULT).mount();
 	}
 
 	private void setOnPressed(){

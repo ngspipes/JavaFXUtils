@@ -7,10 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import utils.ComponentException;
 
 import components.Movable;
 
@@ -64,13 +62,7 @@ public class Demo extends Application {
 	private static void mountDemo(AnchorPane demoPane) {
 		Button button = new Button("Button");
 	
-		try {
-			new Movable<>(button).mount();
-		} catch (ComponentException e) {
-			Label error = new Label();
-			error.setText(e.getMessage());
-			demoPane.getChildren().add(error);
-		}
+		new Movable<>(button).mount();
 		
 		demoPane.getChildren().add(button);
 	}
