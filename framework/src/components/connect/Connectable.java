@@ -2,6 +2,7 @@ package components.connect;
 
 import java.util.Collection;
 
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.shape.Line;
 
@@ -114,8 +115,10 @@ public class Connectable extends Component<Line>{
 	}
 
 	private void setBounds() {
-		setInitBounds(); 
-		setEndBounds();
+		Platform.runLater(()->{
+			setInitBounds(); 
+			setEndBounds();	
+		});
 	}
 	
 	private void setInitBounds(){
