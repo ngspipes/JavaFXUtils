@@ -9,7 +9,9 @@ import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Pair;
 import utils.ComponentException;
 
 import components.Component;
@@ -22,6 +24,8 @@ import components.animation.PressAndPassAnimation;
 import components.animation.PressAnimation;
 import components.animation.changeMouse.ChangeMouseOnPass;
 import components.animation.changeMouse.ChangeMouseOnPress;
+import components.shortcut.Keys;
+import components.shortcut.Shortcut;
 
 public class ComponentMounter<T extends Node> extends Component<T>{
 
@@ -205,5 +209,24 @@ public class ComponentMounter<T extends Node> extends Component<T>{
 		return this;
 	}
 	
+	public ComponentMounter<T> shortcut(Keys keys, boolean keepOldHandler) {
+		this.components.add(new Shortcut<>(this.node, keys, keepOldHandler));
+		return this;
+	}
+	
+	public ComponentMounter<T> shortcut(Keys keys) {
+		this.components.add(new Shortcut<>(this.node, keys));
+		return this;
+	}
+	
+	public ComponentMounter<T> shortcut(Collection<Pair<KeyCode, Runnable>> actions, boolean keepOldHandler) {
+		this.components.add(new Shortcut<>(this.node, actions, keepOldHandler));
+		return this;
+	}
+	
+	public ComponentMounter<T> shortcut(Collection<Pair<KeyCode, Runnable>> actions) {
+		this.components.add(new Shortcut<>(this.node, actions));
+		return this;
+	}
 	
 }
