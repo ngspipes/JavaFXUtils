@@ -20,6 +20,7 @@ document.write('\
 			<li><a href="/JavaFXUtils/docs/pages/components/passAnimation.html">PassAnimation</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/pressAnimation.html">PressAnimation</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/pressAndPassAnimation.html">PressAndPassAnimation</a></li>\
+			<li><a href="/JavaFXUtils/docs/pages/components/shortcut.html">Shortcut</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/tip.html">Tip</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/window.html">Window</a></li>\
 		</ul>\
