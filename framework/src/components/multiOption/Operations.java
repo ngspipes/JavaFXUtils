@@ -64,6 +64,14 @@ public class Operations {
 		return length;
 	}
 	
+	public boolean contains(Operation operation){
+		return operations.contains(operation);
+	}
+	
+	public boolean contains(String name){
+		return names.contains(name);
+	}
+	
 	public void add(Operation operation){
 		ops.put(operation.getName(), operation);
 		operations.add(operation);
