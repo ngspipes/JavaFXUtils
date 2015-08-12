@@ -82,7 +82,7 @@ public class Operations {
 		--length;
 	}
 	
-	public void add(String name){
+	public void remove(String name){
 		remove(getOperation(name));
 	}
 	
