@@ -115,6 +115,7 @@ public class Connectable extends Component<Line>{
 	}
 
 	private void setBounds() {
+		//After initPoint and endPoint movement, width and height may have not been calculated so we will give some time to execute this operation
 		Platform.runLater(()->{
 			setInitBounds(); 
 			setEndBounds();	
