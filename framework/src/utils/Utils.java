@@ -1,11 +1,11 @@
 package utils;
 
+import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 
 public class Utils {
 
-	public static EventHandler<? super MouseEvent> chain(EventHandler<? super MouseEvent> oldHandler, EventHandler<? super MouseEvent> newHandler, boolean keepOldHandler){
+	public static <E extends Event> EventHandler<? super E> chain(EventHandler<? super E> oldHandler, EventHandler<? super E> newHandler, boolean keepOldHandler){
 		if(newHandler==null)
 			return oldHandler;
 		
