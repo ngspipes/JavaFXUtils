@@ -27,6 +27,6 @@
          </font>
       </Label>
       <TextArea fx:id="description" layoutX="40.0" layoutY="75.0" prefHeight="163.0" prefWidth="961.0" text="Description" />
-      <AnchorPane fx:id="demoPane" layoutX="30.0" layoutY="292.0" prefHeight="396.0" prefWidth="974.0" />
+      <AnchorPane fx:id="demoPane" layoutX="30.0" layoutY="292.0" prefHeight="396.0" prefWidth="974.0" style="-fx-border-color: black;" />
    </children>
 </AnchorPane>

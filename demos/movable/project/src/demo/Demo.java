@@ -16,7 +16,7 @@ public class Demo extends Application {
 	
 	private static final String FXML_DOCUMENT_PATH = "resources/FXMLDocument.fxml";
 	private static final String TITLE = "Movable";
-	private static final String DESCRIPTION = "Demo to show usage of Movable component.\nPlease drag around the button below and observe button changing position.";
+	private static final String DESCRIPTION = "Demo to show usage of Movable component.\nPlease drag around the button below and observe button changing position just inside the parent.";
 	
 	
 	@Override
