@@ -80,6 +80,8 @@ public class Movable<T extends Node> extends Component<T>{
 	@Override
 	public void mount() {
 		setParentBounds();
+		this.node.parentProperty().addListener((event)->setParentBounds());
+		
 		setOnPressed();
 		setOnDragged();
 		
@@ -90,8 +92,6 @@ public class Movable<T extends Node> extends Component<T>{
 	private void setParentBounds(){
 		if(this.node.getParent()!=null)
 			parentBounds = this.node.getParent().getLayoutBounds();
-		
-		this.node.parentProperty().addListener((event)->parentBounds = this.node.getParent().getLayoutBounds());
 	}
 
 	private void setOnPressed(){
