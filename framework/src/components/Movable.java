@@ -4,6 +4,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Bounds;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
@@ -16,6 +17,7 @@ public class Movable<T extends Node> extends Component<T>{
 
 	private static class Delta { double x, y; }
 
+	private Bounds parentBounds;
 	private final Consumer<MouseEvent> onMove;
 	private final boolean keepOldHandlers; 
 	private final Delta dragDelta = new Delta();
@@ -77,11 +79,19 @@ public class Movable<T extends Node> extends Component<T>{
 
 	@Override
 	public void mount() {
+		setParentBounds();
 		setOnPressed();
 		setOnDragged();
 		
 		new ChangeMouseOnPress<>(this.node, Cursor.CLOSED_HAND, Cursor.OPEN_HAND).mount();
 		new ChangeMouseOnPass<>(this.node, Cursor.OPEN_HAND, Cursor.DEFAULT).mount();
+	}
+	
+	private void setParentBounds(){
+		if(this.node.getParent()!=null)
+			parentBounds = this.node.getParent().getLayoutBounds();
+		
+		this.node.parentProperty().addListener((event)->parentBounds = this.node.getParent().getLayoutBounds());
 	}
 
 	private void setOnPressed(){
@@ -98,9 +108,9 @@ public class Movable<T extends Node> extends Component<T>{
 
 	private void setOnDragged(){
 		EventHandler<? super MouseEvent> oldHandler = this.node.getOnMouseDragged();
-		EventHandler<? super MouseEvent> newHandler = (event)->{
-															node.setLayoutX(event.getSceneX() + dragDelta.x);
-															node.setLayoutY(event.getSceneY() + dragDelta.y);
+		EventHandler<? super MouseEvent> newHandler = (event)->{		
+															node.setLayoutX(getNewX(event));
+															node.setLayoutY(getNewY(event));
 															onMove.accept(event);
 														};
 
@@ -108,5 +118,33 @@ public class Movable<T extends Node> extends Component<T>{
 		
 		this.getNode().setOnMouseDragged(newHandler);
 	}
-
+	
+	private double getNewX(MouseEvent event){
+		double newX = event.getSceneX() + dragDelta.x;
+		
+		double maxX = parentBounds.getMaxX() - this.node.getLayoutBounds().getWidth();
+		double minX = parentBounds.getMinX();
+		
+		if(newX>maxX)
+			newX = maxX;
+		else if(newX<minX)
+			newX = minX;
+		
+		return newX; 
+	}
+	
+	private double getNewY(MouseEvent event){
+		double newY = event.getSceneY() + dragDelta.y;
+		
+		double maxY = parentBounds.getMaxY() - this.node.getLayoutBounds().getHeight();
+		double minY = parentBounds.getMinY();
+		
+		if(newY>maxY)
+			newY = maxY;
+		else if(newY<minY)
+			newY = minY;
+		
+		return newY; 
+	}
+	
 }
