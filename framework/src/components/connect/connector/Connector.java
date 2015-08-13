@@ -8,6 +8,19 @@ import components.Component;
 import components.IComponent;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 public class Connector extends Component<Line>{
 	
 	public static final Node NO_TIP = null;
@@ -48,25 +61,34 @@ public class Connector extends Component<Line>{
 
 	@Override
 	public void mount() {
-		setTipsOnLineParent();
-		
-		setInitTipCoordinates();
-		setEndTipCoordinates();
-		
+		setLineParentListner();
 		setCoordenateListners();
+		
+		if(line.getParent() != null)
+			addTipsToLineParent();
 	}
 	
-	public void dismount(){
-		Pane parent = (Pane)line.getParent();	
+	private void setLineParentListner(){
+		line.parentProperty().addListener((a)->{
+			if(line.getParent() != tips.getInit().getParent() && tips.getInit().getParent() != null)
+				removeTipsFromLineParent();
+			
+			if(line.getParent() != null)
+				addTipsToLineParent();
+		});
+	}
+
+	private void removeTipsFromLineParent(){
+		Pane parent = (Pane)tips.getInit().getParent();
 		
 		if(tips.getInit() != NO_TIP)
 			parent.getChildren().remove(tips.getInit());
 		
 		if(tips.getEnd() != NO_TIP)
-			parent.getChildren().remove(tips.getEnd());
+			parent.getChildren().remove(tips.getEnd());		
 	}
 	
-	private void setTipsOnLineParent(){
+	private void addTipsToLineParent(){
 		Pane parent = (Pane)line.getParent();
 		
 		if(tips.getInit() != NO_TIP)
@@ -74,6 +96,9 @@ public class Connector extends Component<Line>{
 		
 		if(tips.getEnd() != NO_TIP)
 			parent.getChildren().add(tips.getEnd());
+		
+		setInitTipCoordinates();
+		setEndTipCoordinates();
 	}
 
 	private void setInitTipCoordinates(){

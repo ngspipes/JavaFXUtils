@@ -69,12 +69,11 @@ public class Demo extends Application {
 		Button buttonB = new Button("", B_IMAGE);
 
 		setup(demoPane, buttonA, buttonB);
-
+		
 		Connectable connectable = new Connectable(buttonA, buttonB);
-
+		connectable.mount();
+		
 		demoPane.getChildren().add(connectable.getNode());
-
-		connectable.connect();
 	}
 
 	public static void setup(AnchorPane demoPane, Button bA, Button bB) {
