@@ -8,26 +8,12 @@ import components.Component;
 import components.IComponent;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 public class Connector extends Component<Line>{
 	
 	public static final Node NO_TIP = null;
 
-	private final Line line;
-	private final ConnectorTips tips;
+	protected final Line line;
+	protected final ConnectorTips tips;
 	
 	// Constructors
 	
