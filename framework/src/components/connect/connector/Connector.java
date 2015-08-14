@@ -21,6 +21,7 @@ import components.IComponent;
 
 
 
+
 public class Connector extends Component<Line>{
 	
 	public static final Node NO_TIP = null;
@@ -70,8 +71,7 @@ public class Connector extends Component<Line>{
 	
 	private void setLineParentListner(){
 		line.parentProperty().addListener((a)->{
-			if(line.getParent() != tips.getInit().getParent() && tips.getInit().getParent() != null)
-				removeTipsFromLineParent();
+			removeTipsFromLineParent();
 			
 			if(line.getParent() != null)
 				addTipsToLineParent();
@@ -79,26 +79,29 @@ public class Connector extends Component<Line>{
 	}
 
 	private void removeTipsFromLineParent(){
-		Pane parent = (Pane)tips.getInit().getParent();
-		
-		if(tips.getInit() != NO_TIP)
+		if(tips.getInit() != NO_TIP && tips.getInit().getParent() != null){
+			Pane parent = (Pane)tips.getInit().getParent();
 			parent.getChildren().remove(tips.getInit());
-		
-		if(tips.getEnd() != NO_TIP)
-			parent.getChildren().remove(tips.getEnd());		
+		}
+			
+		if(tips.getEnd() != NO_TIP && tips.getEnd().getParent() != null){
+			Pane parent = (Pane)tips.getEnd().getParent();
+			parent.getChildren().remove(tips.getEnd());
+		}
 	}
 	
 	private void addTipsToLineParent(){
 		Pane parent = (Pane)line.getParent();
 		
-		if(tips.getInit() != NO_TIP)
+		if(tips.getInit() != NO_TIP){
 			parent.getChildren().add(tips.getInit());
-		
-		if(tips.getEnd() != NO_TIP)
+			setInitTipCoordinates();
+		}
+			
+		if(tips.getEnd() != NO_TIP){
 			parent.getChildren().add(tips.getEnd());
-		
-		setInitTipCoordinates();
-		setEndTipCoordinates();
+			setEndTipCoordinates();	
+		}
 	}
 
 	private void setInitTipCoordinates(){
