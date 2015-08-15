@@ -27,7 +27,7 @@ public class FourSideConnection<T extends Node> extends Connection<T>{
 	public Collection<Coordinates> getConnectionPoints() {
 		Collection<Coordinates> connectionPoints = new LinkedList<>();
 		
-		Coordinates middlePoint = MiddleConnection.getMiddlePoint(this.node);
+		Coordinates middlePoint = Connection.getMiddlePoint(this.node);
 		
 		connectionPoints.add(getTopPoint(middlePoint));
 		connectionPoints.add(getBottomPoint(middlePoint));

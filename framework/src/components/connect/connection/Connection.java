@@ -11,6 +11,25 @@ import components.connect.Coordinates;
 
 public class Connection<T extends Node> implements IConnection<T>{
 
+	public static Coordinates getMiddlePoint(Node node){
+		return new Coordinates(getMiddleX(node), getMiddleY(node));
+	}
+	
+	private static double getMiddleX(Node node){
+		double initX = node.getLayoutX();
+		double endX = initX + node.getBoundsInLocal().getWidth();
+		
+		return initX + ((endX-initX)/2);	
+	}
+	
+	private static double getMiddleY(Node node){
+		double initY = node.getLayoutY();
+		double endY = initY + node.getBoundsInLocal().getHeight();
+		
+		return initY + ((endY-initY)/2);
+	}
+	
+	
 	protected final T node;
 	
 	// Constructors
@@ -33,7 +52,7 @@ public class Connection<T extends Node> implements IConnection<T>{
 	
 	@Override
 	public Coordinates getCordinates() {
-		return new Coordinates(this.node.getLayoutX(), this.node.getLayoutY());
+		return Connection.getMiddlePoint(this.node);
 	}
 	
 	@Override

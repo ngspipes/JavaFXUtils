@@ -10,26 +10,6 @@ import components.connect.Coordinates;
 
 public class MiddleConnection<T extends Node> extends Connection<T> {
 	
-	
-	public static Coordinates getMiddlePoint(Node node){
-		return new Coordinates(getMiddleX(node), getMiddleY(node));
-	}
-	
-	private static double getMiddleX(Node node){
-		double initX = node.getLayoutX();
-		double endX = initX + node.getBoundsInLocal().getWidth();
-		
-		return initX + ((endX-initX)/2);	
-	}
-	
-	private static double getMiddleY(Node node){
-		double initY = node.getLayoutY();
-		double endY = initY + node.getBoundsInLocal().getHeight();
-		
-		return initY + ((endY-initY)/2);
-	}
-	
-	
 	// Constructors
 	
 	public MiddleConnection(T node) {
@@ -46,7 +26,7 @@ public class MiddleConnection<T extends Node> extends Connection<T> {
 	@Override
 	public Collection<Coordinates> getConnectionPoints() {
 		Collection<Coordinates> connectionPoints = new LinkedList<>();
-		connectionPoints.add(MiddleConnection.getMiddlePoint(this.node));
+		connectionPoints.add(Connection.getMiddlePoint(this.node));
 		
 		return connectionPoints;
 	}
