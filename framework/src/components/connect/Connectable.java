@@ -135,4 +135,16 @@ public class Connectable extends Component<Line>{
 		endPoint.registerCoordinatesListner((newCoordinates)->setBounds());		
 	}
 
+	public Connector getConnector(){
+		return connector;
+	}
+	
+	public IConnection<?> getInitPoint(){
+		return initPoint;
+	}
+	
+	public IConnection<?> getEndPoint(){
+		return endPoint;
+	}
+	
 }
