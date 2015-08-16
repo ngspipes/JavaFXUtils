@@ -102,6 +102,7 @@ public class Connectable extends Component<Line>{
 	
 	@Override
 	public void mount() {
+		connector.mount();
 		setBounds();
 		registerCoordinateListeners();
 	}
