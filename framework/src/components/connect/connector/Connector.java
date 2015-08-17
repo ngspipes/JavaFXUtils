@@ -1,5 +1,6 @@
 package components.connect.connector;
 
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
@@ -56,9 +57,15 @@ public class Connector extends Component<Line>{
 	}
 	
 	private void setLineParentListner(){
-		line.parentProperty().addListener((a)->{
-			removeTipsFromLineParent();
+		line.parentProperty().addListener((a, oldParent, newParent)->{
+			// INCONSISTENT STATE
+			if(newParent==null && ((Pane)oldParent).getChildren().contains(line)){
+				Platform.runLater(this::removeTipsFromLineParent);
+				return;
+			}
 			
+			removeTipsFromLineParent();
+
 			if(line.getParent() != null)
 				addTipsToLineParent();
 		});
