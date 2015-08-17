@@ -3,6 +3,7 @@ package components;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -20,6 +21,7 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 	private static final Object WITHOUT_GROUP = new Object();
 	private static final String DRAG_N_DROP_STRING = "Draggable_DRAG_N_DROP";
 	
+	
 	private static Integer extractKey(String str){
 		return Integer.parseInt(str.split("-")[2]);
 	}
@@ -33,15 +35,21 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 	private I info;
 	public I getInfo(){ return info; }
 	
+	private boolean receives;
+	public boolean getReceives(){ return receives; }
+	public void setReceives(boolean receives){ this.receives = receives; }
+	
+	private boolean sends;
+	public boolean getSends(){ return sends; }
+	public void setSends(boolean sends){ this.sends = sends; }
+	
 	private final Map<Integer, Object> groupChannel;
 	private final Integer groupKey;
 	private final Integer key;
 	private final String dragString;
 	
-	private final Consumer<I> onConnectionReceived;
-	private final Consumer<I> onConnectionEstablished;
-	private final boolean receives;
-	private final boolean establishes;
+	private final Function<I, Boolean> onReceive;
+	private final Consumer<I> afterSend;
 	private final TransferMode mode;
 	private final Image dragView;
 	
@@ -49,14 +57,14 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 
 	// CONSTRUCTORS
 	
-	public Draggable(T node, Consumer<I> onConnectionReceived, Consumer<I> onConnectionEstablished, I info, 
-						Object group, TransferMode mode, Image dragView) {
+	public Draggable(T node, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
+						Object group, TransferMode mode, Image dragView, boolean receives, boolean sends) {
 		super(node);
 		this.info = info;
-		this.onConnectionReceived = onConnectionReceived;
-		this.onConnectionEstablished = onConnectionEstablished;
-		this.receives = onConnectionReceived != null;
-		this.establishes = onConnectionEstablished != null;
+		this.onReceive = onReceive == null? (i)->true : onReceive;
+		this.afterSend = afterSend == null ? (i)->{} : afterSend;
+		this.receives = receives;
+		this.sends = sends;
 		this.mode = mode;
 		this.dragView = dragView;
 		
@@ -65,89 +73,94 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 		this.dragString = DRAG_N_DROP_STRING + "-" + groupKey + "-" + key;
 		
 		if(!channel.containsKey(groupKey))
-			channel.put(groupKey, new HashMap<>());
+		channel.put(groupKey, new HashMap<>());
 		
 		this.groupChannel = channel.get(groupKey);
 	}
 	
-	public Draggable(T node, Consumer<I> onConnectionReceived, Consumer<I> onConnectionEstablished, I info, 
-						TransferMode mode, Image dragView) {
-		this(node, onConnectionReceived, onConnectionEstablished, info, WITHOUT_GROUP, mode, dragView);
-	}
-	
-	public Draggable(T node, Consumer<I> onConnectionReceived, Consumer<I> onConnectionEstablished, I info, 
-						Object group, Image dragView) {
-		this(node, onConnectionReceived, onConnectionEstablished, info, group, TransferMode.LINK, dragView);
-	}
-	
-	public Draggable(T node, Consumer<I> onConnectionReceived, Consumer<I> onConnectionEstablished, I info, 
-						Object group, TransferMode mode) {
-		this(node, onConnectionReceived, onConnectionEstablished, info, group, mode, null);
-	}
-	
-	public Draggable(T node, Consumer<I> onConnectionReceived, Consumer<I> onConnectionEstablished, I info, 
-						Object group) {
-		this(node, onConnectionReceived, onConnectionEstablished, info, group, TransferMode.LINK, null);
-	}
-	
-	public Draggable(T node, Consumer<I> onConnectionReceived, Consumer<I> onConnectionEstablished, I info, 
-						TransferMode mode) {
-		this(node, onConnectionReceived, onConnectionEstablished, info, WITHOUT_GROUP, mode, null);
-	}
-	
-	public Draggable(T node, Consumer<I> onConnectionReceived, Consumer<I> onConnectionEstablished, I info, 
-						Image dragView) {
-		this(node, onConnectionReceived, onConnectionEstablished, info, WITHOUT_GROUP, TransferMode.LINK, dragView);
-	}
-
-	public Draggable(T node, Consumer<I> onConnectionReceived, Consumer<I> onConnectionEstablished, I info) {
-		this(node, onConnectionReceived, onConnectionEstablished, info, WITHOUT_GROUP, TransferMode.LINK, null);
-	}
-	
-	public Draggable(IComponent<T> component, Consumer<I> onConnectionReceived, Consumer<I> onConnectionEstablished, I info, 
+	public Draggable(T node, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
 						Object group, TransferMode mode, Image dragView) {
-		this(component.getNode(), onConnectionReceived, onConnectionEstablished, info, group, mode, dragView);
+		this(node, onReceive, afterSend, info, group, mode, dragView, true, true);
 	}
-
-	public Draggable(IComponent<T> component, Consumer<I> onConnectionReceived, Consumer<I> onConnectionEstablished, I info, 
+	
+	public Draggable(T node, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
 						TransferMode mode, Image dragView) {
-		this(component.getNode(), onConnectionReceived, onConnectionEstablished, info, mode, dragView);
+		this(node, onReceive, afterSend, info, WITHOUT_GROUP, mode, dragView);
 	}
-
-	public Draggable(IComponent<T> component, Consumer<I> onConnectionReceived, Consumer<I> onConnectionEstablished, I info, 
+	
+	public Draggable(T node, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
 						Object group, Image dragView) {
-		this(component.getNode(), onConnectionReceived, onConnectionEstablished, info, group, dragView);
+		this(node, onReceive, afterSend, info, group, TransferMode.LINK, dragView);
 	}
-
-	public Draggable(IComponent<T> component, Consumer<I> onConnectionReceived, Consumer<I> onConnectionEstablished, I info, 
+	
+	public Draggable(T node, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
 						Object group, TransferMode mode) {
-		this(component.getNode(), onConnectionReceived, onConnectionEstablished, info, group, mode);
+		this(node, onReceive, afterSend, info, group, mode, null);
 	}
-
-	public Draggable(IComponent<T> component, Consumer<I> onConnectionReceived, Consumer<I> onConnectionEstablished, I info, 
+	
+	public Draggable(T node, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
 						Object group) {
-		this(component.getNode(), onConnectionReceived, onConnectionEstablished, info, group);
+		this(node, onReceive, afterSend, info, group, TransferMode.LINK, null);
 	}
-
-	public Draggable(IComponent<T> component, Consumer<I> onConnectionReceived, Consumer<I> onConnectionEstablished, I info, 
+	
+	public Draggable(T node, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
 						TransferMode mode) {
-		this(component.getNode(), onConnectionReceived, onConnectionEstablished, info, mode);
+		this(node, onReceive, afterSend, info, WITHOUT_GROUP, mode, null);
 	}
-
-	public Draggable(IComponent<T> component, Consumer<I> onConnectionReceived, Consumer<I> onConnectionEstablished, I info, 
+	
+	public Draggable(T node, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
 						Image dragView) {
-		this(component.getNode(), onConnectionReceived, onConnectionEstablished, info, dragView);
+		this(node, onReceive, afterSend, info, WITHOUT_GROUP, TransferMode.LINK, dragView);
 	}
 
-	public Draggable(IComponent<T> component, Consumer<I> onConnectionReceived, Consumer<I> onConnectionEstablished, I info) {
-		this(component.getNode(), onConnectionReceived, onConnectionEstablished, info);
+	public Draggable(T node, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info) {
+		this(node, onReceive, afterSend, info, WITHOUT_GROUP, TransferMode.LINK, null);
+	}
+	
+	public Draggable(IComponent<T> component, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
+						Object group, TransferMode mode, Image dragView) {
+		this(component.getNode(), onReceive, afterSend, info, group, mode, dragView);
+	}
+
+	public Draggable(IComponent<T> component, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
+						TransferMode mode, Image dragView) {
+		this(component.getNode(), onReceive, afterSend, info, mode, dragView);
+	}
+
+	public Draggable(IComponent<T> component, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
+						Object group, Image dragView) {
+		this(component.getNode(), onReceive, afterSend, info, group, dragView);
+	}
+
+	public Draggable(IComponent<T> component, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
+						Object group, TransferMode mode) {
+		this(component.getNode(), onReceive, afterSend, info, group, mode);
+	}
+
+	public Draggable(IComponent<T> component, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
+						Object group) {
+		this(component.getNode(), onReceive, afterSend, info, group);
+	}
+
+	public Draggable(IComponent<T> component, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
+						TransferMode mode) {
+		this(component.getNode(), onReceive, afterSend, info, mode);
+	}
+
+	public Draggable(IComponent<T> component, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
+						Image dragView) {
+		this(component.getNode(), onReceive, afterSend, info, dragView);
+	}
+
+	public Draggable(IComponent<T> component, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info) {
+		this(component.getNode(), onReceive, afterSend, info);
 	}
 	
 	
 	// IMPLEMENTATION
 	
 	public void mount() {
-		if(establishes){
+		if(sends){
 			setOnDragDetected();
 			setOnDragDone();	
 		}
@@ -222,7 +235,7 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 			
 			if(!groupChannel.containsKey(key)){
 				I info = (I)groupChannel.remove(otherKey);
-				onConnectionEstablished.accept(info);
+				afterSend.accept(info);
 			} else {
 				groupChannel.remove(key);
 			}
@@ -257,16 +270,19 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 		if (isAKnownTransference(event)){
 			
 			Integer otherKey = extractKey(event.getDragboard().getString());
-			I otherInfo = (I)groupChannel.remove(otherKey);
-			onConnectionReceived.accept(otherInfo);
+			I otherInfo = (I)groupChannel.get(otherKey);
 			
-			groupChannel.put(key, info);
-			
-			ClipboardContent content = new ClipboardContent();
-			content.putString(dragString);
-			event.getDragboard().setContent(content);
-			
-			event.setDropCompleted(true);
+			if(onReceive.apply(otherInfo)){
+				groupChannel.remove(otherKey);
+				
+				groupChannel.put(key, info);
+				
+				ClipboardContent content = new ClipboardContent();
+				content.putString(dragString);
+				event.getDragboard().setContent(content);
+				
+				event.setDropCompleted(true);	
+			}
 		}
 	}
 
