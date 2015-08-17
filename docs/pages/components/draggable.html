@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>JavaFX Utils</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://facebook.github.io/react/css/syntax.css">
+	<link rel="stylesheet" href="http://facebook.github.io/react/css/react.css">
+	<link rel="stylesheet" type="text/css" href="../css/prettyPrintBorder.css">
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			document.getElementById("header-docs").setAttribute("class", "active");
+		};
+	</script>
+</head>
+
+<body>
+
+	<script src="../utils/header.js"></script>
+
+	<div class="container">
+
+		<section class="content wrap documentationContent">
+
+			<script src="../utils/componentsNavBar.js"></script>
+
+			<div class="inner-content">
+
+				<h1>JavaFX Utils</h1>
+
+				<h2>Draggable</h2>
+
+				<p>Component to help transfer non serialize data on Drag event.</p>
+				<p><a href="/JavaFXUtils/docs/pages/components/draggable.html">Draggable</a> class is generic in <code>T extends Node, I</code> where <code>I</code> is the type of info to be transferred.</p>
+
+				<h3>Constructors</h3>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(T node, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info, Object group, TransferMode mode, Image dragView, boolean receives, boolean sends)
+					</pre>
+				</div>
+
+				<p>There are more constructors with different parameters, but all will internally call this first one.</p>
+				<p>Variations :</p>
+				<ul>
+					<li>Constructors that receive <code>IComponent&ltT&gt component</code> will obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> from <code>component.getNode()</code>.</li>
+					<li>Constructors that receive <code>boolean receives</code> and <code>boolean sends</code> this value will be assumed as <code>true</code>.</li>
+					<li>Constructors that receive <code>TransferMode mode</code> this value will be assumed as <code>TransferMode.LINK</code>.</li>
+					<li>Constructors that receive <code>Object group</code> this value will be assumed as <code>WITHOUT_GROUP</code>.</li>
+					<li>Constructors that receive <code>Image dragView</code> this value will be assumed as <code>null</code>.</li>
+				</ul>
+
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(T node, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info, Object group, TransferMode mode, Image dragView)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(T node, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info, TransferMode mode, Image dragView)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(T node, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info, Object group, Image dragView)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(T node, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info, Object group, TransferMode mode)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(T node, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info, Object group)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(T node, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info, TransferMode mode)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(T node, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info, Image dragView)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(T node, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(IComponent&ltT&gt component, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info, Object group, TransferMode mode, Image dragView)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(IComponent&ltT&gt component, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info, TransferMode mode, Image dragView)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(IComponent&ltT&gt component, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info, Object group, Image dragView)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(IComponent&ltT&gt component, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info, Object group, TransferMode mode)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(IComponent&ltT&gt component, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info, Object group)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(IComponent&ltT&gt component, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info, TransferMode mode)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(IComponent&ltT&gt component, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info, Image dragView)
+					</pre>
+				</div>
+				<div class="highlight">
+					<pre class="prettyprint">
+	public Draggable(IComponent&ltT&gt component, Function&ltI, Boolean&gt onReceive, Consumer&ltI&gt afterSend, I info)
+					</pre>
+				</div>
+
+				<h3>Usage</h3>
+				<div class="highlight">
+					<pre class="prettyprint">
+	Button buttonA;
+	Button buttonB;
+
+	new Draggable<>(buttonA, (item)->true, this::afterSend, "A").mount();
+	new Draggable<>(buttonB, (item)->true, this::afterSend, "B").mount();
+				</pre>
+				</div>
+
+				<h3>Links</h3>
+				<ul>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/blob/master/framework/src/components/Draggable.java">Draggable src</a></li>
+					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/tree/master/demos/draggable/project/src">Draggable demo src</a></li>
+					<li><a href="http://www.mediafire.com/download/9u9dsojjt6tu69q/Demo.jar">Draggable demo download</a></li>
+				</ul>
+
+			</div>
+
+		</section>
+
+	</div>
+
+</body>
+</html>

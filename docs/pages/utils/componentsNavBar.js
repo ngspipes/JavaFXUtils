@@ -13,6 +13,7 @@ document.write('\
 			<li><a href="/JavaFXUtils/docs/pages/components/changeMouseOnPress.html">ChangeMouseOnPress</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/connectable.html">Connectable</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/doubleClickable.html">DoubleClickable</a></li>\
+			<li><a href="/JavaFXUtils/docs/pages/components/draggable.html">Draggable</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/fXMLFile.html">FXMLFile</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/imageMagnifier.html">ImageMagnifier</a></li>\
 			<li><a href="/JavaFXUtils/docs/pages/components/movable.html">Movable</a></li>\
