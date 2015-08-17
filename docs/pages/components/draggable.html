@@ -42,6 +42,35 @@
 					</pre>
 				</div>
 
+				<p>
+					<ul>
+						<li>
+							<strong>node</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> in which Draggable will be mounted.
+						</li>
+						<li>
+							<strong>onReceive</strong> : function call when info is received from another Draggable, this function should return true to indicate that item were accepted.
+						</li>
+						<li>
+							<strong>afterSend</strong> : function called after info been accepted for another Draggable.
+						</li>
+						<li>
+							<strong>group</strong> : object representing the key of group in which info will be dragged.
+						</li>
+						<li>
+							<strong>mode</strong> : <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/input/TransferMode.html">TransferMode</a> to me set on drag.
+						</li>
+						<li>
+							<strong>dragView</strong> : <a href="https://docs.oracle.com/javafx/2/api/javafx/scene/image/Image.html">Image</a> to be setted as dragview during the drag.
+						</li>
+						<li>
+							<strong>receives</strong> : indicates if this component receives data.
+						</li>
+						<li>
+							<strong>sends</strong> : indicates if this component sends data.
+						</li>
+					</ul>
+				</p>
+
 				<p>There are more constructors with different parameters, but all will internally call this first one.</p>
 				<p>Variations :</p>
 				<ul>
