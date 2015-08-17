@@ -68,6 +68,9 @@
 						<li>
 							<strong>sends</strong> : indicates if this component sends data.
 						</li>
+						<li>
+							<strong>permitSelfDrag</strong> : indicates if it is permitted drag into same Draggable.
+						</li>
 					</ul>
 				</p>
 
@@ -75,10 +78,11 @@
 				<p>Variations :</p>
 				<ul>
 					<li>Constructors that receive <code>IComponent&ltT&gt component</code> will obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> from <code>component.getNode()</code>.</li>
-					<li>Constructors that receive <code>boolean receives</code> and <code>boolean sends</code> this value will be assumed as <code>true</code>.</li>
-					<li>Constructors that receive <code>TransferMode mode</code> this value will be assumed as <code>TransferMode.LINK</code>.</li>
-					<li>Constructors that receive <code>Object group</code> this value will be assumed as <code>WITHOUT_GROUP</code>.</li>
-					<li>Constructors that receive <code>Image dragView</code> this value will be assumed as <code>null</code>.</li>
+					<li>Constructors that don't receive <code>boolean receives</code> and <code>boolean sends</code> this value will be assumed as <code>true</code>.</li>
+					<li>Constructors that don't receive <code>TransferMode mode</code> this value will be assumed as <code>TransferMode.LINK</code>.</li>
+					<li>Constructors that don't receive <code>Object group</code> this value will be assumed as <code>WITHOUT_GROUP</code>.</li>
+					<li>Constructors that don't receive <code>Image dragView</code> this value will be assumed as <code>null</code>.</li>
+					<li>Constructors that don't receive <code>boolean permitSelfDrag</code> this value will be assumed as <code>true</code>.</li>
 				</ul>
 
 				<div class="highlight">
@@ -177,7 +181,7 @@
 				<ul>
 					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/blob/master/framework/src/components/Draggable.java">Draggable src</a></li>
 					<li><a href="https://github.com/BrunoMNDantas/JavaFXUtils/tree/master/demos/draggable/project/src">Draggable demo src</a></li>
-					<li><a href="http://www.mediafire.com/download/9u9dsojjt6tu69q/Demo.jar">Draggable demo download</a></li>
+					<li><a href="http://www.mediafire.com/download/74modpydfszcd96/Demo.jar">Draggable demo download</a></li>
 				</ul>
 
 			</div>

@@ -13,11 +13,12 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import utils.Pair;
 import utils.Utils;
 
 public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 	
-	private static final Map<Integer, Map<Integer, Object>> channel = new HashMap<>();
+	private static final Map<Integer, Map<Integer, Pair<Object, Boolean>>> CHANNELS = new HashMap<>();
 	private static final Object WITHOUT_GROUP = new Object();
 	private static final String DRAG_N_DROP_STRING = "Draggable_DRAG_N_DROP";
 	
@@ -43,7 +44,11 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 	public boolean getSends(){ return sends; }
 	public void setSends(boolean sends){ this.sends = sends; }
 	
-	private final Map<Integer, Object> groupChannel;
+	private boolean permitSelfDrag;
+	public boolean getPermitSelfDrag(){ return permitSelfDrag; }
+	public void setPermitSelfDrag(boolean permitSelfDrag){ this.permitSelfDrag = permitSelfDrag; }
+	
+	private final Map<Integer, Pair<Object, Boolean>> groupChannel;
 	private final Integer groupKey;
 	private final Integer key;
 	private final String dragString;
@@ -58,13 +63,14 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 	// CONSTRUCTORS
 	
 	public Draggable(T node, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
-						Object group, TransferMode mode, Image dragView, boolean receives, boolean sends) {
+						Object group, TransferMode mode, Image dragView, boolean receives, boolean sends, boolean permitSeflDrag) {
 		super(node);
 		this.info = info;
 		this.onReceive = onReceive == null? (i)->true : onReceive;
 		this.afterSend = afterSend == null ? (i)->{} : afterSend;
 		this.receives = receives;
 		this.sends = sends;
+		this.permitSelfDrag = permitSeflDrag;
 		this.mode = mode;
 		this.dragView = dragView;
 		
@@ -72,15 +78,15 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 		this.key = new Integer(this.hashCode());
 		this.dragString = DRAG_N_DROP_STRING + "-" + groupKey + "-" + key;
 		
-		if(!channel.containsKey(groupKey))
-		channel.put(groupKey, new HashMap<>());
+		if(!CHANNELS.containsKey(groupKey))
+		CHANNELS.put(groupKey, new HashMap<>());
 		
-		this.groupChannel = channel.get(groupKey);
+		this.groupChannel = CHANNELS.get(groupKey);
 	}
 	
 	public Draggable(T node, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
 						Object group, TransferMode mode, Image dragView) {
-		this(node, onReceive, afterSend, info, group, mode, dragView, true, true);
+		this(node, onReceive, afterSend, info, group, mode, dragView, true, true, true);
 	}
 	
 	public Draggable(T node, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
@@ -223,23 +229,30 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 		db.setContent(content);
 		db.setDragView(dragView);
 		
-		groupChannel.put(key, info);
+		putInfo(key, false);
 		
 		event.consume();
 	}
 	
-	@SuppressWarnings("unchecked")
 	private void onDragDone(DragEvent event){
 		if(isAKnownTransference(event)){
 			Integer otherKey = extractKey(event.getDragboard().getString());
 			
 			if(!groupChannel.containsKey(key)){
-				I info = (I)groupChannel.remove(otherKey);
+				
+				I info = removeInfo(otherKey);
 				afterSend.accept(info);
+				
 			} else {
+				
+				boolean isSelfDrag = otherKey.equals(key);
+				if(isSelfDrag && permitSelfDrag && groupChannel.get(key).getValue())	
+					afterSend.accept(info);
+				
 				groupChannel.remove(key);
+				
 			}
-			
+
 			event.consume();	
 		}
 	}
@@ -265,17 +278,23 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 		event.consume();        
 	}
 
-	@SuppressWarnings("unchecked")
 	private void onDragDropped(DragEvent event) {	
 		if (isAKnownTransference(event)){
 			
 			Integer otherKey = extractKey(event.getDragboard().getString());
-			I otherInfo = (I)groupChannel.get(otherKey);
+			boolean isSelfDrag = otherKey.equals(key);
 			
+			if(isSelfDrag){
+				treatSelfDrag();
+				event.setDropCompleted(true);
+				return;
+			}
+			
+			I otherInfo = getInfo(otherKey);
 			if(onReceive.apply(otherInfo)){
 				groupChannel.remove(otherKey);
 				
-				groupChannel.put(key, info);
+				putInfo(key, true);
 				
 				ClipboardContent content = new ClipboardContent();
 				content.putString(dragString);
@@ -283,7 +302,18 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 				
 				event.setDropCompleted(true);	
 			}
+			
 		}
+	}
+	
+	private void treatSelfDrag(){
+		if(!permitSelfDrag)
+			groupChannel.get(key).setValue(false);	
+		else
+			if(onReceive.apply(info))
+				groupChannel.get(key).setValue(true);
+			else
+				groupChannel.get(key).setValue(false);
 	}
 
 	private boolean isAKnownTransference(DragEvent event){
@@ -292,6 +322,21 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 				extractGroup(event.getDragboard().getString()).equals(groupKey);
 	}
 
+
+	private void putInfo(Integer key, Boolean bool){
+		groupChannel.put(key, new Pair<>(info, bool));
+	}
+	
+	@SuppressWarnings("unchecked")
+	private I getInfo(Integer key){
+		return (I)(((Pair<Object, Boolean>)(groupChannel.get(key))).getKey());
+	}
+	
+	@SuppressWarnings("unchecked")
+	private I removeInfo(Integer key){
+		return (I)(((Pair<Object, Boolean>)(groupChannel.remove(key))).getKey());
+	}
+	
 }
 
 
