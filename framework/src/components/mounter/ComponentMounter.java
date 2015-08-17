@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
@@ -11,11 +12,13 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.util.Pair;
 import utils.ComponentException;
 
 import components.Component;
 import components.DoubleClickable;
+import components.Draggable;
 import components.IComponent;
 import components.Movable;
 import components.animation.Animation;
@@ -226,6 +229,59 @@ public class ComponentMounter<T extends Node> extends Component<T>{
 	
 	public ComponentMounter<T> shortcut(Collection<Pair<KeyCode, Runnable>> actions) {
 		this.components.add(new Shortcut<>(this.node, actions));
+		return this;
+	}
+	
+	public <I> ComponentMounter<T> draggable(Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
+			Object group, TransferMode mode, Image dragView, boolean receives, boolean sends, boolean permitSeflDrag) {
+		this.components.add(new Draggable<>(node, onReceive, afterSend, info, group, mode, dragView, receives, sends, permitSeflDrag));
+		return this;
+	}
+
+	public <I> ComponentMounter<T> draggable(Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
+			Object group, TransferMode mode, Image dragView) {
+		this.components.add(new Draggable<>(node, onReceive, afterSend, info, group, mode, dragView));
+		return this;
+	}
+
+	public <I> ComponentMounter<T> draggable(Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
+			TransferMode mode, Image dragView) {
+		this.components.add(new Draggable<>(node, onReceive, afterSend, info, mode, dragView));
+		return this;
+	}
+
+	public <I> ComponentMounter<T> draggable(Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
+			Object group, Image dragView) {
+		this.components.add(new Draggable<>(node, onReceive, afterSend, info, group, dragView));
+		return this;
+	}
+
+	public <I> ComponentMounter<T> draggable(Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
+			Object group, TransferMode mode) {
+		this.components.add(new Draggable<>(node, onReceive, afterSend, info, group, mode));
+		return this;
+	}
+
+	public <I> ComponentMounter<T> draggable(Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
+			Object group) {
+		this.components.add(new Draggable<>(node, onReceive, afterSend, info, group));
+		return this;
+	}
+
+	public <I> ComponentMounter<T> draggable(Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
+			TransferMode mode) {
+		this.components.add(new Draggable<>(node, onReceive, afterSend, info, mode));
+		return this;
+	}
+
+	public <I> ComponentMounter<T> draggable(Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
+			Image dragView) {
+		this.components.add(new Draggable<>(node, onReceive, afterSend, info, dragView));
+		return this;
+	}
+
+	public <I> ComponentMounter<T> draggable(Function<I, Boolean> onReceive, Consumer<I> afterSend, I info) {
+		this.components.add(new Draggable<>(node, onReceive, afterSend, info));
 		return this;
 	}
 	
