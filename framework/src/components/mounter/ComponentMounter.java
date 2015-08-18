@@ -27,6 +27,8 @@ import components.animation.PressAndPassAnimation;
 import components.animation.PressAnimation;
 import components.animation.changeMouse.ChangeMouseOnPass;
 import components.animation.changeMouse.ChangeMouseOnPress;
+import components.multiOption.Menu;
+import components.multiOption.Operations;
 import components.shortcut.Keys;
 import components.shortcut.Shortcut;
 
@@ -212,6 +214,11 @@ public class ComponentMounter<T extends Node> extends Component<T>{
 		return this;
 	}
 	
+	public ComponentMounter<T> shortcut(Keys keys, boolean keepOldHandler, boolean receiveChildEvents) {
+		this.components.add(new Shortcut<>(this.node, keys, keepOldHandler, receiveChildEvents));
+		return this;
+	}
+	
 	public ComponentMounter<T> shortcut(Keys keys, boolean keepOldHandler) {
 		this.components.add(new Shortcut<>(this.node, keys, keepOldHandler));
 		return this;
@@ -282,6 +289,16 @@ public class ComponentMounter<T extends Node> extends Component<T>{
 
 	public <I> ComponentMounter<T> draggable(Function<I, Boolean> onReceive, Consumer<I> afterSend, I info) {
 		this.components.add(new Draggable<>(node, onReceive, afterSend, info));
+		return this;
+	}
+	
+	public ComponentMounter<T> menu(Operations operations) {
+		this.components.add(new Menu<>(this.node, operations));
+		return this;
+	}
+	
+	public ComponentMounter<T> menu(Collection<Pair<String, Runnable>> actions) {
+		this.components.add(new Menu<>(this.node, actions));
 		return this;
 	}
 	
