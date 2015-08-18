@@ -6,18 +6,34 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Pair;
 
 
 public class Keys {
 	
+	public static enum CommandKey {
+		SHIFT("Shift"),
+		CONTROL("Control"),
+		ALT("Alt");
+		
+		private CommandKey(String key){}
+		
+	}
+	
 	public static class Key{
+		private final CommandKey[] commandKeys;
 		private final KeyCode code;
 		private final Runnable action;
 		
-		public Key(KeyCode code, Runnable action){
+		public Key(KeyCode code, Runnable action, CommandKey... commandKeys){
 			this.code = code;
 			this.action = action;
+			this.commandKeys = commandKeys;
+		}
+		
+		public CommandKey[] getCommandKeys(){
+			return commandKeys;
 		}
 		
 		public KeyCode getCode(){
@@ -27,6 +43,23 @@ public class Keys {
 		public Runnable getAction(){
 			return action;
 		}
+	
+		public boolean match(KeyEvent event){
+			if(!event.getCode().equals(code))
+				return false;
+			
+			for(CommandKey commandKey : commandKeys){
+				if(commandKey.equals(CommandKey.SHIFT) && !event.isShiftDown())
+					return false;
+				if(commandKey.equals(CommandKey.CONTROL) && !event.isControlDown())
+					return false;
+				if(commandKey.equals(CommandKey.ALT) && !event.isAltDown())
+					return false;	
+			}
+			
+			return true;
+		}
+		
 	}
 
 	
@@ -80,6 +113,10 @@ public class Keys {
 	
 	public void add(KeyCode code, Runnable action){
 		add(new Key(code, action));
+	}
+	
+	public void add(KeyCode code, Runnable action, CommandKey... commandKeys){
+		add(new Key(code, action, commandKeys));
 	}
 	
 	public void remove(Key key){

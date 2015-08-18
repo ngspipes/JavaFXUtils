@@ -33,12 +33,13 @@
 				<h2>Shortcut</h2>
 
 				<p>Component to help create shortcuts over <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> objects.</p>
-				<p>To help <a href="/JavaFXUtils/docs/pages/components/shortcut.html">Shortcut</a> implementation and increase legibility it was created Keys class which is class that permits to collect Key objects. An Key object has 2 fields :</p>
+				<p>To help <a href="/JavaFXUtils/docs/pages/components/shortcut.html">Shortcut</a> implementation and increase legibility it was created Keys class which is class that permits to collect Key objects. An Key object has 3 fields :</p>
 				<ul>
+					<li><code>private final CommandKey[] commandKeys</code> : secundary keys</li>
 					<li><code>private final KeyCode code</code> : shortcut key</li>
 					<li><code>private final Runnable action</code> : action to be executed</li>
 				</ul>
-				This 2 fields are setted on constructor and can be obtained via getter methods.
+				<p>This 3 fields are setted on constructor and can be obtained via getter methods.</p>
 
 				<h3>Constructors</h3>
 

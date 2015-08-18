@@ -11,6 +11,7 @@ import utils.Utils;
 
 import components.Component;
 import components.IComponent;
+import components.shortcut.Keys.Key;
 
 
 public class Shortcut<T extends Node> extends Component<T>{
@@ -60,8 +61,12 @@ public class Shortcut<T extends Node> extends Component<T>{
 	public void mount(){
 		EventHandler<? super KeyEvent> oldHandler = this.node.getOnKeyPressed();
 		EventHandler<? super KeyEvent> newHandler = (event)->{
-														if(keys.contains(event.getCode()))
-															keys.getKey(event.getCode()).getAction().run();
+														if(keys.contains(event.getCode())){
+															Key key = keys.getKey(event.getCode());
+															
+															if(key.match(event))
+																key.getAction().run();	
+														}
 													};
 						
 		newHandler = Utils.chain(oldHandler, newHandler, keepOldHandler);
