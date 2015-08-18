@@ -18,13 +18,19 @@ public class Shortcut<T extends Node> extends Component<T>{
 	
 	private final Keys keys;
 	private final boolean keepOldHandler;
+	private final boolean receiveChildEvents; 
 	
 	// Constructors
 	
-	public Shortcut(T node, Keys keys, boolean keepOldHandler) {
+	public Shortcut(T node, Keys keys, boolean keepOldHandler, boolean receiveChildEvents) {
 		super(node);
 		this.keys = keys;
 		this.keepOldHandler = keepOldHandler;
+		this.receiveChildEvents = receiveChildEvents;
+	}
+	
+	public Shortcut(T node, Keys keys, boolean keepOldHandler) {
+		this(node, keys, keepOldHandler, false);
 	}
 	
 	public Shortcut(T node, Keys keys) {
@@ -61,6 +67,9 @@ public class Shortcut<T extends Node> extends Component<T>{
 	public void mount(){
 		EventHandler<? super KeyEvent> oldHandler = this.node.getOnKeyPressed();
 		EventHandler<? super KeyEvent> newHandler = (event)->{
+														if(this.node.hashCode()!=event.getTarget().hashCode() && !receiveChildEvents)
+															return;
+			
 														if(keys.contains(event.getCode())){
 															Key key = keys.getKey(event.getCode());
 															

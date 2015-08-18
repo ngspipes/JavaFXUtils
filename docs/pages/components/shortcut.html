@@ -44,7 +44,7 @@
 				<h3>Constructors</h3>
 
 				<div class="highlight">
-					<pre class="prettyprint">public Shortcut(T node, Keys keys, boolean keepOldHandler)</pre>
+					<pre class="prettyprint">public Shortcut(T node, Keys keys, boolean keepOldHandler, boolean receiveChildEvent)</pre>
 				</div>
 
 				<p>
@@ -58,6 +58,9 @@
 						<li>
 							<strong>keepOldHandler</strong> : indicates if old <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/event/EventHandler.html">EventHandler</a>s are to keep or discard.
 						</li>
+						<li>
+							<strong>receiveChildEvents</strong> : indicates if the shortcuts are to be triggered when focus is on child of node.
+						</li>
 					</ul>
 				</p>
 
@@ -65,6 +68,7 @@
 				<p>Variations :</p>
 				<ul>
 					<li>Constructors that don't receive <code>boolean keepOldHandler</code> this value will be assumed as <code>true</code>.</li>
+					<li>Constructors that don't receive <code>boolean receiveChildEvents</code> this value will be assumed as <code>false</code>.</li>
 					<li>Constructors that receive <code>Collection&ltPair&ltKeyCode, Runnable&gt&gt actions</code> will instantiate Keys object with it.</li>
 					<li>Constructors that receive <code>IComponent&ltT&gt component</code> obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> object from <code>component.getNode()</code>.</li>
 				</ul>
