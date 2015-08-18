@@ -117,6 +117,14 @@ public class Keys {
 		++length;
 	}
 	
+	public void add(KeyCode code, Runnable action){
+		add(new Key(code, action));
+	}
+	
+	public void add(KeyCode code, Consumer<KeyEvent> action){
+		add(new Key(code, action));
+	}
+	
 	public void add(KeyCode code, Runnable action, CommandKey... commandKeys){
 		add(new Key(code, action, commandKeys));
 	}
