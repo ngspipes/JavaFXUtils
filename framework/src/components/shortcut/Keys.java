@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.function.Consumer;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -24,12 +25,16 @@ public class Keys {
 	public static class Key{
 		private final CommandKey[] commandKeys;
 		private final KeyCode code;
-		private final Runnable action;
+		private final Consumer<KeyEvent> action;
 		
-		public Key(KeyCode code, Runnable action, CommandKey... commandKeys){
+		public Key(KeyCode code, Consumer<KeyEvent> action, CommandKey... commandKeys){
 			this.code = code;
 			this.action = action;
 			this.commandKeys = commandKeys;
+		}
+		
+		public Key(KeyCode code, Runnable action, CommandKey... commandKeys){
+			this(code, (e)->action.run(), commandKeys);
 		}
 		
 		public CommandKey[] getCommandKeys(){
@@ -40,7 +45,7 @@ public class Keys {
 			return code;
 		}
 		
-		public Runnable getAction(){
+		public Consumer<KeyEvent> getAction(){
 			return action;
 		}
 	
@@ -78,6 +83,7 @@ public class Keys {
 	}
 	
 	
+	
 	// Implementation
 	
 	public Collection<Key> getKeys(){
@@ -111,11 +117,11 @@ public class Keys {
 		++length;
 	}
 	
-	public void add(KeyCode code, Runnable action){
-		add(new Key(code, action));
+	public void add(KeyCode code, Runnable action, CommandKey... commandKeys){
+		add(new Key(code, action, commandKeys));
 	}
 	
-	public void add(KeyCode code, Runnable action, CommandKey... commandKeys){
+	public void add(KeyCode code, Consumer<KeyEvent> action, CommandKey... commandKeys){
 		add(new Key(code, action, commandKeys));
 	}
 	

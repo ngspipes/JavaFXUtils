@@ -74,7 +74,7 @@ public class Shortcut<T extends Node> extends Component<T>{
 															Key key = keys.getKey(event.getCode());
 															
 															if(key.match(event))
-																key.getAction().run();	
+																key.getAction().accept(event);	
 														}
 													};
 						
