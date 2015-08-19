@@ -4,7 +4,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.function.Consumer;
 
+import javafx.event.ActionEvent;
 import javafx.util.Pair;
 
 
@@ -13,18 +15,22 @@ public class Operations {
 	public static class Operation{
 		
 		private final String name;
-		private final Runnable action;
+		private final Consumer<ActionEvent> action;
 		
-		public Operation(String name, Runnable action) {
+		public Operation(String name, Consumer<ActionEvent> action) {
 			this.name = name;
 			this.action = action;
+		}
+		
+		public Operation(String name, Runnable action) {
+			this(name, (event)->action.run());
 		}
 		
 		public String getName(){
 			return name;
 		}
 		
-		public Runnable getAction(){
+		public Consumer<ActionEvent> getAction(){
 			return action;
 		}
 		
@@ -77,6 +83,10 @@ public class Operations {
 		operations.add(operation);
 		names.add(operation.getName());
 		++length;
+	}
+	
+	public void add(String name, Consumer<ActionEvent> action){
+		add(new Operation(name, action));
 	}
 	
 	public void add(String name, Runnable action){

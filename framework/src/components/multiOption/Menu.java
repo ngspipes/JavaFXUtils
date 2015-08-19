@@ -51,7 +51,7 @@ public class Menu<T extends Node> extends Component<T>{
 			MenuItem menuItem;
 			for(Operation operation : operations.getOperations()){
 				menuItem = new MenuItem(operation.getName());
-				menuItem.setOnAction((e) -> operation.getAction().run());
+				menuItem.setOnAction((e) -> operation.getAction().accept(e));
 				menu.getItems().add(menuItem);	
 			}
 			

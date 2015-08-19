@@ -45,7 +45,7 @@ public class MultiOption<T extends Control> extends Component<T>{
 		MenuItem menuItem;
 		for(Operation operation : operations.getOperations()){
 			menuItem = new MenuItem(operation.getName());
-			menuItem.setOnAction((event) -> operation.getAction().run());
+			menuItem.setOnAction((event) -> operation.getAction().accept(event));
 			menu.getItems().add(menuItem);	
 		}
 		
