@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Pair;
 import utils.Utils;
@@ -17,6 +18,7 @@ import components.multiOption.Operations.Operation;
 public class Menu<T extends Node> extends Component<T>{
 	
 	private final Operations operations;
+	private ContextMenu menu;
 	
 	// Constructors
 	
@@ -43,23 +45,35 @@ public class Menu<T extends Node> extends Component<T>{
 	public void mount(){
 		EventHandler<? super MouseEvent> oldHandler = this.node.getOnMouseClicked();
 		EventHandler<? super MouseEvent> newHandler = (event) -> {
-			if(event.isPrimaryButtonDown())
+			if(!event.getButton().equals(MouseButton.SECONDARY))
 				return;
-					
-			ContextMenu menu = new ContextMenu();
 			
-			MenuItem menuItem;
-			for(Operation operation : operations.getOperations()){
-				menuItem = new MenuItem(operation.getName());
-				menuItem.setOnAction((e) -> operation.getAction().accept(e));
-				menu.getItems().add(menuItem);	
+			if(menu!=null){
+				menu.setAnchorX(event.getScreenX());
+				menu.setAnchorY(event.getScreenY());
+				return;
 			}
-			
-			menu.show(this.node.getParent(), event.getScreenX(), event.getScreenY());
+				
+			menu = getMenu();
+			menu.show(this.node, event.getScreenX(), event.getScreenY());
+			menu.setOnHiding((a)->menu = null);
 		};
 		
 		newHandler = Utils.chain(oldHandler, newHandler, true);
 		this.node.setOnMouseClicked(newHandler);
+	}
+	
+	private ContextMenu getMenu(){
+		ContextMenu menu = new ContextMenu();
+		
+		MenuItem menuItem;
+		for(Operation operation : operations.getOperations()){
+			menuItem = new MenuItem(operation.getName());
+			menuItem.setOnAction((e) -> operation.getAction().accept(e));
+			menu.getItems().add(menuItem);	
+		}
+		
+		return menu;
 	}
 
 }
