@@ -144,4 +144,11 @@ public class Keys {
 		remove(getKey(code));
 	}
 	
+	public void clear(){
+		ks.clear();
+		keys.clear();
+		codes.clear();
+		length = 0;
+	}
+	
 }

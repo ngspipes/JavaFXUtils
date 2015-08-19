@@ -94,4 +94,11 @@ public class Operations {
 		remove(getOperation(name));
 	}
 	
+	public void clear(){
+		ops.clear();
+		operations.clear();
+		names.clear();
+		length = 0;
+	}
+	
 }
