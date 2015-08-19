@@ -3,6 +3,7 @@ package utils;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 
+
 public class Utils {
 
 	public static <E extends Event> EventHandler<? super E> chain(EventHandler<? super E> oldHandler, EventHandler<? super E> newHandler, boolean keepOldHandler){
@@ -18,4 +19,8 @@ public class Utils {
 				};
 	}
 	
+	public static <E extends Event> EventHandler<? super E> chain(EventHandler<? super E> oldHandler, EventHandler<? super E> newHandler){
+		return chain(oldHandler, newHandler, true);
+	}
+
 }

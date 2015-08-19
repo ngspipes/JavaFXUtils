@@ -182,42 +182,42 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 	private void setOnDragDetected(){
 		EventHandler<? super MouseEvent> oldHandler = this.node.getOnDragDetected();
 		EventHandler<? super MouseEvent> newHandler = this::onDragDetected;
-		newHandler = Utils.chain(oldHandler, newHandler, true);
+		newHandler = Utils.chain(oldHandler, newHandler);
 		this.node.setOnDragDetected(newHandler);
 	}
 	
 	private void setOnDragDone(){
 		EventHandler<? super DragEvent> oldHandler = this.node.getOnDragDone();
 		EventHandler<? super DragEvent> newHandler = this::onDragDone;
-		newHandler = Utils.chain(oldHandler, newHandler, true);
+		newHandler = Utils.chain(oldHandler, newHandler);
 		this.node.setOnDragDone(newHandler);
 	}
 	
 	private void setOnDragEntered(){
 		EventHandler<? super DragEvent> oldHandler = this.node.getOnDragEntered();
 		EventHandler<? super DragEvent> newHandler = this::onDragEntered;
-		newHandler = Utils.chain(oldHandler, newHandler, true);
+		newHandler = Utils.chain(oldHandler, newHandler);
 		this.node.setOnDragEntered(newHandler);
 	}
 	
 	private void setOnDragExited(){
 		EventHandler<? super DragEvent> oldHandler = this.node.getOnDragExited();
 		EventHandler<? super DragEvent> newHandler = this::onDragExited;
-		newHandler = Utils.chain(oldHandler, newHandler, true);
+		newHandler = Utils.chain(oldHandler, newHandler);
 		this.node.setOnDragExited(newHandler);
 	}
 	
 	private void setOnDragOver(){
 		EventHandler<? super DragEvent> oldHandler = this.node.getOnDragOver();
 		EventHandler<? super DragEvent> newHandler = this::onDragOver;
-		newHandler = Utils.chain(oldHandler, newHandler, true);
+		newHandler = Utils.chain(oldHandler, newHandler);
 		this.node.setOnDragOver(newHandler);
 	}
 	
 	private void setOnDragDropped(){
 		EventHandler<? super DragEvent> oldHandler = this.node.getOnDragDropped();
 		EventHandler<? super DragEvent> newHandler = this::onDragDropped;
-		newHandler = Utils.chain(oldHandler, newHandler, true);
+		newHandler = Utils.chain(oldHandler, newHandler);
 		this.node.setOnDragDropped(newHandler);
 	}
 		

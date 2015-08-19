@@ -59,7 +59,7 @@ public class Menu<T extends Node> extends Component<T>{
 			menu.setOnHiding((a)->menu = null);
 		};
 		
-		newHandler = Utils.chain(oldHandler, newHandler, true);
+		newHandler = Utils.chain(oldHandler, newHandler);
 		this.node.setOnMouseClicked(newHandler);
 	}
 	
