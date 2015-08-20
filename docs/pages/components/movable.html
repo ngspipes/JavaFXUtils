@@ -38,13 +38,16 @@
 				<h3>Constructors</h3>
 
 				<div class="highlight">
-					<pre class="prettyprint">public Movable(T node, Consumer&ltMouseEvent&gt onMove, boolean keepOldHandlers)</pre>
+					<pre class="prettyprint">public Movable(T node, BiFunction&ltDouble, Double, Boolean&gt acceptNewPosition, Consumer&ltMouseEvent&gt onMove, boolean keepOldHandlers)</pre>
 				</div>
 
 				<p>
 					<ul>
 						<li>
 							<strong>node</strong> : <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> in which will be mounted the movable functionality.
+						</li>
+						<li>
+							<strong>acceptNewPosition</strong> : function which receives newX an newY before the component moves, if new positions are accepted this function should return true.
 						</li>
 						<li>
 							<strong>onMove</strong> : action to be triggered on move.
@@ -59,9 +62,14 @@
 				<p>Variations :</p>
 				<ul>
 					<li>Constructors that don't receive <code>boolean keepOldHandlers</code> this value is assumed as <code>true</code>.</li>
+					<li>Constructors that don't receive <code>BiFunction&ltDouble, Double, Boolean&gt acceptNewPosition</code> this value is assumed as <code>()-&gttrue</code>.</li>
 					<li>Constructors that receive <code>BiConsumer&ltDoueble, Double&gt onMove</code> action called on move that receives x and y coordinates.</li>
 					<li>Constructors that receive <code>IComponent&ltT&gt component</code> and obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Node.html">Node</a> object from <code>component.getNode()</code>.</li>
 				</ul>
+
+				<div class="highlight">
+					<pre class="prettyprint">public Movable(T node, Consumer&ltMouseEvent&gt onMove, boolean keepOldHandlers)</pre>
+				</div>
 
 				<div class="highlight">
 					<pre class="prettyprint">public Movable(T node, Consumer&ltMouseEvent&gt onMove)</pre>

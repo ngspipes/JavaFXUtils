@@ -1,6 +1,7 @@
 package components;
 
 import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
 import javafx.event.EventHandler;
@@ -18,16 +19,22 @@ public class Movable<T extends Node> extends Component<T>{
 	private static class Delta { double x, y; }
 
 	private Bounds parentBounds;
+	private final BiFunction<Double, Double, Boolean> acceptNewPosition;
 	private final Consumer<MouseEvent> onMove;
 	private final boolean keepOldHandlers; 
 	private final Delta dragDelta = new Delta();
 
 	// Constructors
 	
-	public Movable(T node, Consumer<MouseEvent> onMove, boolean keepOldHandlers){
+	public Movable(T node, BiFunction<Double, Double, Boolean> acceptNewPosition, Consumer<MouseEvent> onMove, boolean keepOldHandlers){
 		super(node);
+		this.acceptNewPosition = acceptNewPosition;
 		this.onMove = onMove;
 		this.keepOldHandlers = keepOldHandlers;
+	}
+	
+	public Movable(T node, Consumer<MouseEvent> onMove, boolean keepOldHandlers){
+		this(node, (x,y)->true, onMove, keepOldHandlers);
 	}
 
 	public Movable(T node, Consumer<MouseEvent> onMove){
@@ -108,10 +115,15 @@ public class Movable<T extends Node> extends Component<T>{
 
 	private void setOnDragged(){
 		EventHandler<? super MouseEvent> oldHandler = this.node.getOnMouseDragged();
-		EventHandler<? super MouseEvent> newHandler = (event)->{		
-															node.setLayoutX(getNewX(event));
-															node.setLayoutY(getNewY(event));
-															onMove.accept(event);
+		EventHandler<? super MouseEvent> newHandler = (event)->{
+															double newX = getNewX(event);
+															double newY = getNewY(event);
+															
+															if(acceptNewPosition.apply(newX, newY)){
+																node.setLayoutX(newX);
+																node.setLayoutY(newY);
+																onMove.accept(event);
+															}
 														};
 
 		newHandler = Utils.chain(oldHandler, newHandler, keepOldHandlers);
