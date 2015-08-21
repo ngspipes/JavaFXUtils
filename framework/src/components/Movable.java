@@ -15,26 +15,49 @@ import components.animation.changeMouse.ChangeMouseOnPass;
 import components.animation.changeMouse.ChangeMouseOnPress;
 
 public class Movable<T extends Node> extends Component<T>{
+	
+	public static class MoveResult{
+		
+		public final MouseEvent event;
+		public final double initX;
+		public final double initY;
+		public final double endX;
+		public final double endY;
+		
+		public MoveResult(MouseEvent event, double initX, double initY, double endX, double endY){
+			this.event = event;
+			this.initX = initX;
+			this.initY = initY;
+			this.endX = endX;
+			this.endY = endY;
+		}
+		
+	}
+	
 
-	private static class Delta { double x, y; }
+	private static class Delta { double x, y, initX, initY; }
 
 	private Bounds parentBounds;
 	private final BiFunction<Double, Double, Boolean> acceptNewPosition;
 	private final Consumer<MouseEvent> onMove;
+	private final Consumer<MoveResult> onMoveFinished;
 	private final boolean keepOldHandlers; 
 	private final Delta dragDelta = new Delta();
+	private boolean moving;
 
 	// Constructors
 	
-	public Movable(T node, BiFunction<Double, Double, Boolean> acceptNewPosition, Consumer<MouseEvent> onMove, boolean keepOldHandlers){
+	public Movable(T node, BiFunction<Double, Double, Boolean> acceptNewPosition, Consumer<MouseEvent> onMove, Consumer<MoveResult> onMoveFinished, boolean keepOldHandlers){
 		super(node);
 		this.acceptNewPosition = acceptNewPosition;
 		this.onMove = onMove;
 		this.keepOldHandlers = keepOldHandlers;
+		this.onMoveFinished = onMoveFinished;
+		this.moving = false;
 	}
 	
 	public Movable(T node, Consumer<MouseEvent> onMove, boolean keepOldHandlers){
-		this(node, (x,y)->true, onMove, keepOldHandlers);
+		this(node, (x,y)->true, onMove, (mr)->{}, keepOldHandlers);
 	}
 
 	public Movable(T node, Consumer<MouseEvent> onMove){
@@ -90,6 +113,7 @@ public class Movable<T extends Node> extends Component<T>{
 		this.node.parentProperty().addListener((event)->setParentBounds());
 		
 		setOnPressed();
+		setOnReleased();
 		setOnDragged();
 		
 		new ChangeMouseOnPress<>(this.node, Cursor.CLOSED_HAND, Cursor.OPEN_HAND).mount();
@@ -104,8 +128,10 @@ public class Movable<T extends Node> extends Component<T>{
 	private void setOnPressed(){
 		EventHandler<? super MouseEvent> oldHandler = this.node.getOnMousePressed();
 		EventHandler<? super MouseEvent> newHandler = (event)->{
-															dragDelta.x = node.getLayoutX() - event.getSceneX();
-															dragDelta.y = node.getLayoutY() - event.getSceneY();
+															dragDelta.initX = this.node.getLayoutX();
+															dragDelta.initY = this.node.getLayoutY();
+															dragDelta.x = this.node.getLayoutX() - event.getSceneX();
+															dragDelta.y = this.node.getLayoutY() - event.getSceneY();
 														};
 						
 		newHandler = Utils.chain(oldHandler, newHandler, keepOldHandlers);
@@ -113,6 +139,18 @@ public class Movable<T extends Node> extends Component<T>{
 		this.getNode().setOnMousePressed(newHandler);
 	}
 
+	private void setOnReleased(){
+		EventHandler<? super MouseEvent> oldHandler = this.node.getOnMouseReleased();
+		EventHandler<? super MouseEvent> newHandler = (e)->{
+			if(moving){
+				onMoveFinished.accept(new MoveResult(e, dragDelta.initX, dragDelta.initY, this.node.getLayoutX(), this.node.getLayoutY()));
+				moving=false;
+			}
+		};
+		newHandler = Utils.chain(oldHandler, newHandler, keepOldHandlers);
+		this.node.setOnMouseReleased(newHandler);
+	}
+	
 	private void setOnDragged(){
 		EventHandler<? super MouseEvent> oldHandler = this.node.getOnMouseDragged();
 		EventHandler<? super MouseEvent> newHandler = (event)->{
@@ -124,6 +162,9 @@ public class Movable<T extends Node> extends Component<T>{
 																node.setLayoutY(newY);
 																onMove.accept(event);
 															}
+															
+															if(!moving)
+																moving = true;
 														};
 
 		newHandler = Utils.chain(oldHandler, newHandler, keepOldHandlers);
