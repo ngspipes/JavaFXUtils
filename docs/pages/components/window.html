@@ -58,7 +58,7 @@
 				<ul>
 					<li>Constructors that receive <code>IComponent&ltT&gt component</code> will obtain <a href="https://docs.oracle.com/javase/8/javafx/api/javafx/scene/Parent.html">Parent</a> from <code>component.getNode()</code>.</li>
 					<li>Constructors that don't receive <code>String windowTitle</code> this value is assumed as empty String.</li>
-					<li>Constructors that don't receive arguments as <code> Class&lt?&gt controllerClass</code> and <code>A initializableArgument</code> will use them to instantitate <a href=""/JavaFXUtils/docs/pages/components/fXMLFile.html"">FXMLFile</a></li>
+					<li>Constructors that don't receive arguments as <code>String fXMLFilePath</code> and <code>A initializableArgument</code> will use them to instantitate <a href=""/JavaFXUtils/docs/pages/components/fXMLFile.html"">FXMLFile</a></li>
 				</ul>
 
 				<div class="highlight">
@@ -71,16 +71,10 @@
 					<pre class="prettyprint">public Window(IComponent&ltT&gt component)</pre>
 				</div>
 				<div class="highlight">
-					<pre class="prettyprint">public Window(String fXMLFilePath, Class&lt?&gt controllerClass, A initializableArgument, String windowTitle)</pre>
+					<pre class="prettyprint">public Window(String fXMLFilePath, A initializableArgument, String windowTitle)</pre>
 				</div>
 				<div class="highlight">
-					<pre class="prettyprint">public Window(String fXMLFilePath, Class&lt?&gt controllerClass, A initializableArgument)</pre>
-				</div>
-				<div class="highlight">
-					<pre class="prettyprint">public Window(String fXMLFilePath, Class&lt?&gt controllerClass, String windowTitle)</pre>
-				</div>
-				<div class="highlight">
-					<pre class="prettyprint">public Window(String fXMLFilePath, Class&lt?&gt controllerClass)</pre>
+					<pre class="prettyprint">public Window(String fXMLFilePath, A initializableArgument)</pre>
 				</div>
 				<div class="highlight">
 					<pre class="prettyprint">public Window(String fXMLFilePath, String windowTitle)</pre>

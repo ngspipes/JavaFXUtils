@@ -40,25 +40,17 @@ public class Window<T extends Parent, A> implements IComponent<T>{
     	this(component.getNode());
     }
     
-    public Window(String fXMLFilePath, Class<?> controllerClass, A initializableArgument, String windowTitle){
-    	fXMLFile = new FXMLFile<>(fXMLFilePath, controllerClass, initializableArgument);
+    public Window(String fXMLFilePath, A initializableArgument, String windowTitle){
+    	fXMLFile = new FXMLFile<>(fXMLFilePath, initializableArgument);
     	this.windowTitle = windowTitle;
     }
     
-    public Window(String fXMLFilePath, Class<?> controllerClass, A initializableArgument){
-    	this(fXMLFilePath, controllerClass, initializableArgument, "");
-    }
-    
-    public Window(String fXMLFilePath, Class<?> controllerClass, String windowTitle){
-        this(fXMLFilePath, controllerClass, null, windowTitle);
-    }
-    
-    public Window(String fXMLFilePath, Class<?> controllerClass){
-        this(fXMLFilePath, controllerClass, "");
+    public Window(String fXMLFilePath, A initializableArgument){
+    	this(fXMLFilePath, initializableArgument, "");
     }
     
     public Window(String fXMLFilePath, String windowTitle){
-    	this(fXMLFilePath, null, null, windowTitle);
+    	this(fXMLFilePath, null, windowTitle);
     }
     
     public Window(String fXMLFilePath){

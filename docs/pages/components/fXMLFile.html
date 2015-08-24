@@ -42,16 +42,13 @@
 				<h3>Constructors</h3>
 
 				<div class="highlight">
-					<pre class="prettyprint">public FXMLFile(String fXMLFilePath, Class&lt?&gt controllerClass, A initializableArgument)</pre>
+					<pre class="prettyprint">public FXMLFile(String fXMLFilePath, A initializableArgument)</pre>
 				</div>
 
 				<p>
 					<ul>
 						<li>
 							<strong>fXMLFilePath</strong> : path of .fxml file.
-						</li>
-						<li>
-							<strong>controllerClass</strong> : Class object of Controller responsible for initialization.
 						</li>
 						<li>
 							<strong>initializableArgument</strong> : argument of <code>init(argument)</code> method for controllers that implement IInitializable.
@@ -62,13 +59,9 @@
 				<p>There are more constructors with different parameters, but all will internally call this first one.</p>
 				<p>Variations :</p>
 				<ul>
-					<li>Constructors that don't receive <code>controllerClass</code> this value is assumed as <code>null</code>.</li>
 					<li>Constructors that don't receive <code>initializableArgument</code> this value is assumed as <code>null</code>.</li>
 				</ul>
 
-				<div class="highlight">
-					<pre class="prettyprint">public FXMLFile(String fXMLFilePath, Class&lt?&gt controllerClass)</pre>
-				</div>
 				<div class="highlight">
 					<pre class="prettyprint">public FXMLFile(String fXMLFilePath)</pre>
 				</div>
@@ -91,7 +84,7 @@
 	// For Controllers that implements IInitializable&ltA&gt
 
 	try {
-		FXMLFile&ltAnchorPane, A&gt fxmlFile = new FXMLFile<>("path", MyController.class, argument);
+		FXMLFile&ltAnchorPane, A&gt fxmlFile = new FXMLFile<>("path", argument);
 		fxmlFile.mount();
 		AnchorPane pane = fxmlFile.getNode();
 	} catch (ComponentException e) {

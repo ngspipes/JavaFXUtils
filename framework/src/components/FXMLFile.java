@@ -12,23 +12,17 @@ public class FXMLFile<T extends Node, A/*initializable argument*/> implements IC
 	private T root;
 	
     private final String fXMLFilePath;
-    private final boolean isInitializable;
     private A initializableArgument;
     
     // Constructors
     
-    public FXMLFile(String fXMLFilePath, Class<?> controllerClass, A initializableArgument){
+    public FXMLFile(String fXMLFilePath, A initializableArgument){
     	this.fXMLFilePath = fXMLFilePath;
-        this.isInitializable = controllerClass == null || IInitializable.class.isAssignableFrom(controllerClass);
         this.initializableArgument = initializableArgument;
     }
     
-    public FXMLFile(String fXMLFilePath, Class<?> controllerClass){
-        this(fXMLFilePath, controllerClass, null);
-    }
-    
     public FXMLFile(String fXMLFilePath){
-        this(fXMLFilePath, null, null);
+        this(fXMLFilePath, null);
     }
     
     
@@ -65,10 +59,9 @@ public class FXMLFile<T extends Node, A/*initializable argument*/> implements IC
         	throw new ComponentException("Loading fxml file " + fXMLFilePath);
         }
         
-        if(isInitializable){
-            IInitializable<A> controller = loader.getController();
+        IInitializable<A> controller = loader.getController();
+        if(controller!=null && (controller instanceof IInitializable))
             controller.init(initializableArgument);   
-        }
     }
     
     public FXMLLoader getLoader(){
