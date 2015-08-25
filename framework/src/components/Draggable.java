@@ -35,6 +35,7 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 	
 	private I info;
 	public I getInfo(){ return info; }
+	public void setInfo(I info){ this.info = info; }
 	
 	private boolean receives;
 	public boolean getReceives(){ return receives; }
@@ -53,8 +54,14 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 	private final Integer key;
 	private final String dragString;
 	
-	private final Function<I, Boolean> onReceive;
-	private final Consumer<I> afterSend;
+	private Function<I, Boolean> onReceive;
+	public Function<I, Boolean> getOnReceive() { return onReceive; }
+	public void setOnReceive(Function<I, Boolean> onReceive) { this.onReceive = onReceive; }
+
+	private Consumer<I> afterSend;
+	public Consumer<I> getAfterSend() { return afterSend; }
+	public void setAfterSend(Consumer<I> afterSend) { this.afterSend = afterSend; }
+
 	private final TransferMode mode;
 	private final Image dragView;
 	
