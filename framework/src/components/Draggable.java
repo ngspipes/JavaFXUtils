@@ -273,14 +273,14 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 
 	private void onDragEntered(DragEvent event) {
 		if(isAKnownTransference(event))
-			this.node.setStyle("-fx-border-color : green");
+			this.node.setStyle(this.node.getStyle()+";-fx-border-color : green");
 
 		event.consume();
 	}
 
 	private void onDragExited(DragEvent event) {
 		if(isAKnownTransference(event))
-			this.node.setStyle("-fx-border-color : transparent");
+			this.node.setStyle(this.node.getStyle().replace(";-fx-border-color : green", ""));
 		
 		event.consume();        
 	}
