@@ -56,7 +56,7 @@ public class FXMLFile<T extends Node, A/*initializable argument*/> implements IC
         try{
         	root = loader.load();	
         }catch(Exception e){
-        	throw new ComponentException("Loading fxml file " + fXMLFilePath);
+        	throw new ComponentException("Loading fxml file " + fXMLFilePath, e);
         }
         
         IInitializable<A> controller = loader.getController();
