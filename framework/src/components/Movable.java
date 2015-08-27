@@ -5,7 +5,6 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
 import javafx.event.EventHandler;
-import javafx.geometry.Bounds;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
@@ -37,7 +36,6 @@ public class Movable<T extends Node> extends Component<T>{
 
 	private static class Delta { double x, y, initX, initY; }
 
-	private Bounds parentBounds;
 	private final BiFunction<Double, Double, Boolean> acceptNewPosition;
 	private final Consumer<MouseEvent> onMove;
 	private final Consumer<MoveResult> onMoveFinished;
@@ -109,20 +107,12 @@ public class Movable<T extends Node> extends Component<T>{
 
 	@Override
 	public void mount() {
-		setParentBounds();
-		this.node.parentProperty().addListener((event)->setParentBounds());
-		
 		setOnPressed();
 		setOnReleased();
 		setOnDragged();
-		
+
 		new ChangeMouseOnPress<>(this.node, Cursor.CLOSED_HAND, Cursor.OPEN_HAND).mount();
 		new ChangeMouseOnPass<>(this.node, Cursor.OPEN_HAND, Cursor.DEFAULT).mount();
-	}
-	
-	private void setParentBounds(){
-		if(this.node.getParent()!=null)
-			parentBounds = this.node.getParent().getLayoutBounds();
 	}
 
 	private void setOnPressed(){
@@ -175,8 +165,8 @@ public class Movable<T extends Node> extends Component<T>{
 	private double getNewX(MouseEvent event){
 		double newX = event.getSceneX() + dragDelta.x;
 		
-		double maxX = parentBounds.getMaxX() - this.node.getLayoutBounds().getWidth();
-		double minX = parentBounds.getMinX();
+		double maxX = this.node.getParent().getLayoutBounds().getMaxX() - this.node.getLayoutBounds().getWidth();
+		double minX = this.node.getParent().getLayoutBounds().getMinX();
 		
 		if(newX>maxX)
 			newX = maxX;
@@ -189,8 +179,8 @@ public class Movable<T extends Node> extends Component<T>{
 	private double getNewY(MouseEvent event){
 		double newY = event.getSceneY() + dragDelta.y;
 		
-		double maxY = parentBounds.getMaxY() - this.node.getLayoutBounds().getHeight();
-		double minY = parentBounds.getMinY();
+		double maxY = this.node.getParent().getLayoutBounds().getMaxY() - this.node.getLayoutBounds().getHeight();
+		double minY = this.node.getParent().getLayoutBounds().getMinY();
 		
 		if(newY>maxY)
 			newY = maxY;
