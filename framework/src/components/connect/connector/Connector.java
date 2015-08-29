@@ -1,9 +1,12 @@
 package components.connect.connector;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
+import utils.Utils;
 
 import components.Component;
 import components.IComponent;
@@ -54,6 +57,7 @@ public class Connector extends Component<Line>{
 		setLineParentListener();
 		setCoordenateListeners();
 		setVisibilityListener();
+		setOnTipsMouseClicked();
 		
 		if(line.getParent() != null)
 			addTipsToLineParent();
@@ -134,6 +138,20 @@ public class Connector extends Component<Line>{
 		
 		if(tips.getEnd() != NO_TIP)
 			this.node.visibleProperty().addListener((obs, wasVisible, isVisible)->tips.getEnd().setVisible(isVisible));
+	}
+	
+	private void setOnTipsMouseClicked(){
+		if(tips.getInit() != NO_TIP)
+			fireLineMouseClicked(tips.getInit());
+		if(tips.getEnd() != NO_TIP)
+			fireLineMouseClicked(tips.getEnd());
+	}
+	
+	public void fireLineMouseClicked(Node node){
+		EventHandler<? super MouseEvent> oldHandler = node.getOnMouseClicked();
+		EventHandler<? super MouseEvent> newHandler = (event)->line.fireEvent(event);
+		newHandler = Utils.chain(oldHandler, newHandler);
+		node.setOnMouseClicked(newHandler);
 	}
 	
 	public void setInit(double x, double y){
