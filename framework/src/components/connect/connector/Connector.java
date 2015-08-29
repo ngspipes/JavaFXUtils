@@ -16,7 +16,7 @@ public class Connector extends Component<Line>{
 	public static final Node NO_TIP = null;
 
 	protected final Line line;
-	protected final ConnectorTips tips;
+	public final ConnectorTips tips;
 	
 	// Constructors
 	
