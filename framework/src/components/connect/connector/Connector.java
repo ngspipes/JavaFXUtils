@@ -149,7 +149,10 @@ public class Connector extends Component<Line>{
 	
 	public void fireLineMouseClicked(Node node){
 		EventHandler<? super MouseEvent> oldHandler = node.getOnMouseClicked();
-		EventHandler<? super MouseEvent> newHandler = (event)->line.fireEvent(event);
+		EventHandler<? super MouseEvent> newHandler = (event)->{
+			line.fireEvent(event);
+			event.consume();
+		};
 		newHandler = Utils.chain(oldHandler, newHandler);
 		node.setOnMouseClicked(newHandler);
 	}
