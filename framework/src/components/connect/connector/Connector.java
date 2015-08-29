@@ -9,6 +9,8 @@ import components.Component;
 import components.IComponent;
 
 
+
+
 public class Connector extends Component<Line>{
 	
 	public static final Node NO_TIP = null;
@@ -49,14 +51,15 @@ public class Connector extends Component<Line>{
 
 	@Override
 	public void mount() {
-		setLineParentListner();
-		setCoordenateListners();
+		setLineParentListener();
+		setCoordenateListeners();
+		setVisibilityListener();
 		
 		if(line.getParent() != null)
 			addTipsToLineParent();
 	}
 	
-	private void setLineParentListner(){
+	private void setLineParentListener(){
 		line.parentProperty().addListener((a, oldParent, newParent)->{
 			// INCONSISTENT STATE
 			if(newParent==null && ((Pane)oldParent).getChildren().contains(line)){
@@ -113,7 +116,7 @@ public class Connector extends Component<Line>{
 		tips.getEnd().setLayoutY(translatedY);
 	}
 	
-	private void setCoordenateListners(){
+	private void setCoordenateListeners(){
 		if(tips.getInit() != NO_TIP){
 			line.startXProperty().addListener((a)->setInitTipCoordinates());
 			line.startYProperty().addListener((a)->setInitTipCoordinates());	
@@ -123,6 +126,14 @@ public class Connector extends Component<Line>{
 			line.endXProperty().addListener((a)->setEndTipCoordinates());
 			line.endYProperty().addListener((a)->setEndTipCoordinates());	
 		}
+	}
+	
+	private void setVisibilityListener(){
+		if(tips.getInit() != NO_TIP)
+			this.node.visibleProperty().addListener((obs, wasVisible, isVisible)->tips.getInit().setVisible(isVisible));
+		
+		if(tips.getEnd() != NO_TIP)
+			this.node.visibleProperty().addListener((obs, wasVisible, isVisible)->tips.getEnd().setVisible(isVisible));
 	}
 	
 	public void setInit(double x, double y){
