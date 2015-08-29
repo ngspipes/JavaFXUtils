@@ -1,7 +1,10 @@
 package components.connect.connector;
 
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.transform.Rotate;
+
+import components.IComponent;
 
 public class ConnectorPointer extends Connector {
 	
@@ -22,6 +25,19 @@ public class ConnectorPointer extends Connector {
 		super(new ConnectorTips(Connector.NO_TIP, getEndTip()));
 		setListners();
 	}
+	
+	public ConnectorPointer(Line line){
+		super(line, new ConnectorTips(Connector.NO_TIP, getEndTip()));
+		setListners();
+	}
+	
+	public ConnectorPointer(IComponent<Line> line){
+		super(line, new ConnectorTips(Connector.NO_TIP, getEndTip()));
+		setListners();
+	}
+	
+	
+	
 
 	private void setListners(){
 		this.line.endXProperty().addListener((a)-> rotate());
