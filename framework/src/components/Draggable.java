@@ -63,9 +63,13 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 	public Consumer<I> getAfterSend() { return afterSend; }
 	public void setAfterSend(Consumer<I> afterSend) { this.afterSend = afterSend; }
 
+	
+	private Image dragView;
+	public Image getDragView(){ return dragView; }
+	public void setDragView(Image dragView){ this.dragView = dragView; }
+	
 	private final TransferMode mode;
-	private final Image dragView;
-
+	
 
 
 	// CONSTRUCTORS
