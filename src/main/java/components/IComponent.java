@@ -20,7 +20,7 @@
 package components;
 
 import javafx.scene.Node;
-import utils.ComponentException;
+import jfxutils.ComponentException;
 
 public interface IComponent<T extends Node> {
 

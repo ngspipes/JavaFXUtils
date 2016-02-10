@@ -22,7 +22,7 @@ package components;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import utils.ComponentException;
+import jfxutils.ComponentException;
 
 public class Window<T extends Parent, A> implements IComponent<T>{
     

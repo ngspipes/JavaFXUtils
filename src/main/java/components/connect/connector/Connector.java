@@ -25,7 +25,7 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
-import utils.Utils;
+import jfxutils.Utils;
 
 import components.Component;
 import components.IComponent;

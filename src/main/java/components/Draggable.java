@@ -33,8 +33,8 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
-import utils.Pair;
-import utils.Utils;
+import jfxutils.Pair;
+import jfxutils.Utils;
 
 public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 

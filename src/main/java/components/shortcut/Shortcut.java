@@ -26,7 +26,7 @@ import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Pair;
-import utils.Utils;
+import jfxutils.Utils;
 
 import components.Component;
 import components.IComponent;

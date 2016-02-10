@@ -22,7 +22,7 @@ package components;
 import javafx.event.EventHandler;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.Pane;
-import utils.Utils;
+import jfxutils.Utils;
 
 public class Zoomer extends Component<Pane>{
 

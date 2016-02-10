@@ -33,7 +33,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.util.Pair;
-import utils.ComponentException;
+import jfxutils.ComponentException;
 
 import components.Component;
 import components.DoubleClickable;

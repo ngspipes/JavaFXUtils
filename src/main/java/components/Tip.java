@@ -26,7 +26,7 @@ import javafx.animation.Timeline;
 import javafx.scene.control.Control;
 import javafx.scene.control.Tooltip;
 import javafx.util.Duration;
-import utils.ComponentException;
+import jfxutils.ComponentException;
 
 public class Tip<T extends Control> extends Component<T>{
 

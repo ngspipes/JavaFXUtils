@@ -27,7 +27,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
-import utils.Utils;
+import jfxutils.Utils;
 
 import components.animation.changeMouse.ChangeMouseOnPass;
 import components.animation.changeMouse.ChangeMouseOnPress;

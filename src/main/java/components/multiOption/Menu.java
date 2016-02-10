@@ -28,7 +28,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Pair;
-import utils.Utils;
+import jfxutils.Utils;
 
 import components.Component;
 import components.IComponent;

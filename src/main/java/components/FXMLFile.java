@@ -23,8 +23,8 @@ import java.net.URL;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import utils.ComponentException;
-import utils.IInitializable;
+import jfxutils.ComponentException;
+import jfxutils.IInitializable;
 
 public class FXMLFile<T extends Node, A/*initializable argument*/> implements IComponent<T> {
     

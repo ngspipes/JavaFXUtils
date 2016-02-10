@@ -24,7 +24,7 @@ import java.util.function.Consumer;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
-import utils.Utils;
+import jfxutils.Utils;
 
 public class DoubleClickable<T extends Node> extends Component<T>{
 	
