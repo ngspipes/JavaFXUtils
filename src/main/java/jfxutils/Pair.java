@@ -17,11 +17,23 @@
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package utils;
+package jfxutils;
 
+public class Pair<K,V> {
 
-public interface IInitializable<A> {
-    
-    public void init(A arg) throws ComponentException;
-    
+	private K key;
+	public K getKey(){ return key; }
+	public void setKet(K key){ this.key = key; }
+	
+	private V value;
+	public V getValue(){ return value; }
+	public void setValue(V value){ this.value = value; }
+	
+	public Pair(K key, V value){
+		this.key = key;
+		this.value = value;
+	}
+	
+	public Pair(){}
+	
 }

@@ -1,0 +1,9 @@
+apply plugin: 'java'
+
+version = '1.0'
+
+dependencies {
+    compile fileTree(dir: 'vendor/main', include: '*.jar') 
+}
+
+
