@@ -365,12 +365,12 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 
 	@SuppressWarnings("unchecked")
 	private I getInfo(Integer key){
-		return (I)(((Pair<Object, Boolean>)(groupChannel.get(key))).getKey());
+		return (I)(groupChannel.get(key).getKey());
 	}
 
 	@SuppressWarnings("unchecked")
 	private I removeInfo(Integer key){
-		return (I)(((Pair<Object, Boolean>)(groupChannel.remove(key))).getKey());
+		return (I)(groupChannel.remove(key).getKey());
 	}
 
 }

@@ -19,20 +19,19 @@
  */
 package components.connect.connector;
 
+import components.IComponent;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.transform.Rotate;
-
-import components.IComponent;
 
 public class ConnectorPointer extends Connector {
 	
 	private static Polygon getEndTip(){
 		Polygon polygon = new Polygon();
-		polygon.getPoints().addAll(new Double[]{
-		    0.0, 0.0,
-		    0.0, 15.0,
-		    15.0, 7.5 });
+		polygon.getPoints().addAll(
+				0.0, 0.0,
+				0.0, 15.0,
+				15.0, 7.5);
 		
 		return polygon;
 	}

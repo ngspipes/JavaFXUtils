@@ -28,12 +28,12 @@ import components.connect.Coordinates;
 
 public interface IConnection<T extends Node>{
 	
-	public T getNode();
+	T getNode();
 	
-	public Coordinates getCordinates();
+	Coordinates getCordinates();
 	
-	public void registerCoordinatesListner(Consumer<Coordinates> coordenatesConsumer);
+	void registerCoordinatesListner(Consumer<Coordinates> coordenatesConsumer);
 	
-	public Collection<Coordinates> getConnectionPoints();
+	Collection<Coordinates> getConnectionPoints();
 	
 }

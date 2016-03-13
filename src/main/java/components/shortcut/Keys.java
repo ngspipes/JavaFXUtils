@@ -32,12 +32,12 @@ import javafx.util.Pair;
 
 public class Keys {
 	
-	public static enum CommandKey {
+	public enum CommandKey {
 		SHIFT("Shift"),
 		CONTROL("Control"),
 		ALT("Alt");
 		
-		private CommandKey(String key){}
+		CommandKey(String key){}
 		
 	}
 	

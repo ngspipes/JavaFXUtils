@@ -24,8 +24,8 @@ import jfxutils.ComponentException;
 
 public interface IComponent<T extends Node> {
 
-	public void mount() throws ComponentException;
+	void mount() throws ComponentException;
 	
-	public T getNode();
+	T getNode();
 	
 }
