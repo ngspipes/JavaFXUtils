@@ -70,20 +70,20 @@ public class Connection<T extends Node> implements IConnection<T>{
 	}
 	
 	@Override
-	public Coordinates getCordinates() {
+	public Coordinates getCoordinates() {
 		return Connection.getMiddlePoint(this.node);
 	}
 	
 	@Override
-	public void registerCoordinatesListner(Consumer<Coordinates> coordenatesConsumer) {
-		this.node.layoutXProperty().addListener((a)-> coordenatesConsumer.accept(getCordinates()));
-		this.node.layoutYProperty().addListener((a)-> coordenatesConsumer.accept(getCordinates()));
+	public void registerCoordinatesListener(Consumer<Coordinates> coordenatesConsumer) {
+		this.node.layoutXProperty().addListener((a)-> coordenatesConsumer.accept(getCoordinates()));
+		this.node.layoutYProperty().addListener((a)-> coordenatesConsumer.accept(getCoordinates()));
 	}
 
 	@Override
 	public Collection<Coordinates> getConnectionPoints() {
 		Collection<Coordinates> connectionPoints = new LinkedList<>();
-		connectionPoints.add(getCordinates());
+		connectionPoints.add(getCoordinates());
 		return connectionPoints;
 	}
 

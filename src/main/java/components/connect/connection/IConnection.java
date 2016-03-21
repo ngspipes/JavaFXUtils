@@ -19,20 +19,19 @@
  */
 package components.connect.connection;
 
-import java.util.Collection;
-import java.util.function.Consumer;
-
+import components.connect.Coordinates;
 import javafx.scene.Node;
 
-import components.connect.Coordinates;
+import java.util.Collection;
+import java.util.function.Consumer;
 
 public interface IConnection<T extends Node>{
 	
 	T getNode();
 	
-	Coordinates getCordinates();
+	Coordinates getCoordinates();
 	
-	void registerCoordinatesListner(Consumer<Coordinates> coordenatesConsumer);
+	void registerCoordinatesListener(Consumer<Coordinates> coordenatesConsumer);
 	
 	Collection<Coordinates> getConnectionPoints();
 	

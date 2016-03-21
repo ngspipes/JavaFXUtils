@@ -139,20 +139,20 @@ public class Connectable extends Component<Line>{
 	}
 	
 	private void setInitBounds(){
-		Coordinates closestPoint = getClosestPoint(endPoint.getCordinates(), initPoint.getConnectionPoints());
+		Coordinates closestPoint = getClosestPoint(endPoint.getCoordinates(), initPoint.getConnectionPoints());
 		
 		connector.setInit(closestPoint.getX(), closestPoint.getY());
 	}
 	
 	private void setEndBounds(){
-		Coordinates closestPoint = getClosestPoint(initPoint.getCordinates(), endPoint.getConnectionPoints());
+		Coordinates closestPoint = getClosestPoint(initPoint.getCoordinates(), endPoint.getConnectionPoints());
 		
 		connector.setEnd(closestPoint.getX(), closestPoint.getY());
 	}
 	
 	private void registerCoordinateListeners() {
-		initPoint.registerCoordinatesListner((newCoordinates)->setBounds());
-		endPoint.registerCoordinatesListner((newCoordinates)->setBounds());		
+		initPoint.registerCoordinatesListener((newCoordinates)->setBounds());
+		endPoint.registerCoordinatesListener((newCoordinates)->setBounds());
 	}
 
 	public Connector getConnector(){

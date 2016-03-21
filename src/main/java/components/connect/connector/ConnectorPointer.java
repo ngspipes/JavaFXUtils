@@ -41,23 +41,23 @@ public class ConnectorPointer extends Connector {
 	
 	public ConnectorPointer(){
 		super(new ConnectorTips(Connector.NO_TIP, getEndTip()));
-		setListners();
+		setListeners();
 	}
 	
 	public ConnectorPointer(Line line){
 		super(line, new ConnectorTips(Connector.NO_TIP, getEndTip()));
-		setListners();
+		setListeners();
 	}
 	
 	public ConnectorPointer(IComponent<Line> line){
 		super(line, new ConnectorTips(Connector.NO_TIP, getEndTip()));
-		setListners();
+		setListeners();
 	}
 	
 	
 	
 
-	private void setListners(){
+	private void setListeners(){
 		this.line.endXProperty().addListener((a)-> rotate());
 		this.line.endYProperty().addListener((a)-> rotate());		
 		this.line.startXProperty().addListener((a)-> rotate());
