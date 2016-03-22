@@ -75,9 +75,9 @@ public class Connection<T extends Node> implements IConnection<T>{
 	}
 	
 	@Override
-	public void registerCoordinatesListener(Consumer<Coordinates> coordenatesConsumer) {
-		this.node.layoutXProperty().addListener((a)-> coordenatesConsumer.accept(getCoordinates()));
-		this.node.layoutYProperty().addListener((a)-> coordenatesConsumer.accept(getCoordinates()));
+	public void registerCoordinatesListener(Consumer<Coordinates> coordinatesConsumer) {
+		this.node.layoutXProperty().addListener((a)-> coordinatesConsumer.accept(getCoordinates()));
+		this.node.layoutYProperty().addListener((a)-> coordinatesConsumer.accept(getCoordinates()));
 	}
 
 	@Override

@@ -19,6 +19,8 @@
  */
 package components.connect.connector;
 
+import components.Component;
+import components.IComponent;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -26,9 +28,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import jfxutils.Utils;
-
-import components.Component;
-import components.IComponent;
 
 
 
@@ -74,7 +73,7 @@ public class Connector extends Component<Line>{
 	@Override
 	public void mount() {
 		setLineParentListener();
-		setCoordenateListeners();
+		setCoordinateListeners();
 		setVisibilityListener();
 		setOnTipsMouseClicked();
 		
@@ -139,7 +138,7 @@ public class Connector extends Component<Line>{
 		tips.getEnd().setLayoutY(translatedY);
 	}
 	
-	private void setCoordenateListeners(){
+	private void setCoordinateListeners(){
 		if(tips.getInit() != NO_TIP){
 			line.startXProperty().addListener((a)->setInitTipCoordinates());
 			line.startYProperty().addListener((a)->setInitTipCoordinates());	

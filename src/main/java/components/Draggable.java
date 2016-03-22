@@ -19,22 +19,18 @@
  */
 package components;
 
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.input.*;
+import jfxutils.Pair;
+import jfxutils.Utils;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
-
-import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
-import jfxutils.Pair;
-import jfxutils.Utils;
 
 public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 
@@ -94,14 +90,14 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 	// CONSTRUCTORS
 
 	public Draggable(T node, BiFunction<DragEvent, I, Boolean> onReceive, Consumer<I> afterSend, I info, 
-			Object group, TransferMode mode, Image dragView, boolean receives, boolean sends, boolean permitSeflDrag) {
+			Object group, TransferMode mode, Image dragView, boolean receives, boolean sends, boolean permitSelfDrag) {
 		super(node);
 		this.info = info;
 		this.onReceive = onReceive == null? (e, i)->true : onReceive;
 		this.afterSend = afterSend == null ? (i)->{} : afterSend;
 		this.receives = receives;
 		this.sends = sends;
-		this.permitSelfDrag = permitSeflDrag;
+		this.permitSelfDrag = permitSelfDrag;
 		this.mode = mode;
 		this.dragView = dragView;
 
@@ -116,8 +112,8 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 	}
 
 	public Draggable(T node, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
-					Object group, TransferMode mode, Image dragView, boolean receives, boolean sends, boolean permitSeflDrag) {
-		this(node, (e,i)->onReceive.apply(i), afterSend, info, group, mode, dragView, receives, sends, permitSeflDrag);
+					Object group, TransferMode mode, Image dragView, boolean receives, boolean sends, boolean permitSelfDrag) {
+		this(node, (e,i)->onReceive.apply(i), afterSend, info, group, mode, dragView, receives, sends, permitSelfDrag);
 	}
 
 	public Draggable(T node, Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 

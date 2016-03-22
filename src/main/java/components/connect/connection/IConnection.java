@@ -31,7 +31,7 @@ public interface IConnection<T extends Node>{
 	
 	Coordinates getCoordinates();
 	
-	void registerCoordinatesListener(Consumer<Coordinates> coordenatesConsumer);
+	void registerCoordinatesListener(Consumer<Coordinates> coordinatesConsumer);
 	
 	Collection<Coordinates> getConnectionPoints();
 	

@@ -19,13 +19,12 @@
  */
 package components.connect.connection;
 
-import java.util.Collection;
-import java.util.LinkedList;
-
-import javafx.scene.Node;
-
 import components.IComponent;
 import components.connect.Coordinates;
+import javafx.scene.Node;
+
+import java.util.Collection;
+import java.util.LinkedList;
 
 public class NSideConnection<T extends Node> extends Connection<T>{
 

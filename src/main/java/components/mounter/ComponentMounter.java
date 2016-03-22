@@ -19,27 +19,7 @@
  */
 package components.mounter;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
-
-import javafx.event.EventHandler;
-import javafx.scene.Cursor;
-import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
-import javafx.util.Pair;
-import jfxutils.ComponentException;
-
-import components.Component;
-import components.DoubleClickable;
-import components.Draggable;
-import components.IComponent;
-import components.Movable;
+import components.*;
 import components.animation.Animation;
 import components.animation.PassAnimation;
 import components.animation.PressAndPassAnimation;
@@ -50,6 +30,21 @@ import components.multiOption.Menu;
 import components.multiOption.Operations;
 import components.shortcut.Keys;
 import components.shortcut.Shortcut;
+import javafx.event.EventHandler;
+import javafx.scene.Cursor;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
+import javafx.util.Pair;
+import jfxutils.ComponentException;
+
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class ComponentMounter<T extends Node> extends Component<T>{
 
@@ -259,8 +254,8 @@ public class ComponentMounter<T extends Node> extends Component<T>{
 	}
 	
 	public <I> ComponentMounter<T> draggable(Function<I, Boolean> onReceive, Consumer<I> afterSend, I info, 
-			Object group, TransferMode mode, Image dragView, boolean receives, boolean sends, boolean permitSeflDrag) {
-		this.components.add(new Draggable<>(node, onReceive, afterSend, info, group, mode, dragView, receives, sends, permitSeflDrag));
+			Object group, TransferMode mode, Image dragView, boolean receives, boolean sends, boolean permitSelfDrag) {
+		this.components.add(new Draggable<>(node, onReceive, afterSend, info, group, mode, dragView, receives, sends, permitSelfDrag));
 		return this;
 	}
 

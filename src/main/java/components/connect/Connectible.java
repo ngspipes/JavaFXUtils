@@ -19,19 +19,18 @@
  */
 package components.connect;
 
-import java.util.Collection;
-
-import javafx.application.Platform;
-import javafx.scene.Node;
-import javafx.scene.shape.Line;
-
 import components.Component;
 import components.IComponent;
 import components.connect.connection.Connection;
 import components.connect.connection.IConnection;
 import components.connect.connector.Connector;
+import javafx.application.Platform;
+import javafx.scene.Node;
+import javafx.scene.shape.Line;
 
-public class Connectable extends Component<Line>{
+import java.util.Collection;
+
+public class Connectible extends Component<Line>{
 	
 	private static Coordinates getClosestPoint(Coordinates from, Collection<Coordinates> to){
 		if(to.size()==1)
@@ -53,10 +52,10 @@ public class Connectable extends Component<Line>{
 	}
 	
 	private static double getDistance(Coordinates from, Coordinates to){
-		double heigth = Math.abs(to.getY() - from.getY());
+		double height = Math.abs(to.getY() - from.getY());
 		double width = Math.abs(to.getX() - from.getX());
 		
-		return Math.sqrt( Math.pow(heigth, 2) + Math.pow(width, 2) );
+		return Math.sqrt( Math.pow(height, 2) + Math.pow(width, 2) );
 	}
 	
 	private final Connector connector;
@@ -65,54 +64,54 @@ public class Connectable extends Component<Line>{
 	
 	// Constructors
 	
-	public Connectable(Connector connector, IConnection<?> initPoint, IConnection<?> endPoint){
+	public Connectible(Connector connector, IConnection<?> initPoint, IConnection<?> endPoint){
 		super(connector.getNode());
 		this.connector = connector;
 		this.initPoint = initPoint;
 		this.endPoint = endPoint;
 	}
 	
-	public Connectable(Connector connector, Node initNode, Node endNode) {
+	public Connectible(Connector connector, Node initNode, Node endNode) {
 		this(connector, new Connection<>(initNode), new Connection<>(endNode));
 	}
 	
-	public Connectable(Connector connector, IComponent<?> initComponent, IComponent<?> endComponent){
+	public Connectible(Connector connector, IComponent<?> initComponent, IComponent<?> endComponent){
 		this(connector, initComponent.getNode(), endComponent.getNode());
 	}
 	
-	public Connectable(Line line, IConnection<?> initPoint, IConnection<?> endPoint){
+	public Connectible(Line line, IConnection<?> initPoint, IConnection<?> endPoint){
 		this(new Connector(line), initPoint, endPoint);
 	}
 	
-	public Connectable(Line line, Node initNode, Node endNode) {
+	public Connectible(Line line, Node initNode, Node endNode) {
 		this(new Connector(line), initNode, endNode);
 	}
 	
-	public Connectable(Line line, IComponent<?> initComponent, IComponent<?> endComponent){
+	public Connectible(Line line, IComponent<?> initComponent, IComponent<?> endComponent){
 		this(new Connector(line), initComponent, endComponent);
 	}
 	
-	public Connectable(IComponent<Line> component, IConnection<?> initPoint, IConnection<?> endPoint){
+	public Connectible(IComponent<Line> component, IConnection<?> initPoint, IConnection<?> endPoint){
 		this(component.getNode(), initPoint, endPoint);
 	}
 	
-	public Connectable(IComponent<Line> component, Node initNode, Node endNode) {
+	public Connectible(IComponent<Line> component, Node initNode, Node endNode) {
 		this(component.getNode(), initNode, endNode);
 	}
 	
-	public Connectable(IComponent<Line> component, IComponent<?> initComponent, IComponent<?> endComponent){
+	public Connectible(IComponent<Line> component, IComponent<?> initComponent, IComponent<?> endComponent){
 		this(component.getNode(), initComponent, endComponent);
 	}
 	
-	public Connectable(IConnection<?> initPoint, IConnection<?> endPoint){
+	public Connectible(IConnection<?> initPoint, IConnection<?> endPoint){
 		this(new Line(), initPoint, endPoint);
 	}
 	
-	public Connectable(Node initNode, Node endNode) {
+	public Connectible(Node initNode, Node endNode) {
 		this(new Line(), initNode, endNode);
 	}
 	
-	public Connectable(IComponent<?> initComponent, IComponent<?> endComponent){
+	public Connectible(IComponent<?> initComponent, IComponent<?> endComponent){
 		this(new Line(), initComponent, endComponent);
 	}
 
