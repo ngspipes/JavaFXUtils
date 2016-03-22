@@ -19,12 +19,12 @@
  */
 package components;
 
-import java.net.URL;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import jfxutils.ComponentException;
 import jfxutils.IInitializable;
+
+import java.net.URL;
 
 public class FXMLFile<T extends Node, A/*initializable argument*/> implements IComponent<T> {
     
@@ -78,9 +78,9 @@ public class FXMLFile<T extends Node, A/*initializable argument*/> implements IC
         	throw new ComponentException("Loading fxml file " + fXMLFilePath, e);
         }
         
-        IInitializable<A> controller = loader.getController();
+        Object controller = loader.getController();
         if(controller!=null && (controller instanceof IInitializable))
-            controller.init(initializableArgument);   
+            ((IInitializable<A>)controller).init(initializableArgument);
     }
     
     public FXMLLoader getLoader(){

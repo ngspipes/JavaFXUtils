@@ -101,8 +101,8 @@ public class Draggable<T extends Node, I/*Info*/> extends Component<T> {
 		this.mode = mode;
 		this.dragView = dragView;
 
-		this.groupKey = new Integer(group.hashCode());
-		this.key = new Integer(this.hashCode());
+		this.groupKey = group.hashCode();
+		this.key = this.hashCode();
 		this.dragString = DRAG_N_DROP_STRING + "-" + groupKey + "-" + key;
 
 		if(!CHANNELS.containsKey(groupKey))
