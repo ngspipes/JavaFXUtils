@@ -19,11 +19,10 @@
  */
 package components.animation;
 
+import components.IComponent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
-
-import components.IComponent;
 
 public class PassAnimation<T extends Node> extends Animation<T>{
 	
@@ -40,7 +39,7 @@ public class PassAnimation<T extends Node> extends Animation<T>{
 	}
 	
 	public PassAnimation(IComponent<T> component, EventHandler<? super MouseEvent> onEnter, EventHandler<? super MouseEvent> onExit, boolean keepOldHandlers){
-		this(component.getNode(), onEnter, onEnter, keepOldHandlers);
+		this(component.getNode(), onEnter, onExit, keepOldHandlers);
 	}
 	
 	public PassAnimation(IComponent<T> component, EventHandler<? super MouseEvent> onEnter, EventHandler<? super MouseEvent> onExit){
