@@ -4,4 +4,4 @@ The aim of JavaFXUtils Repository is to create a library with some utilities for
 
 Feel free to contribute by creating new components, finding or solving bugs, documenting and <strong>sharing</strong> this Repository! :)
 
-You can find all documentation [here](http://brunomndantas.github.io/JavaFXUtils/index.html).
+You can find all documentation [here](http://ngspipes.github.io/JavaFXUtils/index.html).
