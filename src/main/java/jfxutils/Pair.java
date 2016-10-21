@@ -35,5 +35,29 @@ public class Pair<K,V> {
 	}
 	
 	public Pair(){}
+
+	@Override
+	public boolean equals(Object o){
+		if(o == null)
+			return false;
+
+		if(!(o instanceof Pair))
+			return false;
+
+		Pair<K,V> other = (Pair<K,V>)o;
+
+		return	equals(this.key, other.key) &&
+				equals(this.value, other.value);
+	}
+
+	public static boolean equals(Object a, Object b){
+		if(a==b)
+			return true;
+
+		if((a == null && b != null) || (a != null && b == null))
+			return false;
+
+		return a.equals(b);
+	}
 	
 }
